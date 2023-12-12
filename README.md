@@ -1,6 +1,6 @@
 # Eat Eating Web-App
 
-## Tecnologias utilizadas
+## Tecnologias utilizadas:
 
 - <p>NodeJS</p>
 - <p>React</p>
