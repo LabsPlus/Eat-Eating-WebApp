@@ -2,14 +2,54 @@
 
 import Link from "next/link";
 import styles from "./page.module.css";
-import React from "react";
+import React, { useState } from "react";
 import { UserOutlined } from "@ant-design/icons";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { Input, Button } from "antd";
 import Image from "next/image";
+import { validation } from "./validation";
+import { useAuthContext } from "@/app/contexts/AuthContext";
+import toast from "react-hot-toast";
+import { UserData } from "./types";
 
 const LoginForm = () => {
-  const [passwordVisible, setPasswordVisible] = React.useState(false);
+  const { login } = useAuthContext();
+
+  const [remember, setRemember] = useState(false);
+
+  const [userData, setUserdata] = useState<UserData>({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setUserdata({
+      ...userData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const response = validation(userData);
+
+    try {
+      if (response) {
+        return toast.error(response);
+      } else {
+        login(userData, remember);
+        setUserdata({ email: "", password: "" });
+      }
+    } catch (error) {
+      console.error("Ocorreu um erro durante o login.", error);
+      return toast.error(
+        "Ocorreu um erro durante o login. Tente novamente mais tarde."
+      );
+    }
+  };
 
   return (
     <div className={styles.main}>
@@ -28,24 +68,41 @@ const LoginForm = () => {
             size="large"
             placeholder="Email"
             prefix={<UserOutlined />}
+            name="email"
+            value={userData.email}
+            onChange={handleChange}
           />
           <Input.Password
             style={{ borderColor: "#022971" }}
             size="large"
             placeholder="Senha"
+            name="password"
+            value={userData.password}
+            onChange={handleChange}
             iconRender={(visible) =>
               visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
             }
           />
           <div className={styles.divLinks}>
             <label>
-              <input className={styles.checkbox} type="checkbox"></input>
+              <input
+                onClick={() => setRemember(!remember)}
+                className={styles.checkbox}
+                type="checkbox"
+              ></input>
               <span> Manter Conectado</span>
             </label>
             <Link href="/recuperacao-senha">Esqueceu sua senha?</Link>
           </div>
           <div className={styles.divButton}>
-            <Button type="primary">Login</Button>
+            <Button
+              type="primary"
+              onClick={(e: React.MouseEvent<HTMLFormElement>) =>
+                handleSubmit(e)
+              }
+            >
+              Login
+            </Button>
           </div>
         </div>
       </form>
