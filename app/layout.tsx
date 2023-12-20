@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import "./globals.css";
 import StyledComponentsRegistry from "@/lib/AntdRegistry";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,6 +26,30 @@ export default function RootLayout({
         ></link>
       </head>
       <body>
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            success: {
+              style: {
+                background: "#FFFFFF",
+                border: "2px solid #0444BD",
+                color: "#000000",
+              },
+            },
+            error: {
+              style: {
+                background: "#FFCCCC",
+                border: "2px solid #FF0000",
+                color: "#000000",
+              },
+            },
+            style: {
+              background: "#FFFFFF",
+              border: "2px solid #0444BD",
+              color: "#333",
+            },
+          }}
+        />
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
     </html>

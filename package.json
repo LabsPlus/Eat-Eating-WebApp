@@ -11,17 +11,18 @@
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.18.1",
+    "antd": "^5.12.1",
+    "axios": "^1.6.2",
+    "ls": "^0.2.1",
+    "next": "14.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1"
+  },
+  "devDependencies": {
     "@babel/preset-env": "^7.22.2",
     "@babel/preset-react": "^7.22.3",
     "@babel/preset-typescript": "^7.21.5",
-    "antd": "^5.12.1",
-    "babel-jest": "^29.5.0",
-    "ls": "^0.2.1",
-    "next": "14.0.4",
-    "react": "^18",
-    "react-dom": "^18"
-  },
-  "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.1",
@@ -29,11 +30,11 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.12",
+    "babel-jest": "^29.5.0",
     "identity-obj-proxy": "^3.0.0",
     "isomorphic-fetch": "^3.0.0",
     "jest-environment-jsdom": "^29.5.0",
-    "msw": "^1.2.1",
-    "ts-jest": "^29.1.0",
-    "typescript": "^5.3.3"
+    "ts-jest": "^29.1.1",
+    "typescript": "^4.4.4"
   }
 }
