@@ -40,12 +40,7 @@ const LoginForm = () => {
       if (response) {
         return toast.error(response);
       } else {
-        const response = login(userData, remember);
-        response.then((response) => {
-          if (response === true) {
-            setUserdata({ email: "", password: "" });
-          }
-        });
+        login(userData, remember);
       }
     } catch (error) {
       console.error("Ocorreu um erro durante o login.", error);
