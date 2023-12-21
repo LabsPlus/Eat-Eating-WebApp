@@ -43,7 +43,7 @@ const NewPassword = () => {
         return toast.error(response);
       } else {
         const response = await axios.post(
-          "http://localhost:3003/updatePassword",
+          "https://eat-eating-api-dev-drba.3.us-1.fl0.io/updatePassword",
           {
             newPassword: passwordData.password,
             token: token,

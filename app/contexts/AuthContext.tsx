@@ -34,7 +34,10 @@ export function AuthContext({ children }: { children: React.ReactNode }) {
 
   const login = async (userData: { email: string }, remember: boolean) => {
     try {
-      const response = await axios.post(`http://localhost:3003/auth`, userData);
+      const response = await axios.post(
+        `https://eat-eating-api-dev-drba.3.us-1.fl0.io/auth`,
+        userData
+      );
       const { user, token, refreshToken } = response.data;
 
       if (remember) {
