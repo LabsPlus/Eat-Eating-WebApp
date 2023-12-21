@@ -5,7 +5,6 @@ import "./globals.css";
 import StyledComponentsRegistry from "@/lib/AntdRegistry";
 import { Toaster } from "react-hot-toast";
 import { AuthContext } from "@/app/contexts/AuthContext";
-import { Toaster } from "react-hot-toast";
 
 export default function RootLayout({
   children,

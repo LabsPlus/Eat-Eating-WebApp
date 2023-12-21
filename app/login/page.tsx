@@ -41,7 +41,6 @@ const LoginForm = () => {
         return toast.error(response);
       } else {
         login(userData, remember);
-        setUserdata({ email: "", password: "" });
       }
     } catch (error) {
       console.error("Ocorreu um erro durante o login.", error);

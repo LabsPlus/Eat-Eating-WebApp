@@ -34,7 +34,7 @@ export function AuthContext({ children }: { children: React.ReactNode }) {
 
   const login = async (userData: { email: string }, remember: boolean) => {
     try {
-      const response = await axios.post(`http://localhost:3000/auth`, userData);
+      const response = await axios.post(`http://localhost:3003/auth`, userData);
       const { user, token, refreshToken } = response.data;
 
       if (remember) {
@@ -57,8 +57,11 @@ export function AuthContext({ children }: { children: React.ReactNode }) {
 
       toast.success("Autenticação bem-sucedida. Bem-vindo!");
       router.push("/dashboard");
+      return true;
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
+        console.log(error.response.data);
+
         toast.error(error.response.data);
       } else {
         toast.error(
