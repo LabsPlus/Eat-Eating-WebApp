@@ -1,6 +1,6 @@
 # Eat Eating Web-App
 
-## Tecnologias utilizadas
+## Tecnologias utilizadas:
 
 - <p>NodeJS</p>
 - <p>React</p>
@@ -12,7 +12,22 @@ Este es un proyecto Next.js generado con [`create-next-app`](https://github.com/
 
 ## Comenzando
 
-Primero, ejecuta el servidor de desarrollo:
+1. Certifique-se de que tem o Node.js e npm instalados em sua maquina, com os comandos:
+
+Node.js 'node -v'
+npm 'npm -v'
+
+Caso o Node.js ou npm não estiverem instalados, você pode baixá-los em nodejs.org.
+
+2. Clone este repositório para sua máquina local, utilizando os comandos:
+
+git clone https://github.com/LabsIF/Eat-Eating-WebApp.git
+
+3. No diretório da aplicação, execute o seguinte comando para instalar as dependências: 'npm install'
+
+- Se o admin linux nao permitir pode tentar 'npm install --force'
+
+4. Para executar a aplicação em modo de desenvolvimento, utilize o comando:
 
 ```bash
 npm run dev
@@ -23,7 +38,7 @@ pnpm dev
 # o
 bun dev
 
-Abre http://localhost:3000 en tu navegador para ver el resultado.
+A aplicação estará disponível em http://localhost:3000.
 ```
 
 ## Executando Testes
