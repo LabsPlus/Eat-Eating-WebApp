@@ -13,13 +13,12 @@ import { UserData } from "./types";
 import { validation } from "./validation";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
-interface NewPasswordProps {
-  tokenEmail: string;
-}
+const NewPassword = () => {
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token");
 
-const NewPassword: React.FC<NewPasswordProps> = ({ tokenEmail }) => {
   const router = useRouter();
   const [passwordVisible, setPasswordVisible] = React.useState(false);
   const [passwordData, setPasswordData] = useState<UserData>({
@@ -38,17 +37,16 @@ const NewPassword: React.FC<NewPasswordProps> = ({ tokenEmail }) => {
     e.preventDefault();
 
     const response = validation(passwordData);
-  
+
     try {
       if (response) {
         return toast.error(response);
       } else {
-        const resetPasswordToken = JSON.parse(sessionStorage.getItem("resetPasswordToken") || "");
         const response = await axios.post(
           "http://localhost:3003/updatePassword",
           {
             newPassword: passwordData.password,
-            token: resetPasswordToken,
+            token: token,
           }
         );
         message.success("Senhas trocadas com sucesso");
