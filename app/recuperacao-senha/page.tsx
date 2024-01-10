@@ -34,7 +34,7 @@ const RecoverPassword = () => {
         return toast.error(response);
       } else {
         const response = await axios.post(
-          "https://eat-eating-api-dev-drba.3.us-1.fl0.io/forgotPassword",
+          "http://localhost:3003/forgotPassword",
           {
             email: emailData.email,
           }
@@ -44,10 +44,13 @@ const RecoverPassword = () => {
         message.success(
           "Um link de recuperação de senha foi enviado para o seu email! "
         );
-
         console.log("Resposta:", response.data);
       }
-    } catch (error) {
+    } catch (error: any) {
+      if (error.response.data === "User not found")
+        toast.error(
+          "Desculpe, não encontramos uma conta associada a esse e-mail."
+        );
       console.error("Erro ao enviar o email:", error);
     }
   };
