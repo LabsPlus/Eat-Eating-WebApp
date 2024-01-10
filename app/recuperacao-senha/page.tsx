@@ -34,7 +34,7 @@ const RecoverPassword = () => {
         return toast.error(response);
       } else {
         const response = await axios.post(
-          "http://localhost:3003/forgotPassword",
+          "https://eat-eating-api-dev-drba.3.us-1.fl0.io/forgotPassword",
           {
             email: emailData.email,
           }
