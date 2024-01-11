@@ -44,10 +44,13 @@ const RecoverPassword = () => {
         message.success(
           "Um link de recuperação de senha foi enviado para o seu email! "
         );
-
         console.log("Resposta:", response.data);
       }
-    } catch (error) {
+    } catch (error: any) {
+      if (error.response.data === "User not found")
+        toast.error(
+          "Desculpe, não encontramos uma conta associada a esse e-mail."
+        );
       console.error("Erro ao enviar o email:", error);
     }
   };
