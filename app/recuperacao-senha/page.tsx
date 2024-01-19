@@ -51,6 +51,13 @@ const RecoverPassword = () => {
         toast.error(
           "Desculpe, não encontramos uma conta associada a esse e-mail."
         );
+      if (
+        error.response.data ===
+        "Too many requests. This IP has been blocked for 15 minutes"
+      )
+        toast.error(
+          "Ops! Parece que você excedeu o número máximo de tentativas permitidas. Sua conta foi bloqueada por 15 minutos. Por favor, tente novamente mais tarde."
+        );
       console.error("Erro ao enviar o email:", error);
     }
   };
