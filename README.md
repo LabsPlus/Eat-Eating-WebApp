@@ -56,3 +56,15 @@ bun test
 
 Isso executará os testes e exibirá os resultados no console.
 ```
+# Guia de Rotas da Aplicação
+
+1. Rotas principais:
+- `/`: Página inicial.
+- `/login`: Página para se logar no sistema.
+- `/recuperacao-senha`: Página para se recuperar a senha.
+
+2. Rotas Dinâmicas:
+- `/nova-senha?token=ksdjkad`: Página para escrever nova senha.
+
+3. Rotas protegidas:
+- `/dashboard`: Página para gerenciamento das informacoes. Precisa estar logado no sistema.
