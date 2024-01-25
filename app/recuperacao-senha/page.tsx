@@ -33,8 +33,8 @@ const RecoverPassword = () => {
       if (response) {
         return toast.error(response);
       } else {
-        const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_URL}/users/forgotPassword`,
+        const response = await axios.patch(
+          `${process.env.NEXT_PUBLIC_API_URL}/login/forgotPasswordLogin`,
           {
             email: emailData.email,
           }
