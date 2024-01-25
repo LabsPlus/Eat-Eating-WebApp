@@ -42,8 +42,8 @@ const NewPassword = () => {
       if (response) {
         return toast.error(response);
       } else {
-        const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_URL}/users/updatePassword`,
+        const response = await axios.patch(
+          `${process.env.NEXT_PUBLIC_API_URL}/login/updatePasswordLogin`,
           {
             newPassword: passwordData.password,
             token: token,
