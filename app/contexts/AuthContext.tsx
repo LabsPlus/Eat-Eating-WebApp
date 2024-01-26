@@ -35,7 +35,7 @@ export function AuthContext({ children }: { children: React.ReactNode }) {
   const login = async (userData: { email: string }, remember: boolean) => {
     try {
       const response = await axios.post(
-        `https://eat-eating-api-dev-gskf.1.us-1.fl0.io/users/auth`,
+        `${process.env.NEXT_PUBLIC_API_URL}/login/authLogin`,
         userData
       );
       const { user, token, refreshToken } = response.data;
@@ -64,8 +64,9 @@ export function AuthContext({ children }: { children: React.ReactNode }) {
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         console.log(error.response.data);
-
-        toast.error(error.response.data);
+        if (error.response.data === "Invalid email or password") {
+          return toast.error("O seu e-mail ou senha está incorreto");
+        }
       } else {
         toast.error(
           "Error desconocido durante el login. Por favor, inténtelo de nuevo."
