@@ -47,7 +47,9 @@ const RecoverPassword = () => {
         console.log("Resposta:", response.data);
       }
     } catch (error: any) {
-      if (error.response.data === "User not found")
+      console.log(error);
+
+      if (error.response.statusText === "Not Found")
         toast.error(
           "Desculpe, não encontramos uma conta associada a esse e-mail."
         );
