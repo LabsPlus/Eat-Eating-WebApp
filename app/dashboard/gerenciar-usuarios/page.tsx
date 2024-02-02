@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from "react";
 import styles from "./page.module.css";
 import Popover from "@/app/components/modal-add-user/page";
