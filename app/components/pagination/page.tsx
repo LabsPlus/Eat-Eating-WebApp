@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from "react";
 import { Button, Input, Popconfirm, Table } from "antd";
 import styles from "./page.module.css";
