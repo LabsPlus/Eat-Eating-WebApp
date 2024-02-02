@@ -1,0 +1,82 @@
+.container {
+    position: relative;
+    width: 90%;
+    margin: auto auto;
+    padding: 10px;
+    background-color: #EEF2F9;
+}
+
+.time {
+    width: 150px;
+    height: 37px;
+    display: flex;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    border-radius: 10px;
+    background-color: #B1C5EB;
+}
+
+.title {
+    margin-top: 85px;
+    margin-bottom: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 65px;
+    color: #022971;
+    font-size: 22px;
+    border: 1px solid #03338E;
+    border-radius: 10px;
+    background-color: #E6ECF8;
+}
+
+.inputsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inputsContainer .searchAndAdd {
+    display: flex;
+}
+
+.btnsContainer {
+    margin-top: -18px;
+}
+
+.btnsContainer .personIcon {
+    margin: auto auto;
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #B1C5EB;
+}
+
+.btnsContainer button {
+    margin-top: 6px;
+    height: 37px;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    color: #03338E;
+    background-color: #B1C5EB;
+    border: 1px solid #03338E;
+}
+
+.btnsContainer button:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.btnsContainer button:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
