@@ -35,7 +35,7 @@ export function AuthContext({ children }: { children: React.ReactNode }) {
   const login = async (userData: { email: string }, remember: boolean) => {
     try {
       const response = await axios.post(
-        `https://node-eat-api.onrender.com/login/authLogin`,
+        `${process.env.NEXT_PUBLIC_API_URL}/login/authLogin`,
         userData
       );
       const { user, token, refreshToken } = response.data;
@@ -59,7 +59,7 @@ export function AuthContext({ children }: { children: React.ReactNode }) {
       setUser(user.email);
 
       toast.success("Autenticação bem-sucedida. Bem-vindo!");
-      router.push("/dashboard");
+      router.push("/dashboard/gerenciar-usuarios");
       return true;
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
@@ -79,6 +79,7 @@ export function AuthContext({ children }: { children: React.ReactNode }) {
   const logout = () => {
     setUser(null);
     localStorage.removeItem("user");
+    sessionStorage.removeItem("user");
   };
 
   return (
