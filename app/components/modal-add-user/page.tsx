@@ -186,9 +186,9 @@ const Popover = () => {
                   onChange={handleInputChange}
                 >
                   <option>Usuário</option>
-                  <option value="student">Aluno</option>
-                  <option value="employee">Funcionário</option>
-                  <option value="visitor">Visitante</option>
+                  <option value="ESTUDANTE">Aluno</option>
+                  <option value="FUNCIONARIO">Funcionário</option>
+                  <option value="VISITANTE">Visitante</option>
                 </select>
               </div>
 
@@ -200,9 +200,9 @@ const Popover = () => {
                   onChange={handleInputChange}
                 >
                   <option>Bolsa</option>
-                  <option value="full">Integral</option>
-                  <option value="partial">Parcial</option>
-                  <option value="not_applicable">Não aplicável</option>
+                  <option value="INTEGRAL">Integral</option>
+                  <option value="PARCIAL">Parcial</option>
+                  <option value="NAO_APLICAVEL ">Não aplicável</option>
                 </select>
               </div>
             </div>
