@@ -6,7 +6,7 @@ function Dashboard() {
   return (
     <PrivateRoute>
       <div>
-        <h1>Hi on Dashboard home</h1>
+        {/* <h1>Hi on Dashboard home</h1> */}
       </div>
     </PrivateRoute>
   );

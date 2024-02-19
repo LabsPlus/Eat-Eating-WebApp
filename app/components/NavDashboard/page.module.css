@@ -23,6 +23,7 @@
   justify-content: center;
   gap: 18px;
 }
+
 .nav li {
   list-style: none;
   display: flex;
@@ -30,11 +31,6 @@
   margin: 0px;
   padding-left: 10px;
   gap: 8px;
-}
-
-.nav svg {
-  padding: 0;
-  margin: 0;
 }
 
 .nav a {
@@ -47,7 +43,32 @@
   line-height: 18px;
 }
 
+.nav .active {
+  border-radius: 15px;
+  background-color: #D9E3F5;
+}
+
+.icon {
+  margin-left: 16px;
+}
+
+.rectangle {
+  position: absolute;
+  left: 0;
+  width: 15px;
+  height: 30px;
+  background-size: cover;
+  background-image: url("/images/Rectangle-branco.png");
+
+
+}
+
+li.active .rectangle {
+  background-image: url("/images/Rectangle-azul.png");
+}
+
 .logoutContainer {
+  cursor: pointer;
   position: absolute;
   bottom: 25px;
   left: 16px;
@@ -61,4 +82,9 @@
   font-weight: 600;
   line-height: normal;
   text-transform: capitalize;
+}
+
+.nav svg {
+  padding: 0;
+  margin: 0;
 }

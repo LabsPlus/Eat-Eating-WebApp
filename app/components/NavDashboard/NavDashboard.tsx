@@ -3,8 +3,20 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./page.module.css";
+import { useAuthContext } from "@/app/contexts/AuthContext";
+import { useRouter, usePathname } from "next/navigation";
 
 const NavDashboard = () => {
+  const pathname = usePathname();
+  const { logout } = useAuthContext();
+
+  const router = useRouter();
+
+  const handleLogout = () => {
+    logout();
+    router.push("/login");
+  };
+
   return (
     <div className={styles.container}>
       <nav className={styles.nav}>
@@ -14,43 +26,66 @@ const NavDashboard = () => {
           alt="logo"
           width={240}
           height={70}
-        ></Image>
+        />
         <ul className={styles.ul}>
-          <li>
+          <li
+            className={
+              pathname === "/dashboard/gerenciar-usuarios" ? styles.active : ""
+            }
+          >
+            <div className={styles.rectangle}></div>
             <Image
               src={"/images/userLogo.png"}
               alt="User Logo"
               width={22.26}
               height={18.1}
-              style={{ padding: "5px", paddingRight: '3px' }}
-            ></Image>
+              style={{
+                padding: "5px",
+                paddingRight: "3px",
+              }}
+              className={styles.icon}
+            />
             <Link href={"/dashboard/gerenciar-usuarios"}>
               Gerenciar Usuários
             </Link>
           </li>
-          <li>
+          <li
+            className={
+              pathname === "/dashboard/gerenciar-tickets" ? styles.active : ""
+            }
+          >
+            <div className={styles.rectangle}></div>
             <Image
               src={"/images/ticketLogo.png"}
               alt="Ticket Logo"
               width={30}
               height={33}
-            ></Image>
+              className={styles.icon}
+            />
             <Link href={"/dashboard/gerenciar-tickets"}>Gerenciar Tickets</Link>
           </li>
-          <li>
+          <li
+            className={
+              pathname === "/dashboard/gerenciar-dashboards"
+                ? styles.active
+                : ""
+            }
+          >
+            <div className={styles.rectangle}></div>
             <Image
               src={"/images/dashboardLogo.png"}
               alt="Dashboard Logo"
               width={18}
               height={20.3}
               style={{ padding: "6px" }}
-            ></Image>
+              className={styles.icon}
+            />
             <Link href={"/dashboard/gerenciar-dashboards"}>
               Gerenciar Dashboards
             </Link>
           </li>
         </ul>
-        <div className={styles.logoutContainer}>
+        <div className={styles.logoutContainer} onClick={handleLogout}>
           <svg
             width="22"
             height="22"
