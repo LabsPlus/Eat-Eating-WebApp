@@ -30,32 +30,30 @@ describe("Popover Component", () => {
 
     // Primeira etapa
     const nameInput = getByLabelText("Nome completo") as HTMLInputElement;
-    // const categoryIdInput = getByLabelText("Usuário") as HTMLSelectElement;
-    // const typeStudentGrantIdInput = getByLabelText(
-    //   "Tipo de Bolsa"
-    // ) as HTMLSelectElement;
+    const selectCategoria = getByText("Usuário") as HTMLInputElement;
+    const typeStudentGrantIdInput = getByText("Bolsa") as HTMLSelectElement;
     const enrollmentInput = getByLabelText("Matrícula") as HTMLInputElement;
     const dailyMealsInput = getByLabelText(
       "Refeições diárias"
     ) as HTMLInputElement;
 
     expect(nameInput).toBeInTheDocument();
-    // expect(categoryIdInput).toBeInTheDocument();
-    // expect(typeStudentGrantIdInput).toBeInTheDocument();
+    expect(selectCategoria).toBeInTheDocument();
+    expect(typeStudentGrantIdInput).toBeInTheDocument();
     expect(enrollmentInput).toBeInTheDocument();
     expect(dailyMealsInput).toBeInTheDocument();
 
     fireEvent.change(nameInput, { target: { value: "João Silva" } });
-    // fireEvent.change(categoryIdInput, { target: { value: "Aluno" } });
-    // fireEvent.change(typeStudentGrantIdInput, {
-    //   target: { value: "Integral" },
-    // });
+    fireEvent.change(selectCategoria, { target: { value: "FUNCIONARIO" } });
+    fireEvent.change(typeStudentGrantIdInput, {
+      target: { value: "INTEGRAL" },
+    });
     fireEvent.change(enrollmentInput, { target: { value: "123456" } });
     fireEvent.change(dailyMealsInput, { target: { value: "2" } });
 
     expect(nameInput.value).toBe("João Silva");
-    // expect(categoryIdInput.value).toBe("Aluno");
-    // expect(typeStudentGrantIdInput.value).toBe("Integral");
+    expect(selectCategoria.value).toBe("FUNCIONARIO");
+    expect(typeStudentGrantIdInput.value).toBe("INTEGRAL");
     expect(enrollmentInput.value).toBe("123456");
     expect(dailyMealsInput.value).toBe("2");
 

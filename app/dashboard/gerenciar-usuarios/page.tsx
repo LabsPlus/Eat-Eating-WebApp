@@ -20,8 +20,8 @@ const UserManager = () => {
 
         <div className={styles.inputsContainer}>
           <div className={styles.searchAndAdd}>
-            <Search />
-            <Popover />
+            <Search data-testid='search-component'/>
+            <Popover data-testid="popover-component"/>
           </div>
 
           <div className={styles.btnsContainer}>
@@ -48,7 +48,7 @@ const UserManager = () => {
             </div>
           </div>
         </div>
-        <PaginationUsers />
+        <PaginationUsers data-testid="pagination-component" />
       </div>
     </PrivateRoute>
   );
