@@ -7,6 +7,7 @@ import { useAuthContext } from "@/app/contexts/AuthContext";
 import HeaderHome from "./components/HeaderHome/HeaderHome";
 import Link from "next/link";
 import Image from "next/image";
+import FooterHome from "./components/FooterHome/FooterHome";
 
 export default function Home() {
   const { user, logout } = useAuthContext();
@@ -66,6 +67,146 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <section className={styles.sectionBenefits}>
+          <h2>Benefícios</h2>
+          <div className={styles.sessionBenefitsBanner}>
+            <div className={styles.benefitAccess}>
+              <Image
+                src="/images/iconoir_pc-check.png"
+                alt="quadrado com sinal de marcação"
+                width={65}
+                height={65}
+                className={styles.sessionBenefits_image1}
+              />
+              <p>Facilidade de acesso</p>
+            </div>
+
+            <div className={styles.benefitAccess}>
+              <Image
+                src="/images/iconoir_internet.png"
+                alt="globo com "
+                width={65}
+                height={65}
+                className={styles.sessionBenefits_image1}
+              />
+              <p>Pedido Online</p>
+            </div>
+
+            <div className={styles.benefitAccess}>
+              <Image
+                src="/images/fluent_food-16-filled.png"
+                alt="Garfo e faca"
+                width={65}
+                height={65}
+                className={styles.sessionBenefits_image1}
+              />
+              <p>Variedade no cardápio</p>
+            </div>
+          </div>
+
+          <div className={styles.sessionBenefitsBanner}>
+            <div className={styles.benefitAccess}>
+              <Image
+                src="/images/simple-icons_contactlesspayment.png"
+                alt="Icone pagamento por aproximação"
+                width={65}
+                height={65}
+                className={styles.sessionBenefits_image1}
+              />
+              <p>Integração com pagamento online</p>
+            </div>
+
+            <div className={styles.benefitAccess}>
+              <Image
+                src="/images/fluent_person-feedback-48-regular.png"
+                alt="Icone pessoa com caixa de texto"
+                width={65}
+                height={65}
+                className={styles.sessionBenefits_image1}
+              />
+              <p>Feedback dos clientes</p>
+            </div>
+
+            <div className={styles.benefitAccess}>
+              <Image
+                src="/images/basil_notification-on-solid.png"
+                alt="Icone sino"
+                width={65}
+                height={65}
+                className={styles.sessionBenefits_image1}
+              />
+              <p>Notificação em tempo real</p>
+              </div>
+          </div>
+        </section>
+
+        <section className={styles.sectionPartners}>
+          <h2>Nossos Parceiros</h2>
+        <div className={styles.sectionPartnersBanner}>
+          <div className={styles.sessionPartnersIcon}>
+            <Image
+              src="/images/Group 96.png"
+              alt="Logo IFBaiano"
+              width={150}
+              height={308}
+              className={styles.sessionPartners_image}
+            />
+          </div>
+
+          <div className={styles.sessionPartnersIcon}>
+            <Image
+              src="/images/Group 96.png"
+              alt="Logo IFBaiano"
+              width={150}
+              height={308}
+              className={styles.sessionPartners_image}
+            />
+          </div>
+
+          <div className={styles.sessionPartnersIcon}>
+            <Image
+              src="/images/Group 96.png"
+              alt="Logo IFBaiano"
+              width={150}
+              height={308}
+              className={styles.sessionPartners_image}
+            />
+          </div>
+
+          <div className={styles.sessionPartnersIcon}>
+            <Image
+              src="/images/Group 96.png"
+              alt="Logo IFBaiano"
+              width={150}
+              height={308}
+              className={styles.sessionPartners_image}
+            />
+          </div>
+
+          <div className={styles.sessionPartners}>
+            <Image
+              src="/images/Group 96.png"
+              alt="Logo IFBaiano"
+              width={150}
+              height={308}
+              className={styles.sessionPartners_image}
+            />
+          </div>
+
+          <div className={styles.sessionPartnersIcon}>
+            <Image
+              src="/images/Group 96.png"
+              alt="Logo IFBaiano"
+              width={150}
+              height={308}
+              className={styles.sessionPartners_image}
+            />
+          </div>
+          </div>
+        </section>
+
+        <FooterHome />
 
         {user ? (
           <>

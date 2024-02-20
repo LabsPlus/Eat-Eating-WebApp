@@ -1,0 +1,55 @@
+.sectionFooter {
+    background-color: #0444BD;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.divSocialMedia {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 50px 75px;
+}
+
+.buttonSocialMedia {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0444BD;
+}
+
+.divLinks {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    padding: 50px 75px;
+    color: #E8EFFE;
+}
+
+.divLinks a {
+    text-decoration: underline;
+    color: #E8EFFE;
+}
+
+.divButtonPortal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 75px;
+}
+
+.buttonPortal {
+    background-color: #B1C5EB;
+    color: #262626;
+    width: 262px;
+    height: 44px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+}
+
