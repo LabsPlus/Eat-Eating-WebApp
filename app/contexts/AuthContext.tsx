@@ -59,7 +59,7 @@ export function AuthContext({ children }: { children: React.ReactNode }) {
       setUser(user.email);
 
       toast.success("Autenticação bem-sucedida. Bem-vindo!");
-      router.push("/dashboard");
+      router.push("/dashboard/gerenciar-usuarios");
       return true;
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
@@ -79,6 +79,7 @@ export function AuthContext({ children }: { children: React.ReactNode }) {
   const logout = () => {
     setUser(null);
     localStorage.removeItem("user");
+    sessionStorage.removeItem("user");
   };
 
   return (

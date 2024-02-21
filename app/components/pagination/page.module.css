@@ -1,0 +1,18 @@
+.container {
+    margin-top: 30px;
+}
+
+.btnsContainer {
+    display: flex;
+}
+
+.btnsContainer button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table {
+    border: 1px solid #03338E;
+    border-radius: 8px;
+}
