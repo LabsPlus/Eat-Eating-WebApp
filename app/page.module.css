@@ -1,0 +1,157 @@
+/* section de boas-vindas */
+
+.sectionWelcome {
+  display: flex;
+  align-items: center;
+  padding: 4rem;
+  justify-content: space-around;
+}
+
+.messageWelcome {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+}
+
+.messageWelcome h1 {
+  color: #033697;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.messageWelcome p {
+  color: #03338E;
+  font-size: 24px;
+}
+
+.messageWelcome .buttonWelcome {
+  background-color: #0444BD;
+  color: #FFF;
+  max-width: 175px;
+  height: 44px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+}
+
+/* section para escolha do portal de acesso */
+
+.sessionPortalChoice {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 600px;
+  background-color: #EFF4FE;
+  padding: 30px;
+}
+
+.sessionPortalChoice h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #0444BD;
+  font-size: 36px;
+}
+
+.sessionPortals {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-around;
+}
+
+.portal {
+  position: relative;
+}
+
+.sessionPortalChoice_image {
+  border-radius: 12px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.sessionPortalChoice_overlay {
+  position: absolute;
+  top: 70%;
+  left: 9%;
+  background-color: #FFF;
+  border: 1px solid #5281DA;
+  border-radius: 8px;
+  color: #717171;
+  font-size: 20px;
+  line-height: 28px;
+  text-align: center;
+  padding: 26px 16px 16px 16px;
+  width: 420px;
+  height: 200px;
+}
+
+.sessionPortalChoice_overlay .button_sessionPortalChoice_overlay {
+  background-color: #0444BD;
+  color: #FFF;
+  width: 262px;
+  height: 44px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  margin-top: 40px;
+}
+
+.sectionBenefits h2 {
+  padding: 24px 0;
+  text-align: center;
+  color: #0444BD;
+  font-size: 36px;
+}
+
+.sessionBenefitsBanner {
+  display: flex;
+  justify-content:space-around;
+  padding: 40px 0;
+}
+
+.benefitAccess {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 299px;
+  height: 200px;
+  border-radius: 8px;
+  background-color: #F8FBFF;
+  box-shadow: #e8e8ea 1px 1px 10px;
+
+}
+
+.benefitAccess p {
+  padding-top: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.sectionPartners {
+  background-color: #E8EFFE;
+  padding-bottom: 50px;
+  margin-bottom: 2%;
+}
+
+.sectionPartners h2 {
+  padding: 40px 0;
+  text-align: center;
+  color: #0444BD;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.sectionPartnersBanner{
+  display: flex;
+  padding: 40px 0;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.sessionPartnersIcon{
+  padding: 0 45px;
+}
