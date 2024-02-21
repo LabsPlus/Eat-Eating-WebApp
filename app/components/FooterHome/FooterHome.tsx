@@ -27,11 +27,11 @@ const FooterHome = () => {
             </div>
 
             <div className={styles.divButtonPortal}>
-                <a href="https://.com.br/" target="_blank" rel="noopener noreferrer">
+                <Link className={styles.linkPortal} href={"/login"}>
                     <button className={styles.buttonPortal}>
-                        <Link className={styles.linkPortal} href={"/login"}>Acessar Portal</Link>
+                        Acessar Portal
                     </button>
-                </a>
+                </Link>
             </div>
         </section>
     )

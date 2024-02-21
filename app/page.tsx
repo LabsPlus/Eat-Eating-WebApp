@@ -21,7 +21,9 @@ export default function Home() {
           <div className={styles.messageWelcome}>
             <h1>Bem-vindo ao EatEating</h1>
             <p>Gerenciamento de filas para Restaurantes Universitários em Universidades Públicas</p>
-            <Button className={styles.buttonWelcome}>Conhecer mais</Button>
+            <Link href={"/login"}>
+              <Button className={styles.buttonWelcome}>Conhecer mais</Button>
+            </Link>
           </div>
 
           <div>
@@ -48,7 +50,9 @@ export default function Home() {
               />
               <div className={styles.sessionPortalChoice_overlay}>
                 <p>Faça pedidos, consulte cardápios e gerencie suas reservas no Restaurante Universitário da sua universidade.</p>
-                <Button className={styles.button_sessionPortalChoice_overlay}><Link href={"/login"}>Restaurante Universitário</Link></Button>
+                <Link href={"/login"}>
+                  <Button className={styles.button_sessionPortalChoice_overlay}>Restaurante Universitário</Button>
+                </Link>
               </div>
             </div>
 
@@ -62,7 +66,9 @@ export default function Home() {
               />
               <div className={styles.sessionPortalChoice_overlay}>
                 <p>Gerencie a operação do EatEating, configure cardápios, monitore estatísticas e muito mais.</p>
-                <Button className={styles.button_sessionPortalChoice_overlay}><Link href={"/login"}>Administrador</Link></Button>
+                <Link href={"/login"}>
+                  <Button className={styles.button_sessionPortalChoice_overlay}>Administrador</Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -207,7 +213,7 @@ export default function Home() {
         </section>
 
         <FooterHome />
-        
+
       </main>
     </ConfigProvider>
   );
