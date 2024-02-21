@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./page.module.css";
+import Link from "next/link";
 
 const FooterHome = () => {
     return (
@@ -7,12 +8,12 @@ const FooterHome = () => {
             <div className={styles.divSocialMedia}>
             <a href="https://www.instagram.com/labs_if?igsh=a2libmE2anBrMTBy" target="_blank" rel="noopener noreferrer">
                 <button className={styles.buttonSocialMedia}> 
-                    <img src="/images/instagram.png" alt="Logo Instagram"/>
+                    <img src="/images/instagram.svg" alt="Logo Instagram"/>
                 </button> 
             </a>
             <a href="https://www.linkedin.com/company/labsif/" target="_blank" rel="noopener noreferrer">
                 <button className={styles.buttonSocialMedia}>
-                    <img src="/images/linkedin.png" alt="Logo LinkedIn"/>
+                    <img src="/images/linkedin.svg" alt="Logo LinkedIn"/>
                 </button>
             </a>
             </div>
@@ -28,7 +29,7 @@ const FooterHome = () => {
             <div className={styles.divButtonPortal}>
                 <a href="https://.com.br/" target="_blank" rel="noopener noreferrer">
                     <button className={styles.buttonPortal}>
-                        Acessar Portal
+                        <Link className={styles.linkPortal} href={"/login"}>Acessar Portal</Link>
                     </button>
                 </a>
             </div>

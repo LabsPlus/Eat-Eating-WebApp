@@ -26,7 +26,7 @@ export default function Home() {
 
           <div>
             <Image
-              src="/images/img-boas-vindas-home.png"
+              src="/images/33ac8203-bb49-45fd-9be1-f7933a5ee44b 1.svg"
               alt="Logo EatEating"
               width={617}
               height={432}
@@ -40,7 +40,7 @@ export default function Home() {
           <div className={styles.sessionPortals}>
             <div className={styles.portal}>
               <Image
-                src="/images/img_portal_restaurante.png"
+                src="/images/portal-restaurante.svg"
                 alt="Jovens reunidos na mesa"
                 width={555}
                 height={421}
@@ -48,13 +48,13 @@ export default function Home() {
               />
               <div className={styles.sessionPortalChoice_overlay}>
                 <p>Faça pedidos, consulte cardápios e gerencie suas reservas no Restaurante Universitário da sua universidade.</p>
-                <Button className={styles.button_sessionPortalChoice_overlay}>Restaurante Universitário</Button>
+                <Button className={styles.button_sessionPortalChoice_overlay}><Link href={"/login"}>Restaurante Universitário</Link></Button>
               </div>
             </div>
 
             <div className={styles.portal}>
               <Image
-                src="/images/img_portal_administrador.png"
+                src="/images/portal-administrador.svg"
                 alt="Homen de terno com uma caneta na mão"
                 width={555}
                 height={421}
@@ -62,7 +62,7 @@ export default function Home() {
               />
               <div className={styles.sessionPortalChoice_overlay}>
                 <p>Gerencie a operação do EatEating, configure cardápios, monitore estatísticas e muito mais.</p>
-                <Button className={styles.button_sessionPortalChoice_overlay}>Administrador</Button>
+                <Button className={styles.button_sessionPortalChoice_overlay}><Link href={"/login"}>Administrador</Link></Button>
               </div>
             </div>
           </div>
@@ -73,7 +73,7 @@ export default function Home() {
           <div className={styles.sessionBenefitsBanner}>
             <div className={styles.benefitAccess}>
               <Image
-                src="/images/iconoir_pc-check.png"
+                src="/images/iconoir_pc-check.svg"
                 alt="quadrado com sinal de marcação"
                 width={65}
                 height={65}
@@ -84,7 +84,7 @@ export default function Home() {
 
             <div className={styles.benefitAccess}>
               <Image
-                src="/images/iconoir_internet.png"
+                src="/images/iconoir_internet.svg"
                 alt="globo com "
                 width={65}
                 height={65}
@@ -95,7 +95,7 @@ export default function Home() {
 
             <div className={styles.benefitAccess}>
               <Image
-                src="/images/fluent_food-16-filled.png"
+                src="/images/fluent_food-16-filled.svg"
                 alt="Garfo e faca"
                 width={65}
                 height={65}
@@ -108,7 +108,7 @@ export default function Home() {
           <div className={styles.sessionBenefitsBanner}>
             <div className={styles.benefitAccess}>
               <Image
-                src="/images/simple-icons_contactlesspayment.png"
+                src="/images/simple-icons_contactlesspayment.svg"
                 alt="Icone pagamento por aproximação"
                 width={65}
                 height={65}
@@ -119,7 +119,7 @@ export default function Home() {
 
             <div className={styles.benefitAccess}>
               <Image
-                src="/images/fluent_person-feedback-48-regular.png"
+                src="/images/fluent_person-feedback-48-regular.svg"
                 alt="Icone pessoa com caixa de texto"
                 width={65}
                 height={65}
@@ -130,7 +130,7 @@ export default function Home() {
 
             <div className={styles.benefitAccess}>
               <Image
-                src="/images/basil_notification-on-solid.png"
+                src="/images/basil_notification-on-solid.svg"
                 alt="Icone sino"
                 width={65}
                 height={65}
@@ -146,7 +146,7 @@ export default function Home() {
         <div className={styles.sectionPartnersBanner}>
           <div className={styles.sessionPartnersIcon}>
             <Image
-              src="/images/Group 96.png"
+              src="/images/Group 98.svg"
               alt="Logo IFBaiano"
               width={150}
               height={308}
@@ -156,7 +156,7 @@ export default function Home() {
 
           <div className={styles.sessionPartnersIcon}>
             <Image
-              src="/images/Group 96.png"
+              src="/images/Group 98.svg"
               alt="Logo IFBaiano"
               width={150}
               height={308}
@@ -166,7 +166,7 @@ export default function Home() {
 
           <div className={styles.sessionPartnersIcon}>
             <Image
-              src="/images/Group 96.png"
+              src="/images/Group 98.svg"
               alt="Logo IFBaiano"
               width={150}
               height={308}
@@ -176,7 +176,7 @@ export default function Home() {
 
           <div className={styles.sessionPartnersIcon}>
             <Image
-              src="/images/Group 96.png"
+              src="/images/Group 98.svg"
               alt="Logo IFBaiano"
               width={150}
               height={308}
@@ -186,7 +186,7 @@ export default function Home() {
 
           <div className={styles.sessionPartners}>
             <Image
-              src="/images/Group 96.png"
+              src="/images/Group 98.svg"
               alt="Logo IFBaiano"
               width={150}
               height={308}
@@ -196,7 +196,7 @@ export default function Home() {
 
           <div className={styles.sessionPartnersIcon}>
             <Image
-              src="/images/Group 96.png"
+              src="/images/Group 98.svg"
               alt="Logo IFBaiano"
               width={150}
               height={308}
@@ -207,18 +207,7 @@ export default function Home() {
         </section>
 
         <FooterHome />
-
-        {user ? (
-          <>
-            <h1>Oi, {user}!</h1>
-            <button onClick={logout}>logout</button>
-          </>
-        ) : (
-          <h1>
-            Você não está autenticado. Por favor,{" "}
-            <Link href={"/login"}>faça login</Link> .{" "}
-          </h1>
-        )}
+        
       </main>
     </ConfigProvider>
   );
