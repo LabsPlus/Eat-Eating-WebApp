@@ -16,3 +16,28 @@
     border: 1px solid #03338E;
     border-radius: 8px;
 }
+
+.table th,
+.table td {
+    color: #03338E !important;
+    font-weight: 400;
+}
+
+.table th {
+    height: 70px !important;
+    font-size: 18px;
+    border-bottom: 1px solid #D9E3F5 !important;
+    background-color: #E6ECF8 !important;
+}
+
+.table td {
+    font-size: 16px;
+}
+
+.evenRow {
+    background-color: #D9E3F5 !important;
+}
+
+.oddRow {
+    background-color: #E6ECF8 !important;
+}

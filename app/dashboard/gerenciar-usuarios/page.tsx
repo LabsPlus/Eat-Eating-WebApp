@@ -7,6 +7,7 @@ import Search from "./search-term/page";
 import PrivateRoute from "@/app/components/PrivateRoute/PrivateRoute";
 
 const UserManager = () => {
+
   const currentDate = new Date();
   const dateFormatter = new Intl.DateTimeFormat("pt-BR");
   const formattedDate = dateFormatter.format(currentDate);

@@ -1,0 +1,15 @@
+.search {
+    width: 399px !important;
+    height: 37px;
+    border-radius: 15px !important;
+    border: solid 1px #03338E !important;
+    background-color: #EEF2F9 !important;
+}
+
+.search ::-webkit-input-placeholder {
+    background-color: #EEF2F9;
+}
+
+.searchOutlined {
+    color: #03338E !important;
+}

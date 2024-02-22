@@ -35,7 +35,7 @@ export function AuthContext({ children }: { children: React.ReactNode }) {
   const login = async (userData: { email: string }, remember: boolean) => {
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/login/authLogin`,
+        `${process.env.NEXT_PUBLIC_API_URL}/login/auth-login`,
         userData
       );
       const { user, token, refreshToken } = response.data;
