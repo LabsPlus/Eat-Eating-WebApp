@@ -9,6 +9,11 @@ const PaginationUsers = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
 
+  const capitalizeFirstLetter = (string: any) => {
+    if (!string) return "";
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  };
+
   const [updatePopoverVisible, setUpdatePopoverVisible] = useState(false);
 
   const UpdateIcon = () => (
@@ -77,44 +82,50 @@ const PaginationUsers = () => {
     console.log("Editando usuário:", user);
   };
 
-  const handleDeleteUser = async (userId: number) => {
+  const handleDeleteUser = async (id: number) => {
     try {
-      await deleteUser(userId);
+      await deleteUser(id);
       console.log("Usuário excluído com sucesso!");
     } catch (error) {
       console.error("Erro ao excluir usuário:", error);
     }
   };
 
+  const rowClassName = (record: any, index: number) => {
+    return index % 2 === 0 ? styles.evenRow : styles.oddRow;
+  };
+
   const columns = [
     {
       title: "#",
-      dataIndex: "id",
+      dataIndex: ["user", "id"],
       key: "id",
     },
     {
       title: "Nome",
-      dataIndex: "name",
+      dataIndex: ["user", "person", "name"],
       key: "name",
     },
     {
       title: "Matrícula ",
-      dataIndex: "enrollment",
+      dataIndex: ["enrollment", "user"],
       key: "enrollment",
     },
     {
       title: "Categoria de usuário",
-      dataIndex: ["Category", "name"],
+      dataIndex: ["user", "category", "name"],
       key: "category",
+      render: (text: any) => capitalizeFirstLetter(text),
     },
     {
       title: "Tipo de bolsa",
-      dataIndex: ["TypeStudentGrant", "name"],
-      key: "typeStudentGrantId",
+      dataIndex: ["user", "typeGrant", "name"],
+      key: "typeGrant",
+      render: (text: any) => capitalizeFirstLetter(text),
     },
     {
       title: "Refeições Realizadas",
-      dataIndex: "dailyMeals",
+      dataIndex: ["user", "dailyMeals"],
       key: "dailyMeals",
     },
     {
@@ -155,6 +166,7 @@ const PaginationUsers = () => {
           onChange: handlePageChange,
         }}
         rowKey="id"
+        rowClassName={rowClassName}
       />
       {selectedUser && <UpdateUserPopover />}
     </div>

@@ -5,8 +5,8 @@ export interface User {
   id: number;
   name: string;
   enrollment: string;
-  categoryId: string;
-  typeStudentGrantId: string;
+  category: string;
+  typeGrant: string;
   dailyMeals: number;
   email: string;
   password: string;
@@ -33,7 +33,7 @@ export const useStore = create((set: any) => ({
   createUser: async (userData: any) => {
     console.log(userData);
     try {
-      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/createUser`, userData);
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/create-user`, userData);
     } catch (error) {
       throw console.log(error);
     }
@@ -42,8 +42,9 @@ export const useStore = create((set: any) => ({
   getAllUsers: async () => {
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/user/listAllUsers`
+        `${process.env.NEXT_PUBLIC_API_URL}/user/list-all-users`
       );
+      console.log(response)
       const sortedUsers = response.data.sort((a: any, b: any) => a.id - b.id);
       set({ users: sortedUsers });
     } catch (error) {
@@ -54,11 +55,11 @@ export const useStore = create((set: any) => ({
   searchUsersByName: async (searchTerm: string) => {
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/user/listAllUsers?search=${searchTerm}`
+        `${process.env.NEXT_PUBLIC_API_URL}/user/list-all-users`
       );
 
       const filteredUsers = response.data.filter((user: any) =>
-        user.name.toLowerCase().includes(searchTerm.toLowerCase())
+        user.user.person.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
 
       if (filteredUsers.length > 0) {
@@ -71,12 +72,13 @@ export const useStore = create((set: any) => ({
     }
   },
 
-  deleteUser: async (userId: number) => {
+  deleteUser: async (id: number) => {
     try {
-      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/deleteUser/${userId}`);
-
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/user/delete-user/${id}`);
+      
       set((state: storeState) => ({
-        users: state.users.filter((user: any) => user.id !== userId),
+        
+        users: state.users.filter((user: any) => user.id !== id),
       }));
     } catch (error) {
       console.error("Error deleting user:", error);
@@ -87,7 +89,7 @@ export const useStore = create((set: any) => ({
   updateUser: async (userId: number, updatedUserData: any) => {
     try {
       await axios.put(
-        `${process.env.NEXT_PUBLIC_API_URL}/user/updateUser/${userId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/user/update-user/${userId}`,
         updatedUserData
       );
     } catch (error) {

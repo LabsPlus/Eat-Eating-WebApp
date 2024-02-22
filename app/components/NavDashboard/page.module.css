@@ -31,6 +31,8 @@
   margin: 0px;
   padding-left: 10px;
   gap: 8px;
+  height: 40px;
+  margin-right: 13px;
 }
 
 .nav a {
@@ -46,6 +48,9 @@
 .nav .active {
   border-radius: 15px;
   background-color: #D9E3F5;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border: 1px solid #03338E;
 }
 
 .icon {

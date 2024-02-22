@@ -10,12 +10,12 @@ const Popover = () => {
   const [formData, setFormData] = useState({
     name: "",
     enrollment: "",
-    categoryId: 0,
-    typeStudentGrantId: 0,
+    category: "",
+    typeGrant: "",
     dailyMeals: 0,
     email: "",
     password: "",
-    recoveryEmail: "",
+    emailRecovery: "",
   });
 
   const [messageApi, contextHolder] = message.useMessage();
@@ -46,11 +46,8 @@ const Popover = () => {
   const handleInputChange = (e: any) => {
     const { id, value } = e.target;
     let newValue: string | number = value;
-    if (
-      id === "categoryId" ||
-      id === "typeStudentGrantId" ||
-      id === "dailyMeals"
-    ) {
+    // if (id === "category" || id === "typeGrant" || id === "dailyMeals") {
+    if (id === "dailyMeals") {
       newValue = parseInt(value);
       if (newValue < 0) {
         newValue = 0;
@@ -64,9 +61,9 @@ const Popover = () => {
   const validateForm = () => {
     switch (currentStep) {
       case 1:
-        return formData.name && formData.enrollment && formData.dailyMeals;
+        return formData.name && formData.enrollment && formData.dailyMeals && formData.category && formData.typeGrant;
       case 2:
-        return formData.email && formData.password && formData.recoveryEmail;
+        return formData.email && formData.password && formData.emailRecovery;
       default:
         return false;
     }
@@ -88,12 +85,12 @@ const Popover = () => {
       setFormData({
         name: "",
         enrollment: "",
-        categoryId: 0,
-        typeStudentGrantId: 0,
+        category: "",
+        typeGrant: "",
         dailyMeals: 0,
         email: "",
         password: "",
-        recoveryEmail: "",
+        emailRecovery: "",
       });
     } else {
       error("Por favor, preencha todos os campos obrigatórios.");
@@ -106,12 +103,12 @@ const Popover = () => {
     setFormData({
       name: "",
       enrollment: "",
-      categoryId: 0,
-      typeStudentGrantId: 0,
+      category: "",
+      typeGrant: "",
       dailyMeals: 0,
       email: "",
       password: "",
-      recoveryEmail: "",
+      emailRecovery: "",
     });
   };
 
@@ -180,9 +177,9 @@ const Popover = () => {
 
               <div className={styles.itens}>
                 <select
-                  name="categoryId"
-                  id="categoryId"
-                  value={formData.categoryId}
+                  name="category"
+                  id="category"
+                  value={formData.category}
                   onChange={handleInputChange}
                 >
                   <option>Usuário</option>
@@ -194,9 +191,9 @@ const Popover = () => {
 
               <div className={styles.itens}>
                 <select
-                  name="typeStudentGrantId"
-                  id="typeStudentGrantId"
-                  value={formData.typeStudentGrantId}
+                  name="typeGrant"
+                  id="typeGrant"
+                  value={formData.typeGrant}
                   onChange={handleInputChange}
                 >
                   <option>Bolsa</option>
@@ -259,12 +256,12 @@ const Popover = () => {
             <div className={styles.item}>
               <div className={styles.itens}>
                 <input
-                  id="recoveryEmail"
+                  id="emailRecovery"
                   type="email"
-                  value={formData.recoveryEmail}
+                  value={formData.emailRecovery}
                   onChange={handleInputChange}
                 />
-                <label htmlFor="recoveryEmail">E-mail de Recuperação</label>
+                <label htmlFor="emailRecovery">E-mail de Recuperação</label>
               </div>
             </div>
           </div>
