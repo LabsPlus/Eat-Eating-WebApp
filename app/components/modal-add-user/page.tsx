@@ -61,7 +61,13 @@ const Popover = () => {
   const validateForm = () => {
     switch (currentStep) {
       case 1:
-        return formData.name && formData.enrollment && formData.dailyMeals && formData.category && formData.typeGrant;
+        return (
+          formData.name &&
+          formData.enrollment &&
+          formData.category &&
+          formData.typeGrant &&
+          formData.dailyMeals
+        );
       case 2:
         return formData.email && formData.password && formData.emailRecovery;
       default:
@@ -70,6 +76,7 @@ const Popover = () => {
   };
 
   const handleCreateUser = async () => {
+    console.log(formData)
     if (validateForm()) {
       setIsModalOpen(false);
       setCurrentStep(1);

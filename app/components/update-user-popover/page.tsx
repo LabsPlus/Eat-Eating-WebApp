@@ -3,13 +3,25 @@ import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { Modal, Button, Input, message } from "antd";
 import { useStore, User } from "../../../store";
+import { IDataUser,IUserUpdate } from "../Interfaces/usuario.interface";
 
 const UpdateUserPopover: React.FC = () => {
-  const [formData, setFormData] = useState<User | null>(null);
+  const [formData, setFormData] = useState<IDataUser | null>(null);
   const [currentStep, setCurrentStep] = useState(1);
   const { updateUser, getAllUsers, selectedUser } = useStore();
   const [messageApi, contextHolder] = message.useMessage();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+  const [formUpdate, setFormUpdate] = useState<IUserUpdate>({
+    name: formData?.user.person.name,
+    enrollment: formData?.enrrolment,
+    category: formData?.user.category.name,
+    typeGrant: formData?.user.typeGrant.name,
+    dailyMeals: formData?.user.dailyMeals,
+    password: formData?.user.loginUser.password,
+    emailRecovery: formData?.user.loginUser.emailRecovery,
+  });
 
   useEffect(() => {
     if (selectedUser) {
@@ -17,7 +29,26 @@ const UpdateUserPopover: React.FC = () => {
       setCurrentStep(1);
       setIsModalOpen(true);
     }
-  }, [selectedUser]);
+  }, [selectedUser, formUpdate]);
+
+  console.log(formData, "formData");
+
+  useEffect(() => {
+    if (formData) {
+      setFormUpdate({
+        name: formData.user.person.name,
+        enrollment: formData.enrrolment,
+        category: formData.user.category.name,
+        typeGrant: formData.user.typeGrant.name,
+        dailyMeals: formData.user.dailyMeals,
+        password: formData.user.loginUser.password,
+        emailRecovery: formData.user.loginUser.emailRecovery,
+      });
+    }
+  }, [formData]);
+  
+
+  console.log(formUpdate, 'form update')
 
   const showError = (errorMsg: any) => {
     messageApi.open({
@@ -41,9 +72,10 @@ const UpdateUserPopover: React.FC = () => {
     let newValue: string | number;
 
     if (
-      id === "dailyMeals" ||
-      id === "categoryId" ||
-      id === "typeStudentGrantId"
+      id === "dailyMeals"
+      //||
+      // id === "category" ||
+      // id === "typeGrant"
     ) {
       newValue = isNaN(parseInt(value)) ? "" : parseInt(value);
     } else {
@@ -51,7 +83,7 @@ const UpdateUserPopover: React.FC = () => {
     }
 
     if (formData) {
-      setFormData((prevFormData) => ({ ...prevFormData!, [id]: newValue }));
+      setFormUpdate((prevFormData) => ({ ...prevFormData!, [id]: newValue }));
     }
   };
 
@@ -71,17 +103,19 @@ const UpdateUserPopover: React.FC = () => {
     switch (currentStep) {
       case 1:
         return (
-          formData &&
-          formData.name &&
-          formData.enrollment &&
-          formData.dailyMeals
+          formUpdate &&
+          formUpdate.name &&
+          formUpdate.enrollment &&
+          formUpdate.category &&
+          formUpdate.typeGrant &&
+          formUpdate.dailyMeals
         );
       case 2:
         return (
-          formData &&
-          formData.email &&
-          formData.password &&
-          formData.recoveryEmail
+          formUpdate &&
+          // formData.user.loginUser.email  &&
+          formUpdate.password &&
+          formUpdate.emailRecovery
         );
       default:
         return false;
@@ -89,14 +123,14 @@ const UpdateUserPopover: React.FC = () => {
   };
 
   const handleUpdateUser = async () => {
-    if (!formData || !formData.id) {
+    if (!formData || !formData.user.id) {
       showError("ID do usuário não encontrado. Por favor, tente novamente.");
       return;
     }
 
     if (validateForm()) {
       try {
-        await updateUser(formData.id, formData);
+        await updateUser(formData.user.id, formData);
         success("Usuário atualizado com sucesso!");
         setIsModalOpen(false);
         getAllUsers();
@@ -149,16 +183,16 @@ const UpdateUserPopover: React.FC = () => {
                 <label htmlFor="name">Nome:</label>
                 <Input
                   id="name"
-                  value={formData?.name || ""}
+                  value={formUpdate.name}
                   onChange={handleInputChange}
                 />
               </div>
 
               <div className={styles.itens}>
-                <label htmlFor="categoryId">Categoria:</label>
+                <label htmlFor="category">Categoria:</label>
                 <select
-                  id="categoryId"
-                  value={formData?.categoryId || ""}
+                  id="category"
+                  value={formUpdate.category}
                   onChange={handleInputChange}
                 >
                   <option value="ESTUDANTE">Aluno</option>
@@ -168,13 +202,13 @@ const UpdateUserPopover: React.FC = () => {
               </div>
 
               <div className={styles.itens}>
-                <label htmlFor="typeStudentGrantId">Bolsa:</label>
+                <label htmlFor="typeGrant">Bolsa:</label>
                 <select
-                  id="typeStudentGrantId"
-                  value={formData?.typeStudentGrantId || ""}
+                  id="typeGrant"
+                  value={formUpdate.typeGrant || ""}
                   onChange={handleInputChange}
                 >
-                <option value="INTEGRAL">Integral</option>
+                  <option value="INTEGRAL">Integral</option>
                   <option value="PARCIAL">Parcial</option>
                   <option value="NAO_APLICAVEL ">Não aplicável</option>
                 </select>
@@ -186,7 +220,7 @@ const UpdateUserPopover: React.FC = () => {
                 <label htmlFor="enrollment">Matrícula:</label>
                 <Input
                   id="enrollment"
-                  value={formData?.enrollment || ""}
+                  value={formUpdate.enrollment || ""}
                   onChange={handleInputChange}
                 />
               </div>
@@ -195,7 +229,7 @@ const UpdateUserPopover: React.FC = () => {
                 <label htmlFor="dailyMeals">Refeições Realizadas:</label>
                 <Input
                   id="dailyMeals"
-                  value={formData?.dailyMeals || ""}
+                  value={formUpdate.dailyMeals || ""}
                   onChange={handleInputChange}
                   type="number"
                 />
@@ -207,21 +241,21 @@ const UpdateUserPopover: React.FC = () => {
         {currentStep === 2 && (
           <div className={styles.modalContainer}>
             <div className={styles.item}>
-              <div className={styles.itens}>
+              {/* <div className={styles.itens}>
                 <label htmlFor="email">E-mail:</label>
                 <Input
                   id="email"
-                  value={formData?.email || ""}
+                  value={formData?.user.loginUser.email || ""}
                   onChange={handleInputChange}
                   type="email"
                 />
-              </div>
+              </div> */}
 
               <div className={styles.itens}>
                 <label htmlFor="password">Senha:</label>
                 <Input
                   id="password"
-                  value={formData?.password || ""}
+                  value={formUpdate.password || ""}
                   onChange={handleInputChange}
                   type="password"
                 />
@@ -229,10 +263,10 @@ const UpdateUserPopover: React.FC = () => {
             </div>
             <div className={styles.item}>
               <div className={styles.itens}>
-                <label htmlFor="recoveryEmail">E-mail de Recuperação:</label>
+                <label htmlFor="emailRecovery">E-mail de Recuperação:</label>
                 <Input
-                  id="recoveryEmail"
-                  value={formData?.recoveryEmail || ""}
+                  id="emailRecovery"
+                  value={formUpdate.emailRecovery || ""}
                   onChange={handleInputChange}
                   type="email"
                 />

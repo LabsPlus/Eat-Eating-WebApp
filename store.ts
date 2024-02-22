@@ -1,5 +1,6 @@
 import axios from "axios";
 import { create } from "zustand";
+import { IDataUser } from "./app/components/Interfaces/usuario.interface";
 
 export interface User {
   id: number;
@@ -10,13 +11,13 @@ export interface User {
   dailyMeals: number;
   email: string;
   password: string;
-  recoveryEmail: string;
+  emailRecovery: string;
 }
 
 export type storeState = {
   users: User[];
   searchTerm: string;
-  selectedUser: User | null;
+  selectedUser: IDataUser | null;
 };
 
 const initialState: storeState = {
@@ -28,12 +29,25 @@ const initialState: storeState = {
 export const useStore = create((set: any) => ({
   ...initialState,
 
-  setSelectedUser: (user: User | null) => set({ selectedUser: user }),
+  setSelectedUser: (user: IDataUser | null) => {
+    set((state: storeState) => ({
+      selectedUser: state.users.find((usuario: any) => usuario.user.id == user),
+    }));
+  },
+
+  //set({ selectedUser: user }),
+
+  // aqui chega o id do usuario que agente quer atualiza
+  // com ese id busca no users ese usuario que e igual com id
+  // o usuaruo enteiro que e igual com aquele que chego por parametro
 
   createUser: async (userData: any) => {
     console.log(userData);
     try {
-      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/create-user`, userData);
+      await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/user/create-user`,
+        userData
+      );
     } catch (error) {
       throw console.log(error);
     }
@@ -44,7 +58,7 @@ export const useStore = create((set: any) => ({
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/user/list-all-users`
       );
-      console.log(response)
+      console.log(response);
       const sortedUsers = response.data.sort((a: any, b: any) => a.id - b.id);
       set({ users: sortedUsers });
     } catch (error) {
@@ -74,11 +88,12 @@ export const useStore = create((set: any) => ({
 
   deleteUser: async (id: number) => {
     try {
-      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/user/delete-user/${id}`);
-      
+      await axios.delete(
+        `${process.env.NEXT_PUBLIC_API_URL}/user/delete-user/${id}`
+      );
+
       set((state: storeState) => ({
-        
-        users: state.users.filter((user: any) => user.id !== id),
+        users: state.users.filter((user: any) => user.user.id !== id),
       }));
     } catch (error) {
       console.error("Error deleting user:", error);

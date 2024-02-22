@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Popconfirm, Table } from "antd";
 import styles from "./page.module.css";
-import { useStore } from "../../../store";
+import { useStore,  } from "../../../store";
 import UpdateUserPopover from "../update-user-popover/page";
 
 const PaginationUsers = () => {
@@ -79,7 +79,7 @@ const PaginationUsers = () => {
   const handleEditUser = (user: any) => {
     setSelectedUser(user);
     setUpdatePopoverVisible(true);
-    console.log("Editando usuário:", user);
+    console.log("editando e pega id", user);
   };
 
   const handleDeleteUser = async (id: number) => {
@@ -108,7 +108,7 @@ const PaginationUsers = () => {
     },
     {
       title: "Matrícula ",
-      dataIndex: ["enrollment", "user"],
+      dataIndex: "enrrolment",
       key: "enrollment",
     },
     {
@@ -137,11 +137,11 @@ const PaginationUsers = () => {
           <Button
             type="link"
             icon={<UpdateIcon />}
-            onClick={() => handleEditUser(record)}
+            onClick={() => handleEditUser(record.user.id)}
           />
           <Popconfirm
             title="Deseja realmente excluir este usuário?"
-            onConfirm={() => handleDeleteUser(record.id)}
+            onConfirm={() => handleDeleteUser(record.user.id)}
             okText="Sim"
             cancelText="Não"
           >
