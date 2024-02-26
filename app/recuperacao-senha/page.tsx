@@ -34,7 +34,7 @@ const RecoverPassword = () => {
         return toast.error(response);
       } else {
         const response = await axios.patch(
-          `${process.env.NEXT_PUBLIC_API_URL}/login/forgotPasswordLogin`,
+          `${process.env.NEXT_PUBLIC_API_URL}/login/forgot-password-login`,
           {
             email: emailData.email,
           }
