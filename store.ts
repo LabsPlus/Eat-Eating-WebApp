@@ -1,23 +1,12 @@
 import axios from "axios";
 import { create } from "zustand";
-import { IDataUser } from "./app/components/Interfaces/usuario.interface";
-
-export interface User {
-  id: number;
-  name: string;
-  enrollment: string;
-  category: string;
-  typeGrant: string;
-  dailyMeals: number;
-  email: string;
-  password: string;
-  emailRecovery: string;
-}
+import {User} from "./app/components/Interfaces/user.interfaces"
+import { DataUser } from "./app/components/Interfaces/dataUser.interfaces";
 
 export type storeState = {
   users: User[];
   searchTerm: string;
-  selectedUser: IDataUser | null;
+  selectedUser: DataUser | null;
 };
 
 const initialState: storeState = {
@@ -29,7 +18,7 @@ const initialState: storeState = {
 export const useStore = create((set: any) => ({
   ...initialState,
 
-  setSelectedUser: (user: IDataUser | null) => {
+  setSelectedUser: (user: DataUser | null) => {
     set((state: storeState) => ({
       selectedUser: state.users.find((usuario: any) => usuario.user.id == user),
     }));
