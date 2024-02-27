@@ -2,18 +2,19 @@
 import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { Modal, Button, Input, message } from "antd";
-import { useStore, User } from "../../../store";
-import { IDataUser,IUserUpdate } from "../Interfaces/usuario.interface";
+import { useStore } from "../../../store";
+
+import { DataUser } from "../Interfaces/dataUser.interfaces";
+import { UserUpdate } from "../Interfaces/userUpdate.interfaces";
 
 const UpdateUserPopover: React.FC = () => {
-  const [formData, setFormData] = useState<IDataUser | null>(null);
+  const [formData, setFormData] = useState<DataUser | null>(null);
   const [currentStep, setCurrentStep] = useState(1);
   const { updateUser, getAllUsers, selectedUser } = useStore();
   const [messageApi, contextHolder] = message.useMessage();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-
-  const [formUpdate, setFormUpdate] = useState<IUserUpdate>({
+  const [formUpdate, setFormUpdate] = useState<UserUpdate>({
     name: formData?.user.person.name,
     enrollment: formData?.enrrolment,
     category: formData?.user.category.name,
@@ -29,7 +30,7 @@ const UpdateUserPopover: React.FC = () => {
       setCurrentStep(1);
       setIsModalOpen(true);
     }
-  }, [selectedUser, formUpdate]);
+  }, [selectedUser]);
 
   console.log(formData, "formData");
 
@@ -46,10 +47,9 @@ const UpdateUserPopover: React.FC = () => {
       });
     }
   }, [formData]);
-  
 
-  console.log(formUpdate, 'form update')
-
+  console.log(formUpdate, "form update");
+  console.log(formData, "form data");
   const showError = (errorMsg: any) => {
     messageApi.open({
       type: "error",
@@ -130,7 +130,7 @@ const UpdateUserPopover: React.FC = () => {
 
     if (validateForm()) {
       try {
-        await updateUser(formData.user.id, formData);
+        await updateUser(formData.user.id, formUpdate);
         success("Usuário atualizado com sucesso!");
         setIsModalOpen(false);
         getAllUsers();
