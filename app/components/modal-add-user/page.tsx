@@ -12,7 +12,7 @@ const Popover = () => {
     enrollment: "",
     category: "",
     typeGrant: "",
-    dailyMeals: 0,
+    dailyMeals: 1,
     email: "",
     password: "",
     emailRecovery: "",
@@ -47,10 +47,14 @@ const Popover = () => {
     const { id, value } = e.target;
     let newValue: string | number = value;
     // if (id === "category" || id === "typeGrant" || id === "dailyMeals") {
+    if (id === "name") {
+      newValue = value.replace(/[^a-zA-Z\s]/g, "").toUpperCase();
+    } 
+
     if (id === "dailyMeals") {
       newValue = parseInt(value);
-      if (newValue < 0) {
-        newValue = 0;
+      if (newValue < 1) {
+        newValue = 1;
       } else if (newValue > 3) {
         newValue = 3;
       }
@@ -76,7 +80,7 @@ const Popover = () => {
   };
 
   const handleCreateUser = async () => {
-    console.log(formData)
+    console.log(formData);
     if (validateForm()) {
       setIsModalOpen(false);
       setCurrentStep(1);
@@ -94,7 +98,7 @@ const Popover = () => {
         enrollment: "",
         category: "",
         typeGrant: "",
-        dailyMeals: 0,
+        dailyMeals: 1,
         email: "",
         password: "",
         emailRecovery: "",
@@ -112,7 +116,7 @@ const Popover = () => {
       enrollment: "",
       category: "",
       typeGrant: "",
-      dailyMeals: 0,
+      dailyMeals: 1,
       email: "",
       password: "",
       emailRecovery: "",
@@ -175,7 +179,7 @@ const Popover = () => {
                 <input
                   id="name"
                   type="text"
-                  placeholder="Taylor Swift"
+                  placeholder=""
                   value={formData.name}
                   onChange={handleInputChange}
                 />
@@ -216,7 +220,7 @@ const Popover = () => {
                 <input
                   id="enrollment"
                   type="text"
-                  placeholder="9877720"
+                  placeholder=""
                   value={formData.enrollment}
                   onChange={handleInputChange}
                 />
@@ -229,6 +233,7 @@ const Popover = () => {
                   type="number"
                   value={formData.dailyMeals}
                   onChange={handleInputChange}
+                  max={3}
                 />
                 <label htmlFor="dailyMeals">Refeições diárias </label>
               </div>
