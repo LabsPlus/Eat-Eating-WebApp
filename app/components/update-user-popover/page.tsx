@@ -70,8 +70,9 @@ const UpdateUserPopover: React.FC = () => {
   ) => {
     const { id, value } = e.target;
     let newValue: string | number;
-
-    if (
+    if (id === "name") {
+      newValue = value.replace(/[^a-zA-Z\s]/g, "").toUpperCase();
+    } else if (
       id === "dailyMeals"
       //||
       // id === "category" ||
@@ -232,6 +233,7 @@ const UpdateUserPopover: React.FC = () => {
                   value={formUpdate.dailyMeals || ""}
                   onChange={handleInputChange}
                   type="number"
+                  max={3}
                 />
               </div>
             </div>
