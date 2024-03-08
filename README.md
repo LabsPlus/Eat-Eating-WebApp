@@ -5,6 +5,7 @@
 - <p>NodeJS</p>
 - <p>React</p>
 - <p>TypeScript</p>
+- <p>Zustand</p>
 
 # Proyecto Next.js
 
