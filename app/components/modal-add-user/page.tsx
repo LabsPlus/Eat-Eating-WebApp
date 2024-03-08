@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./page.module.css";
-import { Modal, Button, message } from "antd";
+import { Modal, Button, message, Input } from "antd";
 import { useStore } from "../../../store";
 
 const Popover = () => {
@@ -49,7 +49,11 @@ const Popover = () => {
     // if (id === "category" || id === "typeGrant" || id === "dailyMeals") {
     if (id === "name") {
       newValue = value.replace(/[^a-zA-Z\s]/g, "").toUpperCase();
-    } 
+    }
+
+    if (id === "enrollment") {
+      newValue = value.replace(/\D/g, "");
+    }
 
     if (id === "dailyMeals") {
       newValue = parseInt(value);
@@ -62,16 +66,36 @@ const Popover = () => {
     setFormData({ ...formData, [id]: newValue });
   };
 
+  const validateEmail = (email: any) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
+  const validatePassword = (password: any) => {
+    const regex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@$!%*?&])[A-Za-z\d#@$!%*?&]{8,}$/;
+    return regex.test(password);
+  };
+
   const validateForm = () => {
     switch (currentStep) {
       case 1:
-        return (
-          formData.name &&
-          formData.enrollment &&
-          formData.category &&
-          formData.typeGrant &&
-          formData.dailyMeals
-        );
+        if (formData.category === "VISITANTE") {
+          return (
+            formData.name &&
+            formData.category &&
+            formData.typeGrant &&
+            formData.dailyMeals
+          );
+        } else {
+          return (
+            formData.name &&
+            formData.enrollment &&
+            formData.category &&
+            formData.typeGrant &&
+            formData.dailyMeals
+          );
+        }
       case 2:
         return formData.email && formData.password && formData.emailRecovery;
       default:
@@ -82,6 +106,24 @@ const Popover = () => {
   const handleCreateUser = async () => {
     console.log(formData);
     if (validateForm()) {
+      if (!validateEmail(formData.email)) {
+        showError(
+          "O endereço de e-mail fornecido não é válido. Por favor, verifique e tente novamente."
+        );
+        return;
+      }
+      if (!validateEmail(formData.emailRecovery)) {
+        showError(
+          "O endereço de e-mail de recuperação fornecido não é válido. Por favor, verifique e tente novamente."
+        );
+        return;
+      }
+      if (!validatePassword(formData.password)) {
+        showError(
+          "Sua senha deve incluir pelo menos 8 caracteres, com letras maiúsculas e minúsculas, números e caracteres especiais."
+        );
+        return;
+      }
       setIsModalOpen(false);
       setCurrentStep(1);
       try {
@@ -210,19 +252,25 @@ const Popover = () => {
                   <option>Bolsa</option>
                   <option value="INTEGRAL">Integral</option>
                   <option value="PARCIAL">Parcial</option>
-                  <option value="NAO_APLICAVEL ">Não aplicável</option>
+                  <option value="NAO_APLICAVEL">Não aplicável</option>
                 </select>
               </div>
             </div>
 
             <div className={styles.item}>
               <div className={styles.itens}>
-                <input
+                <Input
                   id="enrollment"
                   type="text"
                   placeholder=""
-                  value={formData.enrollment}
+                  value={
+                    formData.category === "VISITANTE"
+                      ? "XXXXXXX"
+                      : formData.enrollment
+                  }
                   onChange={handleInputChange}
+                  disabled={formData.category === "VISITANTE"}
+                  maxLength={7}
                 />
                 <label htmlFor="enrollment">Matrícula</label>
               </div>
