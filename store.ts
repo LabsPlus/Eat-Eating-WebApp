@@ -32,8 +32,20 @@ export const useStore = create((set: any) => ({
         `${process.env.NEXT_PUBLIC_API_URL}/user/create-user`,
         userData
       );
-    } catch (error) {
-      throw console.log(error);
+    } catch (error: any) {
+      if (
+        error.response.data.message ==
+        "Enrollment already exists, only one enrollment is allowed."
+      ) {
+        throw new Error(
+          "Falha enrollment já existe, apenas um enrollment é permitido."
+        );
+      } else if (
+        error.response.data.message ==
+        "email already exists, only one email is allowed."
+      ) {
+        throw new Error("Falha email já existe, apenas um email é permitido.");
+      }
     }
   },
 
@@ -92,6 +104,8 @@ export const useStore = create((set: any) => ({
         updatedUserData
       );
     } catch (error: any) {
+      console.log("Error updating user:", error.response.data.message);
+
       if (error.response.data.statusCode === 422) {
         throw new Error(
           "Falha na atualização: é necessário mudar a matrícula ao alterar a categoria do usuário."

@@ -72,8 +72,7 @@ const Popover = () => {
   };
 
   const validatePassword = (password: any) => {
-    const regex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@$!%*?&])[A-Za-z\d#@$!%*?&]{8,}$/;
+    const regex = /^[\s\S]{8,10}$/;
     return regex.test(password);
   };
 
@@ -127,10 +126,16 @@ const Popover = () => {
       setIsModalOpen(false);
       setCurrentStep(1);
       try {
-        await createUser(formData);
+        await createUser(formData)
+          .then(() => {
+            success("Usuário atualizado com sucesso!");
+          })
+          .catch((error) => {
+            showError(error.message);
+          });
         getAllUsers();
-        success("Usuário criado com sucesso!");
       } catch (error: any) {
+        console.log(error);
         showError(
           "Houve um erro ao criar o usuário. Por favor, tente novamente."
         );
