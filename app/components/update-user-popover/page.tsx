@@ -65,6 +65,17 @@ const UpdateUserPopover: React.FC = () => {
     message.error(errorMsg);
   };
 
+  const validateEmail = (email: string) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
+  const validatePassword = (password: string) => {
+    const regex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@$!%*?&])[A-Za-z\d#@$!%*?&]{8,}$/;
+    return regex.test(password);
+  };
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -79,6 +90,8 @@ const UpdateUserPopover: React.FC = () => {
       // id === "typeGrant"
     ) {
       newValue = isNaN(parseInt(value)) ? "" : parseInt(value);
+    } else if (id === "enrollment") {
+      newValue = value.replace(/\D/g, "");
     } else {
       newValue = value;
     }
@@ -103,19 +116,32 @@ const UpdateUserPopover: React.FC = () => {
   const validateForm = () => {
     switch (currentStep) {
       case 1:
-        return (
-          formUpdate &&
-          formUpdate.name &&
-          formUpdate.enrollment &&
-          formUpdate.category &&
-          formUpdate.typeGrant &&
-          formUpdate.dailyMeals
-        );
+        if (formUpdate) {
+          if (formUpdate.category === "VISITANTE") {
+            return (
+              formUpdate &&
+              formUpdate.name &&
+              formUpdate.category &&
+              formUpdate.typeGrant &&
+              formUpdate.dailyMeals
+            );
+          } else {
+            return (
+              formUpdate &&
+              formUpdate.name &&
+              formUpdate.enrollment &&
+              formUpdate.category &&
+              formUpdate.typeGrant &&
+              formUpdate.dailyMeals
+            );
+          }
+        }
+        return false;
       case 2:
         return (
           formUpdate &&
           // formData.user.loginUser.email  &&
-          formUpdate.password &&
+          // formUpdate.password &&
           formUpdate.emailRecovery
         );
       default:
@@ -130,12 +156,33 @@ const UpdateUserPopover: React.FC = () => {
     }
 
     if (validateForm()) {
+      if (
+        formUpdate &&
+        formUpdate.emailRecovery &&
+        !validateEmail(formUpdate.emailRecovery)
+      ) {
+        showError(
+          "O endereço de e-mail de recuperação fornecido não é válido. Por favor, verifique e tente novamente."
+        );
+        return;
+      }
+      if (
+        formUpdate &&
+        formUpdate.password &&
+        !validatePassword(formUpdate.password)
+      ) {
+        showError(
+          "Sua senha deve incluir pelo menos 8 caracteres, com letras maiúsculas e minúsculas, números e caracteres especiais."
+        );
+        return;
+      }
       try {
         await updateUser(formData.user.id, formUpdate);
         success("Usuário atualizado com sucesso!");
         setIsModalOpen(false);
         getAllUsers();
       } catch (error: any) {
+        console.log("Erro: " + error);
         showError(
           "Houve um erro ao atualizar o usuário. Por favor, tente novamente."
         );
@@ -221,8 +268,14 @@ const UpdateUserPopover: React.FC = () => {
                 <label htmlFor="enrollment">Matrícula:</label>
                 <Input
                   id="enrollment"
-                  value={formUpdate.enrollment || ""}
+                  value={
+                    formUpdate.category === "VISITANTE"
+                      ? "XXXXXXX"
+                      : formUpdate.enrollment || ""
+                  }
                   onChange={handleInputChange}
+                  disabled={formUpdate.category === "VISITANTE"}
+                  maxLength={7}
                 />
               </div>
 

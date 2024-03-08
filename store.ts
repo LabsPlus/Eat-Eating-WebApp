@@ -1,18 +1,20 @@
 import axios from "axios";
 import { create } from "zustand";
-import {User} from "./app/components/Interfaces/user.interfaces"
+import { User } from "./app/components/Interfaces/user.interfaces";
 import { DataUser } from "./app/components/Interfaces/dataUser.interfaces";
 
 export type storeState = {
   users: User[];
   searchTerm: string;
   selectedUser: DataUser | null;
+  noUsersFound: boolean;
 };
 
 const initialState: storeState = {
   users: [],
   searchTerm: "",
   selectedUser: null,
+  noUsersFound: false,
 };
 
 export const useStore = create((set: any) => ({
@@ -23,12 +25,6 @@ export const useStore = create((set: any) => ({
       selectedUser: state.users.find((usuario: any) => usuario.user.id == user),
     }));
   },
-
-  //set({ selectedUser: user }),
-
-  // aqui chega o id do usuario que agente quer atualiza
-  // com ese id busca no users ese usuario que e igual com id
-  // o usuaruo enteiro que e igual com aquele que chego por parametro
 
   createUser: async (userData: any) => {
     console.log(userData);
@@ -66,8 +62,9 @@ export const useStore = create((set: any) => ({
       );
 
       if (filteredUsers.length > 0) {
-        set({ users: filteredUsers });
+        set({ users: filteredUsers, noUsersFound: false });
       } else {
+        set({ users: [], noUsersFound: true });
         console.log("Nenhum usuário encontrado");
       }
     } catch (error) {

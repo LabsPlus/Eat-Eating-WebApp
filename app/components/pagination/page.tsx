@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Button, Popconfirm, Table } from "antd";
+import { Button, Popconfirm, Table, message } from "antd";
 import styles from "./page.module.css";
-import { useStore,  } from "../../../store";
+import { useStore } from "../../../store";
 import UpdateUserPopover from "../update-user-popover/page";
 
 const PaginationUsers = () => {
@@ -54,6 +54,7 @@ const PaginationUsers = () => {
     deleteUser,
     selectedUser,
     setSelectedUser,
+    noUsersFound,
   } = useStore();
 
   useEffect(() => {
@@ -85,7 +86,7 @@ const PaginationUsers = () => {
   const handleDeleteUser = async (id: number) => {
     try {
       await deleteUser(id);
-      console.log("Usuário excluído com sucesso!");
+      message.success("Usuário deletado com sucesso!");
     } catch (error) {
       console.error("Erro ao excluir usuário:", error);
     }
@@ -110,6 +111,13 @@ const PaginationUsers = () => {
       title: "Matrícula ",
       dataIndex: "enrrolment",
       key: "enrollment",
+      render: (text: any, record: any) => {
+        if (record.user.category.name === "VISITANTE") {
+          return "XXXXXXX";
+        } else {
+          return text;
+        }
+      },
     },
     {
       title: "Categoria de usuário",
@@ -154,20 +162,27 @@ const PaginationUsers = () => {
 
   return (
     <div className={styles.container}>
-      <Table
-        className={styles.table}
-        dataSource={users}
-        columns={columns}
-        pagination={{
-          current: currentPage,
-          pageSize: pageSize,
-          total: users.length,
-          showSizeChanger: false,
-          onChange: handlePageChange,
-        }}
-        rowKey="id"
-        rowClassName={rowClassName}
-      />
+      {noUsersFound ? (
+        <p className={styles.noUsersMessage}>
+          Nenhum usuário encontrado. Por favor, verifique o nome e tente
+          novamente.
+        </p>
+      ) : (
+        <Table
+          className={styles.table}
+          dataSource={users}
+          columns={columns}
+          pagination={{
+            current: currentPage,
+            pageSize: pageSize,
+            total: users.length,
+            showSizeChanger: false,
+            onChange: handlePageChange,
+          }}
+          rowKey="id"
+          rowClassName={rowClassName}
+        />
+      )}
       {selectedUser && <UpdateUserPopover />}
     </div>
   );
