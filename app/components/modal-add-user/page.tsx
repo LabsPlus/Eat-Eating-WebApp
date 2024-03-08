@@ -48,7 +48,7 @@ const Popover = () => {
     let newValue: string | number = value;
     // if (id === "category" || id === "typeGrant" || id === "dailyMeals") {
     if (id === "name") {
-      newValue = value.replace(/[^a-zA-Z\s]/g, "").toUpperCase();
+      newValue = value.replace(/[^a-zA-ZÀ-ÖØ-öø-ÿ\s]/g, "").toUpperCase();
     }
 
     if (id === "enrollment") {
