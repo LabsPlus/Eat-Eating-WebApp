@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Button, Popconfirm, Table, message } from "antd";
+import { Button, Modal, Popconfirm, Table, message } from "antd";
 import styles from "./page.module.css";
 import { useStore } from "../../../store";
 import UpdateUserPopover from "../update-user-popover/page";
@@ -15,6 +15,8 @@ const PaginationUsers = () => {
   };
 
   const [updatePopoverVisible, setUpdatePopoverVisible] = useState(false);
+  const [deleteUserId, setDeleteUserId] = useState(null);
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
   const UpdateIcon = () => (
     <svg
@@ -92,6 +94,20 @@ const PaginationUsers = () => {
     }
   };
 
+  const handleConfirmDelete = async () => {
+    if (deleteUserId) {
+      await handleDeleteUser(deleteUserId);
+      setDeleteUserId(null);
+      setDeleteModalVisible(false); 
+    }
+  };
+  
+
+  const handleCancelDelete = () => {
+    setDeleteModalVisible(false);
+    setDeleteUserId(null);
+  };
+
   const rowClassName = (record: any, index: number) => {
     return index % 2 === 0 ? styles.evenRow : styles.oddRow;
   };
@@ -147,14 +163,12 @@ const PaginationUsers = () => {
             icon={<UpdateIcon />}
             onClick={() => handleEditUser(record.user.id)}
           />
-          <Popconfirm
-            title="Deseja realmente excluir este usuário?"
-            onConfirm={() => handleDeleteUser(record.user.id)}
-            okText="Sim"
-            cancelText="Não"
-          >
-            <Button type="link" danger icon={<DeleteIcon />} />
-          </Popconfirm>
+          <Button
+            type="link"
+            danger
+            icon={<DeleteIcon />}
+            onClick={() => setDeleteUserId(record.user.id)}
+          />
         </div>
       ),
     },
@@ -184,6 +198,19 @@ const PaginationUsers = () => {
         />
       )}
       {selectedUser && <UpdateUserPopover />}
+      <Modal
+        title={
+          <span style={{ color: "#043DAA", fontSize: "20px" }}>Deletar</span>
+        }
+        visible={!!deleteUserId}
+        onOk={handleConfirmDelete }
+        onCancel={handleCancelDelete}
+        okText="Deletar"
+        cancelText="Cancelar"
+        className={styles.modalDelete}
+      >
+        <p>Deseja realmente excluir este usuário?</p>
+      </Modal>
     </div>
   );
 };

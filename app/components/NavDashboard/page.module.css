@@ -1,10 +1,10 @@
 .container {
   display: flex;
+  background-color: #b1c5eb;
 }
 
 .nav {
   width: 300px;
-  background-color: #b1c5eb;
   height: 100vh;
   display: flex;
   flex-direction: column;
