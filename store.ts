@@ -27,7 +27,6 @@ export const useStore = create((set: any) => ({
   },
 
   createUser: async (userData: any) => {
-    console.log(userData);
     try {
       await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/user/create-user`,
@@ -43,7 +42,6 @@ export const useStore = create((set: any) => ({
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/user/list-all-users`
       );
-      console.log(response);
       const sortedUsers = response.data.sort((a: any, b: any) => a.id - b.id);
       set({ users: sortedUsers });
     } catch (error) {
@@ -93,8 +91,12 @@ export const useStore = create((set: any) => ({
         `${process.env.NEXT_PUBLIC_API_URL}/user/update-user/${userId}`,
         updatedUserData
       );
-    } catch (error) {
-      throw error;
+    } catch (error: any) {
+      if (error.response.data.statusCode === 422) {
+        throw new Error(
+          "Falha na atualização: é necessário mudar a matrícula ao alterar a categoria do usuário."
+        );
+      }
     }
   },
 }));

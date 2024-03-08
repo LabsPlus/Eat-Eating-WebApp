@@ -32,8 +32,6 @@ const UpdateUserPopover: React.FC = () => {
     }
   }, [selectedUser]);
 
-  console.log(formData, "formData");
-
   useEffect(() => {
     if (formData) {
       setFormUpdate({
@@ -48,8 +46,6 @@ const UpdateUserPopover: React.FC = () => {
     }
   }, [formData]);
 
-  console.log(formUpdate, "form update");
-  console.log(formData, "form data");
   const showError = (errorMsg: any) => {
     messageApi.open({
       type: "error",
@@ -72,7 +68,7 @@ const UpdateUserPopover: React.FC = () => {
 
   const validatePassword = (password: string) => {
     const regex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@$!%*?&])[A-Za-z\d#@$!%*?&]{8,}$/;
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@$!%*?&])[A-Za-z\d#@$!%*?&]{8,}$/;
     return regex.test(password);
   };
 
@@ -82,7 +78,7 @@ const UpdateUserPopover: React.FC = () => {
     const { id, value } = e.target;
     let newValue: string | number;
     if (id === "name") {
-      newValue = value.replace(/[^a-zA-Z\s]/g, "").toUpperCase();
+      newValue = value.replace(/[^a-zA-ZÀ-ÖØ-öø-ÿ\s]/g, "").toUpperCase();
     } else if (
       id === "dailyMeals"
       //||
@@ -177,12 +173,16 @@ const UpdateUserPopover: React.FC = () => {
         return;
       }
       try {
-        await updateUser(formData.user.id, formUpdate);
-        success("Usuário atualizado com sucesso!");
+        await updateUser(formData.user.id, formUpdate)
+          .then(() => {
+            success("Usuário atualizado com sucesso!");
+          })
+          .catch((error) => {
+            showError(error.message);
+          });
         setIsModalOpen(false);
         getAllUsers();
       } catch (error: any) {
-        console.log("Erro: " + error);
         showError(
           "Houve um erro ao atualizar o usuário. Por favor, tente novamente."
         );
