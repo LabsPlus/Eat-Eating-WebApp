@@ -7,9 +7,7 @@ import styles from "./page.module.css";
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const { searchUsersByName,users } = useStore();
-console.log(users, 'users');
-
+  const { searchUsersByName, users } = useStore();
 
   const handleSearch = async (value: string) => {
     setSearchTerm(value);
@@ -22,7 +20,7 @@ console.log(users, 'users');
         className={styles.search}
         size="large"
         placeholder="Pesquisar por"
-        prefix={<SearchOutlined className={styles.searchOutlined}/>}
+        prefix={<SearchOutlined className={styles.searchOutlined} />}
         value={searchTerm}
         onChange={(e) => handleSearch(e.target.value)}
       />
