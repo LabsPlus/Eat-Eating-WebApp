@@ -38,13 +38,13 @@ export const useStore = create((set: any) => ({
         "Enrollment already exists, only one enrollment is allowed."
       ) {
         throw new Error(
-          "Falha enrollment já existe, apenas um enrollment é permitido."
+          "Matrícula já está em uso, informe outra."
         );
       } else if (
         error.response.data.message ==
         "email already exists, only one email is allowed."
       ) {
-        throw new Error("Falha email já existe, apenas um email é permitido.");
+        throw new Error("E-mail já está em uso, informe outro.");
       }
     }
   },
@@ -108,7 +108,7 @@ export const useStore = create((set: any) => ({
 
       if (error.response.data.statusCode === 422) {
         throw new Error(
-          "Falha na atualização: é necessário mudar a matrícula ao alterar a categoria do usuário."
+          "É necessário mudar a matrícula ao alterar a categoria do usuário ou vice-versa."
         );
       }
     }
