@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import styles from "./page.module.css";
 import { Modal, Button, message, Input } from "antd";
 import { useStore } from "../../../store";
+import axios from "axios";
 
 const Popover = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,6 +17,7 @@ const Popover = () => {
     email: "",
     password: "",
     emailRecovery: "",
+    picture: "",
   });
 
   const [messageApi, contextHolder] = message.useMessage();
@@ -41,6 +43,30 @@ const Popover = () => {
       type: "error",
       content: errorMsg,
     });
+  };
+
+  //cloudinary
+  const handlePictureUpload = async (e: any) => {
+    const { name } = e.target;
+
+    if (name === "picture") {
+      const file = e.target.files[0];
+
+      try {
+        const formData = new FormData();
+        formData.append("file", file);
+        const response = await axios.post("/api/upload", formData);
+
+        const picture = response.data;
+
+        setFormData((prevInputs) => ({
+          ...prevInputs,
+          picture: picture,
+        }));
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   const handleInputChange = (e: any) => {
@@ -149,6 +175,7 @@ const Popover = () => {
         email: "",
         password: "",
         emailRecovery: "",
+        picture: "",
       });
     } else {
       error("Por favor, preencha todos os campos obrigatórios.");
@@ -167,6 +194,7 @@ const Popover = () => {
       email: "",
       password: "",
       emailRecovery: "",
+      picture: "",
     });
   };
 
@@ -290,6 +318,24 @@ const Popover = () => {
                 />
                 <label htmlFor="dailyMeals">Refeições diárias </label>
               </div>
+
+              <div className={""}>
+                <input
+                  name="picture"
+                  id="picture"
+                  type="file"
+                  onChange={handlePictureUpload}
+                />
+              </div>
+
+              <img
+                src={formData ? formData.picture : "/images/userLogo.png"}
+                alt="User Logo"
+                width={22.26}
+                height={18.1}
+                style={{ padding: "5px", paddingRight: "3px" }}
+                className={styles.icon}
+              />
             </div>
           </div>
         );
