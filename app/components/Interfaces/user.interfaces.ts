@@ -8,4 +8,5 @@ export interface User {
   email: string;
   password: string;
   emailRecovery: string;
+  picture: string;
 }
