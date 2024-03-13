@@ -154,7 +154,7 @@ const Popover = () => {
       try {
         await createUser(formData)
           .then(() => {
-            success("Usuário atualizado com sucesso!");
+            success("Usuário adicionado com sucesso!");
           })
           .catch((error) => {
             showError(error.message);
