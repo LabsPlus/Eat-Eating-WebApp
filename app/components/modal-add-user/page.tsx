@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./page.module.css";
-import { Modal, Button, message, Input } from "antd";
+import { Modal, Button, message, Input, Image } from "antd";
 import { useStore } from "../../../store";
 import axios from "axios";
 
@@ -182,6 +182,8 @@ const Popover = () => {
     }
   };
 
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  
   const handleCancel = () => {
     setIsModalOpen(false);
     setCurrentStep(1);
@@ -196,6 +198,9 @@ const Popover = () => {
       emailRecovery: "",
       picture: "",
     });
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
   };
 
   const nextStep = () => {
@@ -249,6 +254,22 @@ const Popover = () => {
       case 1:
         return (
           <div className={styles.modalContainer}>
+            <div className={styles.pictureContainer}>
+              {formData && formData.picture ? (
+                <img src={formData.picture} alt="User Logo" />
+              ) : (
+                <div className={styles.placeholder}></div>
+              )}
+              <div className={styles.fileContainer}>
+                <input
+                  name="picture"
+                  id="picture"
+                  type="file"
+                  onChange={handlePictureUpload}
+                  ref={fileInputRef}
+                />
+              </div>
+            </div>
             <div className={styles.item}>
               <div className={styles.itens}>
                 <input
@@ -267,6 +288,7 @@ const Popover = () => {
                   id="category"
                   value={formData.category}
                   onChange={handleInputChange}
+                  className={styles.inputSmall}
                 >
                   <option>Usuário</option>
                   <option value="ESTUDANTE">Aluno</option>
@@ -281,6 +303,7 @@ const Popover = () => {
                   id="typeGrant"
                   value={formData.typeGrant}
                   onChange={handleInputChange}
+                  className={styles.inputSmall}
                 >
                   <option>Bolsa</option>
                   <option value="INTEGRAL">Integral</option>
@@ -304,6 +327,7 @@ const Popover = () => {
                   onChange={handleInputChange}
                   disabled={formData.category === "VISITANTE"}
                   maxLength={7}
+                  className={styles.inputSmall}
                 />
                 <label htmlFor="enrollment">Matrícula</label>
               </div>
@@ -315,27 +339,10 @@ const Popover = () => {
                   value={formData.dailyMeals}
                   onChange={handleInputChange}
                   max={3}
+                  className={styles.inputMedium}
                 />
                 <label htmlFor="dailyMeals">Refeições diárias </label>
               </div>
-
-              <div className={""}>
-                <input
-                  name="picture"
-                  id="picture"
-                  type="file"
-                  onChange={handlePictureUpload}
-                />
-              </div>
-
-              <img
-                src={formData ? formData.picture : "/images/userLogo.png"}
-                alt="User Logo"
-                width={22.26}
-                height={18.1}
-                style={{ padding: "5px", paddingRight: "3px" }}
-                className={styles.icon}
-              />
             </div>
           </div>
         );
