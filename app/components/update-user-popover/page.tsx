@@ -10,7 +10,7 @@ import { UserUpdate } from "../Interfaces/userUpdate.interfaces";
 const UpdateUserPopover: React.FC = () => {
   const [formData, setFormData] = useState<DataUser | null>(null);
   const [currentStep, setCurrentStep] = useState(1);
-  const { updateUser, getAllUsers, selectedUser } = useStore();
+  const { updateUser, getAllUsers, selectedUser, setSelectedUser } = useStore();
   const [messageApi, contextHolder] = message.useMessage();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -193,6 +193,7 @@ const UpdateUserPopover: React.FC = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setSelectedUser(null);
   };
 
   return (
