@@ -2,19 +2,19 @@
 import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { Modal, Button, Input, message } from "antd";
-import { useStore } from "../../../store";
+import { useStore } from "../../../../store";
 
-import { DataUser } from "../Interfaces/dataUser.interfaces";
-import { UserUpdate } from "../Interfaces/userUpdate.interfaces";
+import { IDataUser } from "../../../Interfaces/user.interfaces";
+import { IUserUpdate } from "../../../Interfaces/user.interfaces";
 
-const UpdateUserPopover: React.FC = () => {
-  const [formData, setFormData] = useState<DataUser | null>(null);
+const UpdateUser: React.FC = () => {
+  const [formData, setFormData] = useState<IDataUser | null>(null);
   const [currentStep, setCurrentStep] = useState(1);
   const { updateUser, getAllUsers, selectedUser, setSelectedUser } = useStore();
   const [messageApi, contextHolder] = message.useMessage();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [formUpdate, setFormUpdate] = useState<UserUpdate>({
+  const [formUpdate, setFormUpdate] = useState<IUserUpdate>({
     name: formData?.user.person.name,
     enrollment: formData?.enrrolment,
     category: formData?.user.category.name,
@@ -333,4 +333,4 @@ const UpdateUserPopover: React.FC = () => {
     </>
   );
 };
-export default UpdateUserPopover;
+export default UpdateUser;

@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Popconfirm, Table, message } from "antd";
 import styles from "./page.module.css";
-import { useStore } from "../../../store";
-import UpdateUserPopover from "../update-user-popover/page";
+import { useStore } from "../../../../store";
+import UpdateUserPopover from "../update-user-popover/UpdateUser";
 
-const PaginationUsers = () => {
+const ListUsers = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
 
@@ -98,10 +98,9 @@ const PaginationUsers = () => {
     if (deleteUserId) {
       await handleDeleteUser(deleteUserId);
       setDeleteUserId(null);
-      setDeleteModalVisible(false); 
+      setDeleteModalVisible(false);
     }
   };
-  
 
   const handleCancelDelete = () => {
     setDeleteModalVisible(false);
@@ -203,7 +202,7 @@ const PaginationUsers = () => {
           <span style={{ color: "#043DAA", fontSize: "20px" }}>Deletar</span>
         }
         visible={!!deleteUserId}
-        onOk={handleConfirmDelete }
+        onOk={handleConfirmDelete}
         onCancel={handleCancelDelete}
         okText="Deletar"
         cancelText="Cancelar"
@@ -215,4 +214,4 @@ const PaginationUsers = () => {
   );
 };
 
-export default PaginationUsers;
+export default ListUsers;

@@ -2,10 +2,10 @@
 import React, { useRef, useState } from "react";
 import styles from "./page.module.css";
 import { Modal, Button, message, Input, Image } from "antd";
-import { useStore } from "../../../store";
+import { useStore } from "../../../../store";
 import axios from "axios";
 
-const Popover = () => {
+const AddUser = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -183,7 +183,7 @@ const Popover = () => {
   };
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-  
+
   const handleCancel = () => {
     setIsModalOpen(false);
     setCurrentStep(1);
@@ -410,4 +410,4 @@ const Popover = () => {
   );
 };
 
-export default Popover;
+export default AddUser;

@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import Popover from "../app/components/modal-add-user/page";
+import Popover from "../app/dashboard/gerenciar-usuarios/add-user/AddUser";
 
 describe("Popover Component", () => {
   test("Renderizando o nome do botão", () => {

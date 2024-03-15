@@ -6,12 +6,12 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
-import { UserData } from "./types";
-import { validation } from "./validation";
+import { IEmailRecovery } from "../Interfaces/admin.interfaces";
+import { isValidEmail } from "../helpers/isValidEmail";
 import toast from "react-hot-toast";
 
 const RecoverPassword = () => {
-  const [emailData, setEmailData] = useState<UserData>({
+  const [emailData, setEmailData] = useState<IEmailRecovery>({
     email: "",
   });
 
@@ -27,7 +27,7 @@ const RecoverPassword = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const response = validation(emailData);
+    const response = isValidEmail(emailData);
 
     try {
       if (response) {
