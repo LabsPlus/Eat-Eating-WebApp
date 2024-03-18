@@ -66,7 +66,6 @@ export const useStore = create((set: any) => ({
         set({ users: filteredUsers, noUsersFound: false });
       } else {
         set({ users: [], noUsersFound: true });
-        console.log("Nenhum usuário encontrado");
       }
     } catch (error) {
       console.log("Erro ao buscar usuários:", error);

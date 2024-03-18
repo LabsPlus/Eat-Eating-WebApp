@@ -4,6 +4,8 @@ import styles from "./page.module.css";
 import { Modal, Button, message, Input, Image } from "antd";
 import { useStore } from "../../../../store";
 import axios from "axios";
+import { validateEmail } from "@/app/helpers/isValidEmailUser";
+import { validatePassword } from "@/app/helpers/idValidPasswordUser";
 
 const AddUser = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -90,16 +92,6 @@ const AddUser = () => {
       }
     }
     setFormData({ ...formData, [id]: newValue });
-  };
-
-  const validateEmail = (email: any) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
-
-  const validatePassword = (password: any) => {
-    const regex = /^[\s\S]{8,10}$/;
-    return regex.test(password);
   };
 
   const validateForm = () => {

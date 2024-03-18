@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { Modal, Button, Input, message } from "antd";
 import { useStore } from "../../../../store";
-
+import { validateEmail } from "@/app/helpers/isValidEmailUser";
+import { validatePassword } from "@/app/helpers/idValidPasswordUser";
 import { IDataUser } from "../../../Interfaces/user.interfaces";
 import { IUserUpdate } from "../../../Interfaces/user.interfaces";
 
@@ -59,16 +60,6 @@ const UpdateUser: React.FC = () => {
 
   const error = (errorMsg: any) => {
     message.error(errorMsg);
-  };
-
-  const validateEmail = (email: string) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
-
-  const validatePassword = (password: string) => {
-    const regex = /^[\s\S]{8,10}$/;
-    return regex.test(password);
   };
 
   const handleInputChange = (
