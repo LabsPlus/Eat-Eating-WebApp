@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import styles from "./page.module.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { UserOutlined } from "@ant-design/icons";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { Input, Button } from "antd";
@@ -11,9 +11,16 @@ import { isLoginValid } from "../helpers/isLoginValid";
 import { useAuthContext } from "@/app/contexts/AuthContext";
 import toast from "react-hot-toast";
 import { IUserData } from "../Interfaces/admin.interfaces";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
-  const { login } = useAuthContext();
+  const { login, user } = useAuthContext();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    user ? router.push("/dashboard/gerenciar-usuarios") : null;
+  }, [user]);
 
   const [remember, setRemember] = useState(false);
 
