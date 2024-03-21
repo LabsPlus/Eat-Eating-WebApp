@@ -234,7 +234,7 @@ const UpdateUser: React.FC = () => {
                   value={formUpdate.category}
                   onChange={handleInputChange}
                 >
-                  <option value="ESTUDANTE">Aluno</option>
+                  <option value="ALUNO">Aluno</option>
                   <option value="FUNCIONARIO">Funcionário</option>
                   <option value="VISITANTE">Visitante</option>
                 </select>
