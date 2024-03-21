@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import styles from "./page.module.css";
-import NavDashboard from "../components/NavDashboard/NavDashboard";
+import NavDashboard from "./nav-dashboard/NavDashboard";
 
 function NavbarLayout({ children }: { children: React.ReactNode }) {
   return (

@@ -1,7 +1,10 @@
-import { UserData } from "./types";
+import { IPasswordData } from "../Interfaces/admin.interfaces";
 const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,10}$/;
 
-export const validation = ({ password, confirmPassword }: UserData) => {
+export const isValidPassword = ({
+  password,
+  confirmPassword,
+}: IPasswordData) => {
   if (!password) return "Por favor, insira sua nova senha.";
 
   if (!regexPassword.test(password))

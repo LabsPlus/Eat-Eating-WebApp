@@ -1,8 +1,8 @@
-import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react';
-import UpdateUserPopover from '../app/components/update-user-popover/page';
+import React from "react";
+import { render, fireEvent, waitFor } from "@testing-library/react";
+import UpdateUserPopover from "../app/dashboard/gerenciar-usuarios/update-user-popover/UpdateUser";
 
-describe('UpdateUserPopover component', () => {
+describe("UpdateUserPopover component", () => {
   test("Verifica se os campos de entrada são renderizados corretamente", async () => {
     const { getByText, getByLabelText } = render(<UpdateUserPopover />);
 
@@ -36,7 +36,7 @@ describe('UpdateUserPopover component', () => {
     expect(typeStudentGrantIdInput.value).toBe("INTEGRAL");
     expect(enrollmentInput.value).toBe("123456");
     expect(dailyMealsInput.value).toBe("2");
-    
+
     // Segunda etapa
     const nextButton = getByText("Próximo");
     fireEvent.click(nextButton);

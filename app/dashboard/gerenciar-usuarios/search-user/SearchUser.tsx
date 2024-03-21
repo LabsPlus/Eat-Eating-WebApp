@@ -5,7 +5,7 @@ import { Input } from "antd";
 import { useStore } from "../../../../store";
 import styles from "./page.module.css";
 
-const Search = () => {
+const SearchUser = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { searchUsersByName, users } = useStore();
 
@@ -28,4 +28,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default SearchUser;

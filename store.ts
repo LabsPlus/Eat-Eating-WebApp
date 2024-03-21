@@ -1,16 +1,9 @@
 import axios from "axios";
 import { create } from "zustand";
-import { User } from "./app/components/Interfaces/user.interfaces";
-import { DataUser } from "./app/components/Interfaces/dataUser.interfaces";
+import { IDataUser } from "./app/Interfaces/user.interfaces";
+import { IStoreState } from "./app/Interfaces/storeState.interfaces";
 
-export type storeState = {
-  users: User[];
-  searchTerm: string;
-  selectedUser: DataUser | null;
-  noUsersFound: boolean;
-};
-
-const initialState: storeState = {
+const initialState: IStoreState = {
   users: [],
   searchTerm: "",
   selectedUser: null,
@@ -20,8 +13,8 @@ const initialState: storeState = {
 export const useStore = create((set: any) => ({
   ...initialState,
 
-  setSelectedUser: (user: DataUser | null) => {
-    set((state: storeState) => ({
+  setSelectedUser: (user: IDataUser | null) => {
+    set((state: IStoreState) => ({
       selectedUser: state.users.find((usuario: any) => usuario.user.id == user),
     }));
   },
@@ -73,7 +66,6 @@ export const useStore = create((set: any) => ({
         set({ users: filteredUsers, noUsersFound: false });
       } else {
         set({ users: [], noUsersFound: true });
-        console.log("Nenhum usuário encontrado");
       }
     } catch (error) {
       console.log("Erro ao buscar usuários:", error);
@@ -86,7 +78,7 @@ export const useStore = create((set: any) => ({
         `${process.env.NEXT_PUBLIC_API_URL}/user/delete-user/${id}`
       );
 
-      set((state: storeState) => ({
+      set((state: IStoreState) => ({
         users: state.users.filter((user: any) => user.user.id !== id),
       }));
     } catch (error) {

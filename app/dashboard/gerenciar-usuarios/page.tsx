@@ -1,13 +1,12 @@
 "use client";
 import React from "react";
 import styles from "./page.module.css";
-import Popover from "@/app/components/modal-add-user/page";
-import PaginationUsers from "@/app/components/pagination/page";
-import Search from "./search-term/page";
+import Popover from "@/app/dashboard/gerenciar-usuarios/add-user/AddUser";
+import PaginationUsers from "@/app/dashboard/gerenciar-usuarios/list-users/ListUsers";
+import Search from "./search-user/SearchUser";
 import PrivateRoute from "@/app/components/PrivateRoute/PrivateRoute";
 
 const UserManager = () => {
-
   const currentDate = new Date();
   const dateFormatter = new Intl.DateTimeFormat("pt-BR");
   const formattedDate = dateFormatter.format(currentDate);
@@ -21,8 +20,8 @@ const UserManager = () => {
 
         <div className={styles.inputsContainer}>
           <div className={styles.searchAndAdd}>
-            <Search data-testid='search-component'/>
-            <Popover data-testid="popover-component"/>
+            <Search data-testid="search-component" />
+            <Popover data-testid="popover-component" />
           </div>
 
           <div className={styles.btnsContainer}>

@@ -2,19 +2,20 @@
 import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { Modal, Button, Input, message } from "antd";
-import { useStore } from "../../../store";
+import { useStore } from "../../../../store";
+import { validateEmail } from "@/app/helpers/isValidEmailUser";
+import { validatePassword } from "@/app/helpers/idValidPasswordUser";
+import { IDataUser } from "../../../Interfaces/user.interfaces";
+import { IUserUpdate } from "../../../Interfaces/user.interfaces";
 
-import { DataUser } from "../Interfaces/dataUser.interfaces";
-import { UserUpdate } from "../Interfaces/userUpdate.interfaces";
-
-const UpdateUserPopover: React.FC = () => {
-  const [formData, setFormData] = useState<DataUser | null>(null);
+const UpdateUser: React.FC = () => {
+  const [formData, setFormData] = useState<IDataUser | null>(null);
   const [currentStep, setCurrentStep] = useState(1);
   const { updateUser, getAllUsers, selectedUser, setSelectedUser } = useStore();
   const [messageApi, contextHolder] = message.useMessage();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [formUpdate, setFormUpdate] = useState<UserUpdate>({
+  const [formUpdate, setFormUpdate] = useState<IUserUpdate>({
     name: formData?.user.person.name,
     enrollment: formData?.enrrolment,
     category: formData?.user.category.name,
@@ -59,16 +60,6 @@ const UpdateUserPopover: React.FC = () => {
 
   const error = (errorMsg: any) => {
     message.error(errorMsg);
-  };
-
-  const validateEmail = (email: string) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
-
-  const validatePassword = (password: string) => {
-    const regex = /^[\s\S]{8,10}$/;
-    return regex.test(password);
   };
 
   const handleInputChange = (
@@ -333,4 +324,4 @@ const UpdateUserPopover: React.FC = () => {
     </>
   );
 };
-export default UpdateUserPopover;
+export default UpdateUser;

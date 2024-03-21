@@ -2,10 +2,12 @@
 import React, { useRef, useState } from "react";
 import styles from "./page.module.css";
 import { Modal, Button, message, Input, Image } from "antd";
-import { useStore } from "../../../store";
+import { useStore } from "../../../../store";
 import axios from "axios";
+import { validateEmail } from "@/app/helpers/isValidEmailUser";
+import { validatePassword } from "@/app/helpers/idValidPasswordUser";
 
-const Popover = () => {
+const AddUser = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -92,16 +94,6 @@ const Popover = () => {
     setFormData({ ...formData, [id]: newValue });
   };
 
-  const validateEmail = (email: any) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
-
-  const validatePassword = (password: any) => {
-    const regex = /^[\s\S]{8,10}$/;
-    return regex.test(password);
-  };
-
   const validateForm = () => {
     switch (currentStep) {
       case 1:
@@ -183,7 +175,7 @@ const Popover = () => {
   };
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-  
+
   const handleCancel = () => {
     setIsModalOpen(false);
     setCurrentStep(1);
@@ -410,4 +402,4 @@ const Popover = () => {
   );
 };
 
-export default Popover;
+export default AddUser;

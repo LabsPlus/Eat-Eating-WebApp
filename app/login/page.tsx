@@ -7,17 +7,17 @@ import { UserOutlined } from "@ant-design/icons";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { Input, Button } from "antd";
 import Image from "next/image";
-import { validation } from "./validation";
+import { isLoginValid } from "../helpers/isLoginValid";
 import { useAuthContext } from "@/app/contexts/AuthContext";
 import toast from "react-hot-toast";
-import { UserData } from "./types";
+import { IUserData } from "../Interfaces/admin.interfaces";
 
 const LoginForm = () => {
   const { login } = useAuthContext();
 
   const [remember, setRemember] = useState(false);
 
-  const [userData, setUserdata] = useState<UserData>({
+  const [userData, setUserdata] = useState<IUserData>({
     email: "",
     password: "",
   });
@@ -34,7 +34,7 @@ const LoginForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const response = validation(userData);
+    const response = isLoginValid(userData);
 
     try {
       if (response) {

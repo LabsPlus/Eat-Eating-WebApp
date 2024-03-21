@@ -9,8 +9,8 @@ import {
 import { Input, message } from "antd";
 import styles from "./page.module.css";
 import Image from "next/image";
-import { UserData } from "./types";
-import { validation } from "./validation";
+import { IPasswordData } from "../Interfaces/admin.interfaces";
+import { isValidPassword } from "../helpers/isValidPassword";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -21,7 +21,7 @@ const NewPassword = () => {
 
   const router = useRouter();
   const [passwordVisible, setPasswordVisible] = React.useState(false);
-  const [passwordData, setPasswordData] = useState<UserData>({
+  const [passwordData, setPasswordData] = useState<IPasswordData>({
     password: "",
     confirmPassword: "",
   });
@@ -36,7 +36,7 @@ const NewPassword = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const response = validation(passwordData);
+    const response = isValidPassword(passwordData);
 
     try {
       if (response) {

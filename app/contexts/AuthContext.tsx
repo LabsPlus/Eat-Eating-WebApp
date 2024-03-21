@@ -4,18 +4,9 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { IAuthContextProps, IUserData } from "../Interfaces/admin.interfaces";
 
-interface AuthContextProps {
-  user: string | null;
-  setUser: React.Dispatch<React.SetStateAction<string | null>>;
-  login: (
-    userData: { email: string; password: string },
-    remember: boolean
-  ) => void;
-  logout: () => void;
-}
-
-const AppContext = createContext<AuthContextProps | undefined>({
+const AppContext = createContext<IAuthContextProps | undefined>({
   user: null,
   setUser: () => {},
   login: async () => {},
