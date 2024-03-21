@@ -283,7 +283,7 @@ const AddUser = () => {
                   className={styles.inputSmall}
                 >
                   <option>Usuário</option>
-                  <option value="ESTUDANTE">Aluno</option>
+                  <option value="ALUNO">Aluno</option>
                   <option value="FUNCIONARIO">Funcionário</option>
                   <option value="VISITANTE">Visitante</option>
                 </select>
