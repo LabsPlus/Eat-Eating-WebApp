@@ -24,6 +24,11 @@ const AddUser = () => {
 
   const [messageApi, contextHolder] = message.useMessage();
 
+  const [fileUpload, setFileUpload] = useState(false);
+  const [fileUploadMessage, setFileUploadMessage] = useState(
+    "Nenhum Ficheiro Selecionado"
+  );
+
   const { createUser, getAllUsers } = useStore();
 
   const showError = (errorMsg: any) => {
@@ -54,6 +59,30 @@ const AddUser = () => {
     if (name === "picture") {
       const file = e.target.files[0];
 
+      if (!["image/svg+xml", "image/png", "image/jpeg"].includes(file.type)) {
+        showError(
+          "Por favor, selecione uma imagem nos formatos SVG, PNG ou JPEG."
+        );
+        setFormData((prevInputs) => ({
+          ...prevInputs,
+          picture: "",
+        }));
+        setFileUploadMessage("Não foi possível adicionar ficheiro");
+        setFileUpload(true);
+        return;
+      }
+
+      if (file.size > 1048576) {
+        showError("O tamanho do arquivo deve ser de até 1MB.");
+        setFormData((prevInputs) => ({
+          ...prevInputs,
+          picture: "", 
+        }));
+        setFileUploadMessage("Não foi possível adicionar ficheiro");
+        setFileUpload(true);
+        return;
+      }
+
       try {
         const formData = new FormData();
         formData.append("file", file);
@@ -65,6 +94,8 @@ const AddUser = () => {
           ...prevInputs,
           picture: picture,
         }));
+        setFileUploadMessage("Ficheiro adicionado com sucesso");
+        setFileUpload(true);
       } catch (error) {
         console.log(error);
       }
@@ -152,6 +183,8 @@ const AddUser = () => {
             showError(error.message);
           });
         getAllUsers();
+        setFileUploadMessage("Nenhum Ficheiro Selecionado");
+        setFileUpload(false);
       } catch (error: any) {
         console.log(error);
         showError(
@@ -193,6 +226,8 @@ const AddUser = () => {
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
+    setFileUploadMessage("Nenhum Ficheiro Selecionado");
+    setFileUpload(false);
   };
 
   const nextStep = () => {
@@ -252,7 +287,11 @@ const AddUser = () => {
               ) : (
                 <div className={styles.placeholder}></div>
               )}
-              <div className={styles.fileContainer}>
+              <div
+                className={styles.fileContainer}
+                style={{ width: fileUpload ? "400px" : "370px" }}
+              >
+                <label htmlFor="picture">Escolher ficheiro</label>
                 <input
                   name="picture"
                   id="picture"
@@ -260,6 +299,7 @@ const AddUser = () => {
                   onChange={handlePictureUpload}
                   ref={fileInputRef}
                 />
+                <span>{fileUploadMessage}</span>
               </div>
             </div>
             <div className={styles.item}>
@@ -270,6 +310,7 @@ const AddUser = () => {
                   placeholder=""
                   value={formData.name}
                   onChange={handleInputChange}
+                  className={styles.name}
                 />
                 <label htmlFor="name">Nome completo</label>
               </div>
@@ -307,7 +348,7 @@ const AddUser = () => {
 
             <div className={styles.item}>
               <div className={styles.itens}>
-                <Input
+                <input
                   id="enrollment"
                   type="text"
                   placeholder=""
