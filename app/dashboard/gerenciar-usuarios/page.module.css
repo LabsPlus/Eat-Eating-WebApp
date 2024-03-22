@@ -71,7 +71,7 @@
     border: 1px solid #03338E;
 }
 
-.btnsContainer button:first-child {
+.btnsContainer .personIcon+button {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
