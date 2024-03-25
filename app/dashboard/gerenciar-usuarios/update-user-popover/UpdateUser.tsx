@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
 import { Modal, Button, Input, message } from "antd";
 import { useStore } from "../../../../store";
@@ -7,6 +7,7 @@ import { validateEmail } from "@/app/helpers/isValidEmailUser";
 import { validatePassword } from "@/app/helpers/idValidPasswordUser";
 import { IDataUser } from "../../../Interfaces/user.interfaces";
 import { IUserUpdate } from "../../../Interfaces/user.interfaces";
+import axios from "axios";
 
 const UpdateUser: React.FC = () => {
   const [formData, setFormData] = useState<IDataUser | null>(null);
@@ -23,6 +24,7 @@ const UpdateUser: React.FC = () => {
     dailyMeals: formData?.user.dailyMeals,
     password: formData?.user.loginUser.password,
     emailRecovery: formData?.user.loginUser.emailRecovery,
+    picture: formData?.picture,
   });
 
   useEffect(() => {
@@ -43,9 +45,15 @@ const UpdateUser: React.FC = () => {
         dailyMeals: formData.user.dailyMeals,
         password: formData.user.loginUser.password,
         emailRecovery: formData.user.loginUser.emailRecovery,
+        picture: formData?.picture,
       });
     }
   }, [formData]);
+
+  const [fileUploadUpdate, setFileUploadUpdate] = useState(false);
+  const [fileUploadMessage, setFileUploadMessage] = useState(
+    "Nenhum Ficheiro Selecionado"
+  );
 
   const showError = (errorMsg: any) => {
     messageApi.open({
@@ -60,6 +68,55 @@ const UpdateUser: React.FC = () => {
 
   const error = (errorMsg: any) => {
     message.error(errorMsg);
+  };
+
+  const handlePictureUpload = async (e: any) => {
+    const { name } = e.target;
+
+    if (name === "picture") {
+      const file = e.target.files[0];
+
+      if (!["image/svg+xml", "image/png", "image/jpeg"].includes(file.type)) {
+        showError(
+          "Por favor, selecione uma imagem nos formatos SVG, PNG ou JPEG."
+        );
+        setFormUpdate((prevInputs) => ({
+          ...prevInputs,
+          picture: "",
+        }));
+        setFileUploadMessage("Não foi possível atualizar ficheiro");
+        setFileUploadUpdate(true);
+        return;
+      }
+
+      if (file.size > 1048576) {
+        showError("O tamanho do arquivo deve ser de até 1MB.");
+        setFormUpdate((prevInputs) => ({
+          ...prevInputs,
+          picture: "",
+        }));
+        setFileUploadMessage("Não foi possível atualizar ficheiro");
+        setFileUploadUpdate(true);
+        return;
+      }
+      console.log("Antes: " + formUpdate.picture);
+      try {
+        const formData = new FormData();
+        formData.append("file", file);
+        const response = await axios.post("/api/upload", formData);
+
+        const picture = response.data;
+        setFormUpdate((prevFormData) => ({
+          ...prevFormData,
+          picture: picture,
+        }));
+        setFileUploadMessage("Ficheiro atualizado com sucesso");
+        setFileUploadUpdate(true);
+        console.log("Depois: " + formUpdate.picture);
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   const handleInputChange = (
@@ -172,6 +229,8 @@ const UpdateUser: React.FC = () => {
           });
         setIsModalOpen(false);
         getAllUsers();
+        setFileUploadMessage("Nenhum Ficheiro Selecionado");
+        setSelectedUser(null);
       } catch (error: any) {
         showError(
           "Houve um erro ao atualizar o usuário. Por favor, tente novamente."
@@ -182,9 +241,14 @@ const UpdateUser: React.FC = () => {
     }
   };
 
+  const fileInputRefUpdate = useRef<HTMLInputElement>(null);
+
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedUser(null);
+    // if (fileInputRefUpdate.current) {
+    //   fileInputRefUpdate.current.value = "";
+    // }
   };
 
   return (
@@ -217,6 +281,27 @@ const UpdateUser: React.FC = () => {
       >
         {currentStep === 1 && (
           <div className={styles.modalContainer}>
+            <div className={styles.pictureContainer}>
+              {formUpdate && formUpdate.picture ? (
+                <img src={formUpdate.picture} alt="User Logo" />
+              ) : (
+                <div className={styles.placeholder}></div>
+              )}
+              <div
+                className={styles.fileContainer}
+                style={{ width: fileUploadUpdate ? "400px" : "370px" }}
+              >
+                <label htmlFor="picture">Escolher ficheiro</label>
+                <input
+                  name="picture"
+                  id="picture"
+                  type="file"
+                  onChange={handlePictureUpload}
+                  ref={fileInputRefUpdate}
+                />
+                <span>{fileUploadMessage}</span>
+              </div>
+            </div>
             <div className={styles.item}>
               <div className={styles.itens}>
                 <label htmlFor="name">Nome:</label>

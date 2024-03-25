@@ -223,9 +223,9 @@ const AddUser = () => {
       emailRecovery: "",
       picture: "",
     });
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
+    // if (fileInputRef.current) {
+    //   fileInputRef.current.value = "";
+    // }
     setFileUploadMessage("Nenhum Ficheiro Selecionado");
     setFileUpload(false);
   };
