@@ -76,7 +76,7 @@ const AddUser = () => {
         showError("O tamanho do arquivo deve ser de até 1MB.");
         setFormData((prevInputs) => ({
           ...prevInputs,
-          picture: "", 
+          picture: "",
         }));
         setFileUploadMessage("Não foi possível adicionar ficheiro");
         setFileUpload(true);
@@ -207,8 +207,6 @@ const AddUser = () => {
     }
   };
 
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
   const handleCancel = () => {
     setIsModalOpen(false);
     setCurrentStep(1);
@@ -223,9 +221,6 @@ const AddUser = () => {
       emailRecovery: "",
       picture: "",
     });
-    // if (fileInputRef.current) {
-    //   fileInputRef.current.value = "";
-    // }
     setFileUploadMessage("Nenhum Ficheiro Selecionado");
     setFileUpload(false);
   };
@@ -283,7 +278,7 @@ const AddUser = () => {
           <div className={styles.modalContainer}>
             <div className={styles.pictureContainer}>
               {formData && formData.picture ? (
-                <img src={formData.picture} alt="User Logo" />
+                <img src={formData.picture} alt="Foto do usuário" />
               ) : (
                 <div className={styles.placeholder}></div>
               )}
@@ -297,7 +292,6 @@ const AddUser = () => {
                   id="picture"
                   type="file"
                   onChange={handlePictureUpload}
-                  ref={fileInputRef}
                 />
                 <span>{fileUploadMessage}</span>
               </div>

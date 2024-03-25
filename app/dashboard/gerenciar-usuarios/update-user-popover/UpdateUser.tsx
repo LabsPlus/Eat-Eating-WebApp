@@ -73,17 +73,12 @@ const UpdateUser: React.FC = () => {
   const handlePictureUpload = async (e: any) => {
     const { name } = e.target;
 
-    if (name === "picture") {
+    if (name === "pictureUpdate") {
       const file = e.target.files[0];
-
       if (!["image/svg+xml", "image/png", "image/jpeg"].includes(file.type)) {
         showError(
           "Por favor, selecione uma imagem nos formatos SVG, PNG ou JPEG."
         );
-        setFormUpdate((prevInputs) => ({
-          ...prevInputs,
-          picture: "",
-        }));
         setFileUploadMessage("Não foi possível atualizar ficheiro");
         setFileUploadUpdate(true);
         return;
@@ -91,15 +86,11 @@ const UpdateUser: React.FC = () => {
 
       if (file.size > 1048576) {
         showError("O tamanho do arquivo deve ser de até 1MB.");
-        setFormUpdate((prevInputs) => ({
-          ...prevInputs,
-          picture: "",
-        }));
         setFileUploadMessage("Não foi possível atualizar ficheiro");
         setFileUploadUpdate(true);
         return;
       }
-      console.log("Antes: " + formUpdate.picture);
+
       try {
         const formData = new FormData();
         formData.append("file", file);
@@ -112,7 +103,6 @@ const UpdateUser: React.FC = () => {
         }));
         setFileUploadMessage("Ficheiro atualizado com sucesso");
         setFileUploadUpdate(true);
-        console.log("Depois: " + formUpdate.picture);
       } catch (error) {
         console.log(error);
       }
@@ -241,14 +231,9 @@ const UpdateUser: React.FC = () => {
     }
   };
 
-  const fileInputRefUpdate = useRef<HTMLInputElement>(null);
-
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedUser(null);
-    // if (fileInputRefUpdate.current) {
-    //   fileInputRefUpdate.current.value = "";
-    // }
   };
 
   return (
@@ -283,21 +268,23 @@ const UpdateUser: React.FC = () => {
           <div className={styles.modalContainer}>
             <div className={styles.pictureContainer}>
               {formUpdate && formUpdate.picture ? (
-                <img src={formUpdate.picture} alt="User Logo" />
+                <img src={formUpdate.picture} alt="Foto do usuário" />
               ) : (
-                <div className={styles.placeholder}></div>
+                <img
+                  src="https://s3-alpha-sig.figma.com/img/15e6/00b9/f4886412d415517e0fbef2099bad9f6d?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fe3QsdCcr6bLt3g3q4c-g-AEpkFgx9VS1810bMEE-UvvOE5VVBfsT5DfA518t8lyD94Kwz0pljcGtBESmCoZwD6dv4CslVcr~PiT72uNbY463~MrqEGBsF321u8AXCFbz88PAeP2d-0qcW2vdswVFUthfJ8Oup00DeKc6pS3hOZWo4Y5oyrt02QsVPTlj6MqCLRUrGlfw1MofHiVVdW6R18VF4J5eaFVtNoR-CP3LsojL2Yflxby1MyDwQ1lp~BnoIJKwjCycG9IuPxjLPi0RL-W9q8jJdCBM1l10ISd6A4Y4Szbkxd5daRgP7zOO~reHGpDRW34tC7MIg0aYPQTDQ__"
+                  alt="Foto do usuário"
+                />
               )}
               <div
                 className={styles.fileContainer}
                 style={{ width: fileUploadUpdate ? "400px" : "370px" }}
               >
-                <label htmlFor="picture">Escolher ficheiro</label>
+                <label htmlFor="pictureUpdate">Escolher ficheiro</label>
                 <input
-                  name="picture"
-                  id="picture"
+                  name="pictureUpdate"
+                  id="pictureUpdate"
                   type="file"
                   onChange={handlePictureUpload}
-                  ref={fileInputRefUpdate}
                 />
                 <span>{fileUploadMessage}</span>
               </div>

@@ -33,6 +33,19 @@
     font-size: 16px;
 }
 
+.table img {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.nameAndPicture {
+    display: flex;
+    align-items: center;
+}
+
 .evenRow {
     background-color: #D9E3F5 !important;
 }
