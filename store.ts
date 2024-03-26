@@ -26,6 +26,7 @@ export const useStore = create((set: any) => ({
         userData
       );
     } catch (error: any) {
+      
       if (
         error.response.data.message ==
         "Enrollment already exists, only one enrollment is allowed."
@@ -33,9 +34,9 @@ export const useStore = create((set: any) => ({
         throw new Error("Matrícula já está em uso, informe outra.");
       } else if (
         error.response.data.message ==
-        "Email already exists, only one email is allowed."
+        "Email or Email Recovery already exists, only one email is allowed."
       ) {
-        throw new Error("E-mail já está em uso, informe outro.");
+        throw new Error("Parece que esse Email ou Recuperação de Email já está em uso. Só um é permitido.");
       }
     }
   },
