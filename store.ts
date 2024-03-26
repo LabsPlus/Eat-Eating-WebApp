@@ -26,7 +26,6 @@ export const useStore = create((set: any) => ({
         userData
       );
     } catch (error: any) {
-      
       if (
         error.response.data.message ==
         "Enrollment already exists, only one enrollment is allowed."
@@ -36,7 +35,9 @@ export const useStore = create((set: any) => ({
         error.response.data.message ==
         "Email or Email Recovery already exists, only one email is allowed."
       ) {
-        throw new Error("Parece que esse Email ou Recuperação de Email já está em uso. Só um é permitido.");
+        throw new Error(
+          "Parece que esse Email ou Recuperação de Email já está em uso. Só um é permitido."
+        );
       }
     }
   },
@@ -46,7 +47,9 @@ export const useStore = create((set: any) => ({
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/user/list-all-users`
       );
-      const sortedUsers = response.data.sort((a: any, b: any) => a.id - b.id);
+      const sortedUsers = response.data.sort((a: any, b: any) =>
+        a.user.person.name.localeCompare(b.user.person.name)
+      );
       set({ users: sortedUsers });
     } catch (error) {
       console.log(error);

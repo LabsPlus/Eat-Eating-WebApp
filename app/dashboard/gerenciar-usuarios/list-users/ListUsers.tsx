@@ -48,6 +48,8 @@ const ListUsers = () => {
     </svg>
   );
 
+  let serialNumber = 0;
+
   const {
     users,
     getAllUsers,
@@ -114,8 +116,8 @@ const ListUsers = () => {
   const columns = [
     {
       title: "#",
-      dataIndex: ["user", "id"],
-      key: "id",
+      dataIndex: "serialNumber",
+      key: "serialNumber",
     },
     {
       title: "Nome",
@@ -126,9 +128,10 @@ const ListUsers = () => {
           {record.picture ? (
             <img src={record.picture} alt="Foto do usuário" />
           ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 56 56" fill="#0444BD">
-            <path d="M0 28C0 12.536 12.536 0 28 0C43.464 0 56 12.536 56 28C56 43.464 43.464 56 28 56C12.536 56 0 43.464 0 28Z"/>
-          </svg>
+            <img
+            src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Free-Image.png"
+            alt="Foto do usuário"
+          />
           )}
           <span>{text}</span>
         </div>
@@ -195,7 +198,10 @@ const ListUsers = () => {
       ) : (
         <Table
           className={styles.table}
-          dataSource={users}
+          dataSource={users.map((user) => ({
+            ...user,
+            serialNumber: ++serialNumber,
+          }))}
           columns={columns}
           pagination={{
             current: currentPage,
