@@ -1,6 +1,7 @@
 export interface IDataUser extends IUserSelect {
   user: IUserSelect;
   enrrolment: string;
+  picture: string;
 }
 
 export interface IUser {
@@ -46,4 +47,5 @@ export interface IUserUpdate {
   dailyMeals: number | undefined;
   password: string | undefined;
   emailRecovery: string | undefined;
+  picture: string | undefined;
 }

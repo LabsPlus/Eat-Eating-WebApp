@@ -120,7 +120,20 @@ const ListUsers = () => {
     {
       title: "Nome",
       dataIndex: ["user", "person", "name"],
-      key: "name",
+      key: "nameAndPicture",
+      render: (text: any, record: any) => (
+        <div className={styles.nameAndPicture}>
+          {record.picture ? (
+            <img src={record.picture} alt="Foto do usuário" />
+          ) : (
+            <img
+              src="https://s3-alpha-sig.figma.com/img/15e6/00b9/f4886412d415517e0fbef2099bad9f6d?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fe3QsdCcr6bLt3g3q4c-g-AEpkFgx9VS1810bMEE-UvvOE5VVBfsT5DfA518t8lyD94Kwz0pljcGtBESmCoZwD6dv4CslVcr~PiT72uNbY463~MrqEGBsF321u8AXCFbz88PAeP2d-0qcW2vdswVFUthfJ8Oup00DeKc6pS3hOZWo4Y5oyrt02QsVPTlj6MqCLRUrGlfw1MofHiVVdW6R18VF4J5eaFVtNoR-CP3LsojL2Yflxby1MyDwQ1lp~BnoIJKwjCycG9IuPxjLPi0RL-W9q8jJdCBM1l10ISd6A4Y4Szbkxd5daRgP7zOO~reHGpDRW34tC7MIg0aYPQTDQ__"
+              alt="Foto do usuário"
+            />
+          )}
+          <span>{text}</span>
+        </div>
+      ),
     },
     {
       title: "Matrícula ",
