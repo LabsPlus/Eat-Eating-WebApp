@@ -98,9 +98,13 @@ export const useStore = create((set: any) => ({
         updatedUserData
       );
     } catch (error: any) {
-      console.log("Error updating user:", error.response.data.message);
+      console.log("Error updating user:", error.response.data);
 
-      if (error.response.data.statusCode === 422) {
+      if (error.response.data.message == "Email Recovery already exists, only one email is allowed.") {       
+        throw new Error(
+          "Parece que esse Email de Recuperação já está em uso. Só um é permitido."
+        );
+      }else if (error.response.data.statusCode == 422) {
         throw new Error(
           "É necessário mudar a matrícula ao alterar a categoria do usuário ou vice-versa."
         );
