@@ -8,6 +8,7 @@ import { validatePassword } from "@/app/helpers/idValidPasswordUser";
 import { IDataUser } from "../../../Interfaces/user.interfaces";
 import { IUserUpdate } from "../../../Interfaces/user.interfaces";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const UpdateUser: React.FC = () => {
   const [formData, setFormData] = useState<IDataUser | null>(null);
@@ -215,7 +216,8 @@ const UpdateUser: React.FC = () => {
             success("Usuário atualizado com sucesso!");
           })
           .catch((error) => {
-            showError(error.message);
+            //showError("error.message"); //it's not working
+            toast.error(error.message);
           });
         setIsModalOpen(false);
         getAllUsers();
