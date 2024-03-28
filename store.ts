@@ -36,7 +36,7 @@ export const useStore = create((set: any) => ({
         "Email or Email Recovery already exists, only one email is allowed."
       ) {
         throw new Error(
-          "Parece que esse Email ou Recuperação de Email já está em uso. Só um é permitido."
+          "Parece que esse Email ou Recuperação de Email já pertence à outra conta. Tente um e-mail diferente."
         );
       }
     }
@@ -102,7 +102,7 @@ export const useStore = create((set: any) => ({
 
       if (error.response.data.message == "Email Recovery already exists, only one email is allowed.") {       
         throw new Error(
-          "Parece que esse Email de Recuperação já está em uso. Só um é permitido."
+          "Ops! Parece que este e-mail já pertence à outra conta. Tente um e-mail diferente."
         );
       }else if (error.response.data.statusCode == 422) {
         throw new Error(
