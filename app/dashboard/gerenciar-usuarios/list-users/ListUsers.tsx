@@ -87,6 +87,19 @@ const ListUsers = () => {
     setCurrentPage(page);
   };
 
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    const totalPages = Math.ceil(users.length / pageSize);
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   const handlePageSizeChange = (value: any) => {
     setPageSize(value);
     setCurrentPage(1);
@@ -260,14 +273,8 @@ const ListUsers = () => {
                 style={{ transform: "rotate(900deg)" }}
                 onClick={goToFirstPage}
               />
-              <LeftOutlined
-                className={styles.prev}
-                onClick={() => handlePageChange(currentPage - 1)}
-              />
-              <RightOutlined
-                className={styles.next}
-                onClick={() => handlePageChange(currentPage + 1)}
-              />
+              <LeftOutlined className={styles.prev} onClick={handlePrevPage} />
+              <RightOutlined className={styles.next} onClick={handleNextPage} />
               <VerticalLeftOutlined
                 className={styles.last}
                 onClick={goToLastPage}
