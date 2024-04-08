@@ -1,13 +1,19 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Button, Modal, Popconfirm, Table, message } from "antd";
+import { Button, Modal, Pagination, Select, Table, message } from "antd";
 import styles from "./page.module.css";
 import { useStore } from "../../../../store";
 import UpdateUserPopover from "../update-user-popover/UpdateUser";
+import { Option } from "antd/es/mentions";
+import {
+  LeftOutlined,
+  RightOutlined,
+  VerticalLeftOutlined,
+} from "@ant-design/icons";
 
 const ListUsers = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 5;
+  const [pageSize, setPageSize] = useState(5);
 
   const capitalizeFirstLetter = (string: any) => {
     if (!string) return "";
@@ -81,6 +87,11 @@ const ListUsers = () => {
     setCurrentPage(page);
   };
 
+  const handlePageSizeChange = (value: any) => {
+    setPageSize(value);
+    setCurrentPage(1);
+  };
+
   const handleEditUser = (user: any) => {
     setSelectedUser(user);
     setUpdatePopoverVisible(true);
@@ -113,6 +124,15 @@ const ListUsers = () => {
     return index % 2 === 0 ? styles.evenRow : styles.oddRow;
   };
 
+  const goToFirstPage = () => {
+    setCurrentPage(1);
+  };
+
+  const goToLastPage = () => {
+    const lastPage = Math.ceil(users.length / pageSize);
+    setCurrentPage(lastPage);
+  };
+
   const columns = [
     {
       title: "#",
@@ -129,9 +149,9 @@ const ListUsers = () => {
             <img src={record.picture} alt="Foto do usuário" />
           ) : (
             <img
-            src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Free-Image.png"
-            alt="Foto do usuário"
-          />
+              src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Free-Image.png"
+              alt="Foto do usuário"
+            />
           )}
           <span>{text}</span>
         </div>
@@ -196,23 +216,65 @@ const ListUsers = () => {
           novamente.
         </p>
       ) : (
-        <Table
-          className={styles.table}
-          dataSource={users.map((user) => ({
-            ...user,
-            serialNumber: ++serialNumber,
-          }))}
-          columns={columns}
-          pagination={{
-            current: currentPage,
-            pageSize: pageSize,
-            total: users.length,
-            showSizeChanger: false,
-            onChange: handlePageChange,
-          }}
-          rowKey="id"
-          rowClassName={rowClassName}
-        />
+        <>
+          <Table
+            className={styles.table}
+            dataSource={users.map((user) => ({
+              ...user,
+              serialNumber: ++serialNumber,
+            }))}
+            columns={columns}
+            pagination={{
+              current: currentPage,
+              pageSize: pageSize,
+              total: users.length,
+              showSizeChanger: false,
+              onChange: handlePageChange,
+              className: styles.defaultPagination,
+            }}
+            rowKey="id"
+            rowClassName={rowClassName}
+          />
+          <div className={styles.paginationContainer}>
+            <div className={styles.selectContainer}>
+              <span>Itens por páginas</span>
+              <Select
+                defaultValue={pageSize}
+                onChange={handlePageSizeChange}
+                className={styles.pageSizeSelect}
+              >
+                <option value={5}>5</option>
+                <option value={10}>10</option>
+              </Select>
+            </div>
+
+            <div className={styles.paginationInfo}>
+              {`${(currentPage - 1) * pageSize + 1}-${
+                currentPage * pageSize
+              } de ${users.length}`}
+            </div>
+
+            <div className={styles.paginationButtons}>
+              <VerticalLeftOutlined
+                className={styles.first}
+                style={{ transform: "rotate(900deg)" }}
+                onClick={goToFirstPage}
+              />
+              <LeftOutlined
+                className={styles.prev}
+                onClick={() => handlePageChange(currentPage - 1)}
+              />
+              <RightOutlined
+                className={styles.next}
+                onClick={() => handlePageChange(currentPage + 1)}
+              />
+              <VerticalLeftOutlined
+                className={styles.last}
+                onClick={goToLastPage}
+              />
+            </div>
+          </div>
+        </>
       )}
       {selectedUser && <UpdateUserPopover />}
       <Modal

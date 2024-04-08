@@ -12,9 +12,86 @@
     justify-content: center;
 }
 
+
+.defaultPagination {
+    display: none !important;
+}
+
+.paginationContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 92px;
+    background-color: #FFFFFF;
+    border-left: 1px solid #03338E;
+    border-bottom: 1px solid #03338E;
+    border-right: 1px solid #03338E;
+
+}
+
+.paginationContainer .selectContainer {
+    display: flex;
+    align-items: center;
+
+}
+
+.selectContainer span,
+.selectContainer .pageSizeSelect .selectContainer .pageSizeSelect option {
+    color: #03328E;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.selectContainer .pageSizeSelect {
+    width: 75px;
+    height: 44px;
+    margin-left: 10px;
+    /* border: 1px solid #0444BD !important; */
+    border-radius: 5px;
+}
+
+.paginationContainer .paginationInfo {
+    margin-left: 15px;
+    margin-right: 15px;
+    color: #03338E;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.paginationContainer .paginationButtons {
+    color: #03338E;
+}
+
+.first,
+.last {
+    width: 18px;
+    height: 20px;
+}
+
+.prev,
+.next {
+    width: 14px;
+    height: 20px;
+}
+
+.first {
+    margin-right: 15px;
+}
+
+.prev {
+    margin-right: 10px;
+}
+
+.last {
+    margin-left: 15px;
+}
+
+
 .table {
-    border: 1px solid #03338E;
-    border-radius: 8px;
+    border-left: 1px solid #03338E;
+    border-top: 1px solid #03338E;
+    border-right: 1px solid #03338E;
 }
 
 .table th,
@@ -55,8 +132,9 @@
 }
 
 .modalDelete {
-   width: 298px !important;
+    width: 298px !important;
 }
+
 .modalDelete p {
     color: #0443BD !important;
     text-align: center;
