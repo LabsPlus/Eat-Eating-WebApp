@@ -87,6 +87,10 @@
     margin-left: 15px;
 }
 
+.disabledButton {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+}
 
 .table {
     border-left: 1px solid #03338E;
