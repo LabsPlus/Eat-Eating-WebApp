@@ -4,7 +4,6 @@ import { Button, Modal, Pagination, Select, Table, message } from "antd";
 import styles from "./page.module.css";
 import { useStore } from "../../../../store";
 import UpdateUserPopover from "../update-user-popover/UpdateUser";
-import { Option } from "antd/es/mentions";
 import {
   LeftOutlined,
   RightOutlined,
@@ -269,14 +268,32 @@ const ListUsers = () => {
 
             <div className={styles.paginationButtons}>
               <VerticalLeftOutlined
-                className={styles.first}
+                className={`${styles.first} ${
+                  currentPage === 1 ? styles.disabledButton : ""
+                }`}
                 style={{ transform: "rotate(900deg)" }}
                 onClick={goToFirstPage}
               />
-              <LeftOutlined className={styles.prev} onClick={handlePrevPage} />
-              <RightOutlined className={styles.next} onClick={handleNextPage} />
+              <LeftOutlined
+                className={`${styles.prev} ${
+                  currentPage === 1 ? styles.disabledButton : ""
+                }`}
+                onClick={handlePrevPage}
+              />
+              <RightOutlined
+                className={`${styles.next} ${
+                  currentPage === Math.ceil(users.length / pageSize)
+                    ? styles.disabledButton
+                    : ""
+                }`}
+                onClick={handleNextPage}
+              />
               <VerticalLeftOutlined
-                className={styles.last}
+                className={`${styles.last} ${
+                  currentPage === Math.ceil(users.length / pageSize)
+                    ? styles.disabledButton
+                    : ""
+                }`}
                 onClick={goToLastPage}
               />
             </div>
