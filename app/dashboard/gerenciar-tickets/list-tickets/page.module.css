@@ -1,0 +1,105 @@
+.container {
+  margin-top: 15px;
+}
+
+.table {
+  border-left: 1px solid #03338e;
+  border-top: 1px solid #03338e;
+  border-right: 1px solid #03338e;
+}
+
+.table th,
+.table td {
+  color: #03338e !important;
+  font-weight: 400;
+}
+
+.table th {
+  font-size: 18px;
+  border-bottom: 1px solid #d9e3f5 !important;
+  background-color: #e6ecf8 !important;
+}
+
+.table td {
+  font-size: 16px;
+}
+
+.table img {
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.defaultPagination {
+  display: none !important;
+}
+
+.paginationContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 92px;
+  background-color: #ffffff;
+  border-left: 1px solid #03338e;
+  border-bottom: 1px solid #03338e;
+  border-right: 1px solid #03338e;
+}
+
+.paginationContainer .selectContainer {
+  display: flex;
+  align-items: center;
+}
+
+.selectContainer span,
+.selectContainer .pageSizeSelect .selectContainer .pageSizeSelect option {
+  color: #03328e;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.selectContainer .pageSizeSelect {
+  width: 75px;
+  height: 44px;
+  margin-left: 10px;
+  /* border: 1px solid #0444BD !important; */
+  border-radius: 5px;
+}
+
+.paginationContainer .paginationInfo {
+  margin-left: 15px;
+  margin-right: 15px;
+  color: #03338e;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.paginationContainer .paginationButtons {
+  color: #03338e;
+}
+
+.first,
+.last {
+  width: 18px;
+  height: 20px;
+}
+
+.prev,
+.next {
+  width: 14px;
+  height: 20px;
+}
+
+.first {
+  margin-right: 15px;
+}
+
+.prev {
+  margin-right: 10px;
+}
+
+.last {
+  margin-left: 15px;
+}

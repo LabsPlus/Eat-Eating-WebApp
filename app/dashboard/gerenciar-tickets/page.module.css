@@ -1,0 +1,100 @@
+.container {
+  position: relative;
+  width: 98%;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #eef2f9;
+}
+
+.time {
+  width: 150px;
+  height: 37px;
+  display: flex;
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  border-radius: 10px;
+  background-color: #b1c5eb;
+}
+
+.title {
+  margin-top: 85px;
+  margin-bottom: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 65px;
+  color: #022971;
+  font-size: 22px;
+  border: 1px solid #03338e;
+  border-radius: 10px;
+  background-color: #e6ecf8;
+}
+
+.ticketContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.ticketBg{
+    width: 240px;
+    height: 132px;
+    margin-right: 15px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.ticketRosa{
+    background-image: url("../../../public/images/ticket-rosa.svg");
+}
+
+.ticketVerde {
+    background-image: url("../../../public/images/ticket-verde.svg");
+}
+
+.ticketAzul{
+    background-image: url("../../../public/images/ticket-azul.svg");
+}
+
+.ticketLaranja{
+    background-image: url("../../../public/images/ticket-laranja.svg");
+}
+
+.inputsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btnsContainer {
+  margin-top: -18px;
+}
+
+.btnsContainer button {
+  margin-top: 6px;
+  height: 37px;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  color: #03338e;
+  background-color: #b1c5eb;
+  border: 1px solid #03338e;
+}
+
+.btnsContainer button:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.btnsContainer button:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+
