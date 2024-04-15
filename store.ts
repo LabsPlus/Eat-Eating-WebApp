@@ -100,15 +100,29 @@ export const useStore = create((set: any) => ({
     } catch (error: any) {
       console.log("Error updating user:", error.response.data);
 
-      if (error.response.data.message == "Email Recovery already exists, only one email is allowed.") {       
+      if (
+        error.response.data.message ==
+        "Email Recovery already exists, only one email is allowed."
+      ) {
         throw new Error(
           "Ops! Parece que este e-mail já pertence à outra conta. Tente um e-mail diferente."
         );
-      }else if (error.response.data.statusCode == 422) {
+      } else if (error.response.data.statusCode == 422) {
         throw new Error(
           "É necessário mudar a matrícula ao alterar a categoria do usuário ou vice-versa."
         );
       }
+    }
+  },
+
+  purchaseTickets: async (userData: any) => {
+    try {
+      await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/tickets/purchase`,
+        userData
+      );
+    } catch (error: any) {
+      console.log(error);
     }
   },
 }));

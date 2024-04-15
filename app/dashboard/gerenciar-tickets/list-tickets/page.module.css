@@ -32,6 +32,11 @@
   object-fit: cover;
 }
 
+.nameAndPicture {
+  display: flex;
+  align-items: center;
+}
+
 .defaultPagination {
   display: none !important;
 }
@@ -102,4 +107,9 @@
 
 .last {
   margin-left: 15px;
+}
+
+.disabledButton {
+  opacity: 0.5;
+  cursor: not-allowed !important;
 }
