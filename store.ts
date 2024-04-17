@@ -115,14 +115,18 @@ export const useStore = create((set: any) => ({
     }
   },
 
-  purchaseTickets: async (userData: any) => {
+  purchaseTicket: async (userId: number, quantity: any) => {
     try {
-      await axios.post(
+      const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/tickets/purchase`,
-        userData
+        {
+          userId,
+          quantity,
+        }
       );
-    } catch (error: any) {
-      console.log(error);
+    } catch (error) {
+      console.error("Erro ao adicionar ticket:", error);
+      throw error;
     }
   },
 }));

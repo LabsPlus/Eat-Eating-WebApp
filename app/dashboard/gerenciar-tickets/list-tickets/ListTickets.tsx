@@ -1,4 +1,6 @@
 "use client";
+import moment from "moment";
+import "moment-timezone";
 import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { Button, Select, Table } from "antd";
@@ -15,33 +17,15 @@ const ListTickets = () => {
   const [pageSize, setPageSize] = useState(5);
   const [purchaseTicketVisible, setPurchaseTicketVisible] = useState(false);
 
-  const { users, getAllUsers, selectedUser, setSelectedUser, purchaseTickets } =
-    useStore();
+  const { users, getAllUsers, selectedUser, setSelectedUser } = useStore();
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        await getAllUsers();
-      } catch (error) {
-        console.log("Erro: " + error);
-      }
-    };
-
-    fetchUsers();
+    getAllUsers();
   }, [getAllUsers]);
-
-  useEffect(() => {
-    if (selectedUser) {
-      setPurchaseTicketVisible(true);
-    }
-  }, [selectedUser]);
 
   const handlePurchaseTicket = (user: any) => {
     setSelectedUser(user);
-    console.log("Usuário: " + user);
-    console.log("Usuário: " + selectedUser);
-
-    // setPurchaseTicketVisible(true);
+    setPurchaseTicketVisible(true);
   };
 
   const handlePageChange = (page: any) => {
@@ -105,6 +89,7 @@ const ListTickets = () => {
       title: "Matrícula",
       dataIndex: "enrrolment",
       key: "enrrolment",
+      className: styles.textCenter,
       render: (text: any, record: any) => {
         if (record.user.category.name === "VISITANTE") {
           return "XXXXXXX";
@@ -115,13 +100,36 @@ const ListTickets = () => {
     },
     {
       title: "Data da última compra",
-      dataIndex: "date",
+      dataIndex: ["user", "userTicketsCount", "ticket"],
       key: "date",
+      className: styles.textCenter,
+      render: (text: any, record: any) => {
+        if (
+          record.user.userTicketsCount &&
+          record.user.userTicketsCount.ticket &&
+          record.user.userTicketsCount.ticket.length > 0
+        ) {
+          const lastTicket = record.user.userTicketsCount.ticket[0];
+          return moment(lastTicket.purchaseDate).format("DD/MM/YYYY");
+        }
+        return "Nenhuma compra";
+      },
     },
     {
       title: "Quantidade de tickets",
-      dataIndex: "qtdTickets",
+      dataIndex: ["user", "userTicketsCount"],
       key: "qtdTickets",
+      className: styles.textCenter,
+      render: (text: any, record: any) => {
+        if (
+          record.user.userTicketsCount &&
+          record.user.userTicketsCount.totalTicketsOfUserActive != null
+        ) {
+          return record.user.userTicketsCount.totalTicketsOfUserActive;
+        } else {
+          return 0;
+        }
+      },
     },
     {
       title: "Ações",
@@ -129,9 +137,20 @@ const ListTickets = () => {
       key: "action",
       render: (text: any, record: any) => (
         <div className={styles.btnsContainer}>
-          <img src="/images/edit_square.svg" alt="edit icon" />
+          <img
+            className={styles.icons}
+            src="/images/edit_square.svg"
+            alt="edit icon"
+          />
           <Button
-            icon={<img src="/images/add.svg" alt="add icon" />}
+            className={styles.btnPurchase}
+            icon={
+              <img
+                className={styles.icons}
+                src="/images/add.svg"
+                alt="add icon"
+              />
+            }
             onClick={() => handlePurchaseTicket(record.user.id)}
           />
           {selectedUser && <PurchaseTickets />}

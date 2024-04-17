@@ -37,6 +37,8 @@ export interface IUserSelect {
     emailRecovery: string;
     password: string;
   };
+  userTicket?: IUserTickets;
+  userTicketsCount?: IUserTicketsData;
 }
 
 export interface IUserUpdate {
@@ -48,4 +50,20 @@ export interface IUserUpdate {
   password: string | undefined;
   emailRecovery: string | undefined;
   picture: string | undefined;
+}
+
+export interface IUserTickets {
+  name?: string;
+  picture?: string;
+  userTicketsCount?: IUserTicketsData;
+  userTicketsData?: IUserTicketsData;
+}
+
+export interface ITicket {
+  purchaseDate: string;
+}
+
+export interface IUserTicketsData {
+  totalTicketsOfUserActive: number;
+  ticket: ITicket[];
 }
