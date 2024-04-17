@@ -71,11 +71,17 @@
   line-height: 18px;
 }
 
-.nav .active {
+.nav .activeClose {
   border-radius: 99px;
   background-color: #E6ECF8;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+  max-width: 250px;
+}
+
+.nav .activeOpen {
+  border-radius: 99px;
+  background-color: #E6ECF8;
   max-width: 250px;
 }
 

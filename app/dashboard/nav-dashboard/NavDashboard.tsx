@@ -63,7 +63,11 @@ const NavDashboard = () => {
         <ul className={styles.ul}>
           <li
             className={
-              pathname === "/dashboard/gerenciar-usuarios" ? styles.active : ""
+              menuOpen ? (
+                pathname === "/dashboard/gerenciar-usuarios" ? styles.activeOpen : ""
+              ) : (
+                pathname === "/dashboard/gerenciar-usuarios" ? styles.activeClose : ""
+              )
             }
           >
             <Link href={"/dashboard/gerenciar-usuarios"}>
@@ -79,12 +83,16 @@ const NavDashboard = () => {
                 className={styles.icon}
               />
             
-              { menuOpen && <span>Gerenciar Usuários</span> }
+              { menuOpen && <span>Gerenciar usuários</span> }
             </Link>
           </li>
           <li
             className={
-              pathname === "/dashboard/gerenciar-tickets" ? styles.active : ""
+              menuOpen ? (
+                pathname === "/dashboard/gerenciar-tickets" ? styles.activeOpen : ""
+              ) : (
+                pathname === "/dashboard/gerenciar-tickets" ? styles.activeClose : ""
+              )
             }
           >
             <Link href={"/dashboard/gerenciar-tickets"}>
@@ -96,14 +104,16 @@ const NavDashboard = () => {
                 className={styles.icon}
               />
             
-              { menuOpen && <span>Gerenciar Tickets</span> }
+              { menuOpen && <span>Gerenciar tickets</span> }
             </Link>
           </li>
           <li
             className={
-              pathname === "/dashboard/gerenciar-dashboards"
-                ? styles.active
-                : ""
+              menuOpen ? (
+                pathname === "/dashboard/gerenciar-dashboards" ? styles.activeOpen : ""
+              ) : (
+                pathname === "/dashboard/gerenciar-dashboards" ? styles.activeClose : ""
+              )
             }
           >
             <Link href={"/dashboard/gerenciar-dashboards"}>
@@ -116,7 +126,7 @@ const NavDashboard = () => {
                 className={styles.icon}
               />
             
-              { menuOpen && <span>Gerenciar Dashboards</span> }
+              { menuOpen && <span>Gerenciar dashboards</span> }
             </Link>
           </li>
         </ul>
