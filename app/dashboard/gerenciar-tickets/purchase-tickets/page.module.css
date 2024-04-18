@@ -1,6 +1,8 @@
 .modal {
     width: 421px !important;
-    height: 260px !important;
+    height: 232px !important;
+    overflow: hidden !important;
+    border-radius: 10px;
 }
 
 .containerBtns {
@@ -35,12 +37,12 @@
     border-radius: 50px;
 }
 
-.inputContainer {
+.tickerQuantity {
     display: flex;
     align-items: center;
 }
 
-.test {
+.inputContainer {
     position: relative;
 }
 

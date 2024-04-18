@@ -115,6 +115,8 @@ const PurchaseTickets = () => {
   return (
     <>
       <Modal
+        mask={true}
+        maskStyle={{ backgroundColor: "rgba(0, 0, 0, 0.10)" }}
         title={
           <span
             style={{ color: "#011742", fontSize: "24px", fontWeight: "800" }}
@@ -175,9 +177,9 @@ const PurchaseTickets = () => {
               </div>
             </div>
 
-            <div className={styles.inputContainer}>
+            <div className={styles.tickerQuantity}>
               <span>Quantidade de tickets a ser comprado</span>
-              <div className={styles.test}>
+              <div className={styles.inputContainer}>
                 <Input
                   className={styles.input}
                   type="number"
