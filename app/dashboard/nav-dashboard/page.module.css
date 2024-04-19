@@ -1,19 +1,41 @@
 .container {
   display: flex;
-  background-color: #b1c5eb;
 }
 
 .nav {
-  width: 300px;
+  max-width: 337px;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-top: 2em;
+  padding: 2em 0;
 }
 
-.img {
-  padding-left: 1em;
-  padding-bottom: 3.5em;
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1.1rem 2rem 1.1rem;
+  width: 301.8px;
+}
+
+.header img {
+  cursor: pointer;
+}
+
+.layoutMenu {
+  padding: 0 1.1rem 2rem 1.1rem;
+}
+
+.menu {
+  width: 40px;
+  height: 40px;
+  color: #0444BD;
+  cursor: pointer;
+}
+
+.header span {
+  font-size: 2.5rem;
+  color: #0444BD;
+  cursor: pointer;
 }
 
 .nav ul {
@@ -21,18 +43,22 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 18px;
+  gap: 1rem;
 }
 
 .nav li {
   list-style: none;
   display: flex;
   align-items: center;
-  margin: 0px;
-  padding-left: 10px;
+  padding: 0.8rem 1.1rem 0.8rem 1.1rem;
   gap: 8px;
-  height: 40px;
-  margin-right: 13px;
+  height: 35px;
+}
+
+.nav li a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .nav a {
@@ -45,38 +71,25 @@
   line-height: 18px;
 }
 
-.nav .active {
-  border-radius: 15px;
-  background-color: #D9E3F5;
+.nav .activeClose {
+  border-radius: 99px;
+  background-color: #E6ECF8;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  border: 1px solid #03338E;
+  max-width: 250px;
 }
 
-.icon {
-  margin-left: 16px;
-}
-
-.rectangle {
-  position: absolute;
-  left: 0;
-  width: 15px;
-  height: 30px;
-  background-size: cover;
-  background-image: url("/images/Rectangle-branco.png");
-
-
-}
-
-li.active .rectangle {
-  background-image: url("/images/Rectangle-azul.png");
+.nav .activeOpen {
+  border-radius: 99px;
+  background-color: #E6ECF8;
+  max-width: 250px;
 }
 
 .logoutContainer {
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   bottom: 25px;
-  left: 16px;
+  left: 17.6px;
   display: flex;
   align-items: center;
   gap: 10px;
