@@ -1,0 +1,75 @@
+.modal {
+    width: 421px !important;
+    height: 232px !important;
+    overflow: hidden !important;
+    border-radius: 10px;
+}
+
+.containerBtns {
+    text-align: center;
+}
+
+.containerBtns .btnCancel {
+    color: #0444BD;
+    font-weight: 700;
+    border-color: #0444BD;
+}
+
+.containerBtns .btnConfirm {
+    background-color: #0444BD;
+}
+
+.container {
+    color: #1D1D1D;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.profile {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.img {
+    margin-right: 15px;
+    width: 52px !important;
+    height: 52px !important;
+    border-radius: 50px;
+}
+
+.tickerQuantity {
+    display: flex;
+    align-items: center;
+}
+
+.inputContainer {
+    position: relative;
+}
+
+.input {
+    margin-left: 15px;
+    width: 68px;
+    height: 44px;
+    border-radius: 5px;
+    padding-left: 16px;
+    font-size: 16px;
+
+}
+
+.input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.arrowsContainer {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 12px;
+    right: 20px;
+}
+
+.arrow {
+    width: 9px;
+    height: 5.56px;
+    margin-bottom: 12px;
+}

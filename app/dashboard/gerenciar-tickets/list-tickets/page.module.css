@@ -2,26 +2,90 @@
   margin-top: 15px;
 }
 
+.textCenter {
+  text-align: center;
+}
+
+.btnsContainer {
+  width: 80px;
+  margin: auto auto;
+  text-align: end;
+}
+
+.icons {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.btnPurchase {
+  border: none;
+  background-color: transparent;
+}
+
 .table {
   border-left: 1px solid #03338e;
   border-top: 1px solid #03338e;
   border-right: 1px solid #03338e;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.table tr:nth-child(odd) {
+  background-color: #E6ECF8;
+}
+
+.table tr:nth-child(even) {
+  background-color: #FFFFFF !important;
 }
 
 .table th,
 .table td {
   color: #03338e !important;
-  font-weight: 400;
+
 }
 
 .table th {
-  font-size: 18px;
+  height: 72px;
+  font-size: 16px;
+  font-weight: 700 !important;
   border-bottom: 1px solid #d9e3f5 !important;
-  background-color: #e6ecf8 !important;
+  background-color: #FFFFFF !important;
+}
+
+.table th:nth-child(1) {
+  width: 50px;
+}
+
+.table th:nth-child(2) {
+  width: 240px;
+  padding-left: 55px !important;
+}
+
+.table th:nth-child(3) {
+  width: 130px;
+  text-align: center !important;
+}
+
+.table th:nth-child(4) {
+  width: 200px;
+  text-align: center !important;
+}
+
+.table th:nth-child(5) {
+  width: 200px;
+  text-align: center !important;
+}
+
+.table th:nth-child(6) {
+  width: 120px;
+  text-align: center !important;
 }
 
 .table td {
+  height: 64px;
   font-size: 16px;
+  font-weight: 400 !important;
 }
 
 .table img {
@@ -32,16 +96,24 @@
   object-fit: cover;
 }
 
+.nameAndPicture {
+  display: flex;
+  align-items: center;
+}
+
 .defaultPagination {
   display: none !important;
 }
 
 .paginationContainer {
+  margin-top: -3px;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 92px;
   background-color: #ffffff;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   border-left: 1px solid #03338e;
   border-bottom: 1px solid #03338e;
   border-right: 1px solid #03338e;
@@ -102,4 +174,9 @@
 
 .last {
   margin-left: 15px;
+}
+
+.disabledButton {
+  opacity: 0.5;
+  cursor: not-allowed !important;
 }
