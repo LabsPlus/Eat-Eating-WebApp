@@ -12,6 +12,7 @@ import { useAuthContext } from "@/app/contexts/AuthContext";
 import toast from "react-hot-toast";
 import { IUserData } from "../Interfaces/admin.interfaces";
 import { useRouter } from "next/navigation";
+import { errorToast } from "../services/toast-messages/page";
 
 const LoginForm = () => {
   const { login, user } = useAuthContext();
@@ -43,9 +44,11 @@ const LoginForm = () => {
 
     const response = isLoginValid(userData);
 
+
     try {
       if (response) {
-        return toast.error(response);
+        // return toast.error(response);
+        return errorToast(response)
       } else {
         login(userData, remember);
       }
@@ -68,6 +71,7 @@ const LoginForm = () => {
       ></Image>
       <form className={styles.form}>
         <h2>Insira seu e-mail e senha para iniciar!</h2>
+
         <div className={styles.inputsContents}>
           <Input
             style={{ borderColor: "#022971" }}
