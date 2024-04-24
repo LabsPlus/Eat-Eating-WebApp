@@ -1,0 +1,40 @@
+.container {
+  width: 510px;
+  height: 324px;
+  background: #FFF;
+  border-radius: 1.25rem;
+  padding: 2rem;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.image {
+  width: 177px;
+  height: 120px;
+}
+
+.title {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.button {
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+
+  border: none;
+  border-radius: 0.5rem;
+
+  background: #0444BD;
+  color: #FFF;
+}
+
+.button:hover {
+  background: #0153eb;
+  transition: background-color 0.2s;
+}
