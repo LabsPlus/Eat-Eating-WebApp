@@ -12,7 +12,7 @@ import { useAuthContext } from "@/app/contexts/AuthContext";
 import toast from "react-hot-toast";
 import { IUserData } from "../Interfaces/admin.interfaces";
 import { useRouter } from "next/navigation";
-import { errorToast } from "../services/toast-messages/page";
+import { errorToast } from "../services/toast-messages/toast-messages";
 
 const LoginForm = () => {
   const { login, user } = useAuthContext();
