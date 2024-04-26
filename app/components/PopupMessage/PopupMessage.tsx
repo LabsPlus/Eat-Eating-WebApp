@@ -5,16 +5,12 @@ import Image from 'next/image';
 
 import { Result} from 'antd';
 
+import { PopUpMessageProps } from '@/app/Interfaces/popup.interfaces';
+
 import iconMessageError from '../../../public/images/icon-message-error.svg';
 import iconMessageSuccess from '../../../public/images/icon-message-success.svg';
 
 import styles from "./page.module.css";
-
-interface PopUpMessageProps {
-  icon: 'error' | 'success';
-  message: string;
-  closeError: () => void;
-}
 
 const PopUpMessage = ({ icon, message, closeError }: PopUpMessageProps) => {
   const isError = icon === 'error';
