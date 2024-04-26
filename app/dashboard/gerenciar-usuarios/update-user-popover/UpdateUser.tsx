@@ -219,7 +219,7 @@ const UpdateUser: React.FC = () => {
       try {
         await updateUser(formData.user.id, formUpdate)
           .then(() => {
-            success("Cadastro atualizado com sucesso!");
+            success("Cadastro atualizado com sucesso.");
           })
           .catch((error) => {
             //showError("error.message"); //it's not working
