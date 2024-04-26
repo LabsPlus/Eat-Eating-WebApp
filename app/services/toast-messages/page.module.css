@@ -1,0 +1,11 @@
+.container {
+    max-width: 560px !important;
+    max-height: 80px !important;
+    padding-left: 30px !important;
+    text-align: center;
+    color: #fff !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    border: none !important;
+    border-radius: 5px !important;
+}

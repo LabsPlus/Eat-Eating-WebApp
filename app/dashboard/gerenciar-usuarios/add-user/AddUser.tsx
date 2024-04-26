@@ -6,6 +6,7 @@ import { useStore } from "../../../../store";
 import axios from "axios";
 import { validateEmail } from "@/app/helpers/isValidEmailUser";
 import { validatePassword } from "@/app/helpers/idValidPasswordUser";
+import { errorToast, successToast } from "@/app/services/toast-messages/toast-messages";
 
 const AddUser = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,25 +32,19 @@ const AddUser = () => {
 
   const { createUser, getAllUsers } = useStore();
 
-  const showError = (errorMsg: any) => {
-    messageApi.open({
-      type: "error",
-      content: errorMsg,
-    });
+  const showError = (
+    errorMsg: any,
+    errorToastFunction: (msg: string) => void
+  ) => {
+    errorToastFunction(errorMsg);
   };
 
   const success = (successMsg: any) => {
-    messageApi.open({
-      type: "success",
-      content: successMsg,
-    });
+    successToast(successMsg);
   };
 
   const error = (errorMsg: any) => {
-    messageApi.open({
-      type: "error",
-      content: errorMsg,
-    });
+    errorToast(errorMsg);
   };
 
   //cloudinary
@@ -60,9 +55,7 @@ const AddUser = () => {
       const file = e.target.files[0];
 
       if (!["image/svg+xml", "image/png", "image/jpeg"].includes(file.type)) {
-        showError(
-          "Por favor, selecione uma imagem nos formatos SVG, PNG ou JPEG."
-        );
+        error("Por favor, selecione uma imagem nos formatos SVG, PNG ou JPEG.");
         setFormData((prevInputs) => ({
           ...prevInputs,
           picture: "",
@@ -73,7 +66,7 @@ const AddUser = () => {
       }
 
       if (file.size > 1048576) {
-        showError("O tamanho do arquivo deve ser de até 1MB.");
+        error("O tamanho do arquivo deve ser de até 1MB.");
         setFormData((prevInputs) => ({
           ...prevInputs,
           picture: "",
@@ -152,22 +145,21 @@ const AddUser = () => {
   };
 
   const handleCreateUser = async () => {
-    console.log(formData);
     if (validateForm()) {
       if (!validateEmail(formData.email)) {
-        showError(
+        error(
           "O endereço de e-mail fornecido não é válido. Por favor, verifique e tente novamente."
         );
         return;
       }
       if (!validateEmail(formData.emailRecovery)) {
-        showError(
+        error(
           "O endereço de e-mail de recuperação fornecido não é válido. Por favor, verifique e tente novamente."
         );
         return;
       }
       if (!validatePassword(formData.password)) {
-        showError(
+        error(
           "Sua senha deve incluir pelo menos 8 caracteres, com letras maiúsculas e minúsculas, números e caracteres especiais."
         );
         return;
@@ -177,10 +169,10 @@ const AddUser = () => {
       try {
         await createUser(formData)
           .then(() => {
-            success("Usuário adicionado com sucesso!");
+            success("Cadastro realizado com sucesso.");
           })
           .catch((error) => {
-            showError(error.message);
+            showError(error.message, errorToast);
           });
         getAllUsers();
         setFileUploadMessage("Nenhum Ficheiro Selecionado");
@@ -188,7 +180,8 @@ const AddUser = () => {
       } catch (error: any) {
         console.log(error);
         showError(
-          "Houve um erro ao criar o usuário. Por favor, tente novamente."
+          "Não foi possível adicionar usuário. Verifique e tente novamente.",
+          errorToast
         );
       }
       setFormData({
@@ -203,7 +196,7 @@ const AddUser = () => {
         picture: "",
       });
     } else {
-      error("Por favor, preencha todos os campos obrigatórios.");
+      error("Os campos não podem estar vazios. Por favor, preencha-os antes de prosseguir.");
     }
   };
 

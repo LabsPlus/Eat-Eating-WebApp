@@ -9,10 +9,9 @@ import { Input, Button } from "antd";
 import Image from "next/image";
 import { isLoginValid } from "../helpers/isLoginValid";
 import { useAuthContext } from "@/app/contexts/AuthContext";
-import toast from "react-hot-toast";
 import { IUserData } from "../Interfaces/admin.interfaces";
 import { useRouter } from "next/navigation";
-import { errorToast } from "../services/toast-messages/page";
+import { errorToast } from "../services/toast-messages/toast-messages";
 
 const LoginForm = () => {
   const { login, user } = useAuthContext();
@@ -44,17 +43,15 @@ const LoginForm = () => {
 
     const response = isLoginValid(userData);
 
-
     try {
       if (response) {
-        // return toast.error(response);
-        return errorToast(response)
+        return errorToast(response);
       } else {
         login(userData, remember);
       }
     } catch (error) {
       console.error("Ocorreu um erro durante o login.", error);
-      return toast.error(
+      return errorToast(
         "Ocorreu um erro durante o login. Tente novamente mais tarde."
       );
     }

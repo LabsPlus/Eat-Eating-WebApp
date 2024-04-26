@@ -6,6 +6,7 @@ import { useStore } from "../../../../store";
 import { IDataUser, IUserTickets } from "../../../Interfaces/user.interfaces";
 import moment from "moment";
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
+import { errorToast, successToast } from "@/app/services/toast-messages/toast-messages";
 
 const PurchaseTickets = () => {
   const [open, setOpen] = useState(false);
@@ -43,11 +44,11 @@ const PurchaseTickets = () => {
   };
 
   const success = (successMsg: any) => {
-    message.success(successMsg);
+    successToast(successMsg);
   };
 
   const error = (errorMsg: any) => {
-    message.error(errorMsg);
+    errorToast(errorMsg);
   };
 
   const { getAllUsers, selectedUser, purchaseTicket, setSelectedUser } =

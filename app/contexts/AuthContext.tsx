@@ -3,8 +3,8 @@ import { createContext, useState, useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import React from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
-import { IAuthContextProps, IUserData } from "../Interfaces/admin.interfaces";
+import { IAuthContextProps } from "../Interfaces/admin.interfaces";
+import { errorToast, successToast } from "../services/toast-messages/toast-messages";
 
 const AppContext = createContext<IAuthContextProps | undefined>({
   user: null,
@@ -49,17 +49,17 @@ export function AuthContext({ children }: { children: React.ReactNode }) {
 
       setUser(user.email);
 
-      toast.success("Autenticação bem-sucedida. Bem-vindo!");
+      successToast("Login realizado com sucesso.");
       router.push("/dashboard/gerenciar-usuarios");
       return true;
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         console.log(error.response.data);
         if (error.response.data === "Invalid email or password") {
-          return toast.error("O seu e-mail ou senha está incorreto");
+          return errorToast("O seu e-mail ou senha está incorreto");
         }
       } else {
-        toast.error(
+        errorToast(
           "Error desconocido durante el login. Por favor, inténtelo de nuevo."
         );
       }

@@ -8,7 +8,7 @@ import { validatePassword } from "@/app/helpers/idValidPasswordUser";
 import { IDataUser } from "../../../Interfaces/user.interfaces";
 import { IUserUpdate } from "../../../Interfaces/user.interfaces";
 import axios from "axios";
-import toast from "react-hot-toast";
+import { errorToast, successToast } from "@/app/services/toast-messages/toast-messages";
 
 const UpdateUser: React.FC = () => {
   const [formData, setFormData] = useState<IDataUser | null>(null);
@@ -56,19 +56,19 @@ const UpdateUser: React.FC = () => {
     "Nenhum Ficheiro Selecionado"
   );
 
-  const showError = (errorMsg: any) => {
-    messageApi.open({
-      type: "error",
-      content: errorMsg,
-    });
+  const showError = (
+    errorMsg: any,
+    errorToastFunction: (msg: string) => void
+  ) => {
+    errorToastFunction(errorMsg);
   };
 
   const success = (successMsg: any) => {
-    message.success(successMsg);
+    successToast(successMsg);
   };
 
   const error = (errorMsg: any) => {
-    message.error(errorMsg);
+    errorToast(errorMsg);
   };
 
   const handlePictureUpload = async (e: any) => {
@@ -78,7 +78,8 @@ const UpdateUser: React.FC = () => {
       const file = e.target.files[0];
       if (!["image/svg+xml", "image/png", "image/jpeg"].includes(file.type)) {
         showError(
-          "Por favor, selecione uma imagem nos formatos SVG, PNG ou JPEG."
+          "Por favor, selecione uma imagem nos formatos SVG, PNG ou JPEG.",
+          errorToast
         );
         setFileUploadMessage("Não foi possível atualizar ficheiro");
         setFileUploadUpdate(true);
@@ -86,7 +87,7 @@ const UpdateUser: React.FC = () => {
       }
 
       if (file.size > 1048576) {
-        showError("O tamanho do arquivo deve ser de até 1MB.");
+        showError("O tamanho do arquivo deve ser de até 1MB.", errorToast);
         setFileUploadMessage("Não foi possível atualizar ficheiro");
         setFileUploadUpdate(true);
         return;
@@ -185,7 +186,10 @@ const UpdateUser: React.FC = () => {
 
   const handleUpdateUser = async () => {
     if (!formData || !formData.user.id) {
-      showError("ID do usuário não encontrado. Por favor, tente novamente.");
+      showError(
+        "ID do usuário não encontrado. Por favor, tente novamente.",
+        errorToast
+      );
       return;
     }
 
@@ -196,7 +200,8 @@ const UpdateUser: React.FC = () => {
         !validateEmail(formUpdate.emailRecovery)
       ) {
         showError(
-          "O endereço de e-mail de recuperação fornecido não é válido. Por favor, verifique e tente novamente."
+          "O endereço de e-mail de recuperação fornecido não é válido. Por favor, verifique e tente novamente.",
+          errorToast
         );
         return;
       }
@@ -206,18 +211,19 @@ const UpdateUser: React.FC = () => {
         !validatePassword(formUpdate.password)
       ) {
         showError(
-          "Sua senha deve incluir pelo menos 8 caracteres, com letras maiúsculas e minúsculas, números e caracteres especiais."
+          "Sua senha deve incluir pelo menos 8 caracteres, com letras maiúsculas e minúsculas, números e caracteres especiais.",
+          errorToast
         );
         return;
       }
       try {
         await updateUser(formData.user.id, formUpdate)
           .then(() => {
-            success("Usuário atualizado com sucesso!");
+            success("Cadastro atualizado com sucesso!");
           })
           .catch((error) => {
             //showError("error.message"); //it's not working
-            toast.error(error.message);
+            errorToast(error.message);
           });
         setIsModalOpen(false);
         getAllUsers();
@@ -225,11 +231,12 @@ const UpdateUser: React.FC = () => {
         setSelectedUser(null);
       } catch (error: any) {
         showError(
-          "Houve um erro ao atualizar o usuário. Por favor, tente novamente."
+          "Não foi possível atualizar o cadastro do usuário. Verifique e tente novamente",
+          errorToast
         );
       }
     } else {
-      error("Por favor, preencha todos os campos obrigatórios.");
+      errorToast("Os campos não podem estar vazios. Por favor, preencha-os antes de prosseguir.");
     }
   };
 
