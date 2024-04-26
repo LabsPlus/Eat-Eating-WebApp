@@ -1,7 +1,9 @@
-"use client";
 import React from "react";
-import styles from "./page.module.css";
+
 import ListTickets from "./list-tickets/ListTickets";
+import SearchUser from "./search-user/SearchUser";
+
+import styles from "./page.module.css";
 
 const page = () => {
   const currentDate = new Date();
@@ -22,9 +24,8 @@ const page = () => {
       </div>
 
       <div className={styles.inputsContainer}>
-        <div className={styles.searchAndAdd}>
-          <input type="text" />
-        </div>
+        <SearchUser />
+
         <div className={styles.btnsContainer}>
           <button>Copiar</button>
           <button>CSV</button>

@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.container .inputSearch {
+  width: 312px;
+  padding: 0.75rem 1rem;
+  border-radius: 5px;
+  border: solid 1px #033697;
+  background-color: #FFFFFF;
+  font-size: 1rem;
+}
+
+.container .inputSearch ::-webkit-input-placeholder {
+  background-color: #FFFFFF;
+  color: #737373;
+}
+
+.container .inputSearch .searchOutlined {
+  color: #999999;
+  font-size: 18px;
+}
+
+.buttonSearch {
+  cursor: pointer;
+  border: solid 1px #033697;
+  color: #0444BD;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #FFFFFF;
+  transition: background-color 0.5s;
+}
+
+.buttonSearch:hover {
+  background: #B1C5EB;
+}
