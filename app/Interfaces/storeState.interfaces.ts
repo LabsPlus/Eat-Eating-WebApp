@@ -6,3 +6,4 @@ export interface IStoreState {
   selectedUser: IDataUser | null;
   noUsersFound: boolean;
 }
+
