@@ -30,13 +30,15 @@ export const useStore = create((set: any) => ({
         error.response.data.message ==
         "Enrollment already exists, only one enrollment is allowed."
       ) {
-        throw new Error("Matrícula já está em uso, informe outra.");
+        throw new Error(
+          "Ops! Parece que essa matrícula já pertence a outra conta. Tente uma matrícula diferente. "
+        );
       } else if (
         error.response.data.message ==
         "Email or Email Recovery already exists, only one email is allowed."
       ) {
         throw new Error(
-          "Parece que esse Email ou Recuperação de Email já pertence à outra conta. Tente um e-mail diferente."
+          "Ops! Parece que o e-mail ou e-mail de recuperação já pertence a outra conta. Verifique e tente novamente."
         );
       }
     }
@@ -126,11 +128,16 @@ export const useStore = create((set: any) => ({
         "Email Recovery already exists, only one email is allowed."
       ) {
         throw new Error(
-          "Ops! Parece que este e-mail já pertence à outra conta. Tente um e-mail diferente."
+          "Ops! Parece que o e-mail de recuperação já pertence a outra conta. Verifique e tente novamente."
         );
-      } else if (error.response.data.statusCode == 422) {
+      } else if (
+        error.response.data.message ==
+          "enrrolment cannot be update without category" ||
+        error.response.data.message ==
+          "category cannot be update without enrrolment"
+      ) {
         throw new Error(
-          "É necessário mudar a matrícula ao alterar a categoria do usuário ou vice-versa."
+          "Ops! Parece que essa matrícula já pertence a outra conta. Tente uma matrícula diferente."
         );
       }
     }

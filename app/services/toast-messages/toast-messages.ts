@@ -1,14 +1,12 @@
-"use-client";
-
 import toast from "react-hot-toast";
+import styles from "./page.module.css";
 
 export const errorToast = (message: any) => {
   toast.error(message, {
+    className: `${styles.container}`,
     style: {
-      padding: "5px",
-      color: "#FFFFFF",
-      border: "none",
-      borderRadius: "5px",
+      display: "flex",
+      alignItems: "center",
       backgroundColor: "#C50F1F",
     },
     iconTheme: {
@@ -18,13 +16,15 @@ export const errorToast = (message: any) => {
   });
 };
 
-export const sucessToast = (message: any) => {
-  toast.error(message, {
+export const successToast = (message: any) => {
+  toast.success(message, {
+    className: `${styles.container}`,
     style: {
-      padding: "5px",
-      color: "#FFFFFF",
-      borderRadius: "5px",
       backgroundColor: "#019544",
+    },
+    iconTheme: {
+      primary: "#fff",
+      secondary: "#019544",
     },
   });
 };

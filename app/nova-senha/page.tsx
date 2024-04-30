@@ -11,9 +11,9 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import { IPasswordData } from "../Interfaces/admin.interfaces";
 import { isValidPassword } from "../helpers/isValidPassword";
-import toast from "react-hot-toast";
 import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
+import { errorToast, successToast } from "../services/toast-messages/toast-messages";
 
 const NewPassword = () => {
   const searchParams = useSearchParams();
@@ -40,7 +40,7 @@ const NewPassword = () => {
 
     try {
       if (response) {
-        return toast.error(response);
+        return errorToast(response);
       } else {
         const response = await axios.patch(
           `${process.env.NEXT_PUBLIC_API_URL}/login/update-password-login`,
@@ -49,7 +49,7 @@ const NewPassword = () => {
             token: token,
           }
         );
-        message.success("Senhas trocadas com sucesso");
+        successToast("Senha alterada com sucesso.");
         setPasswordData({ password: "", confirmPassword: "" });
         router.push("/login");
 
