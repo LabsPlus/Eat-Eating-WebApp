@@ -4,7 +4,10 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import axios from "axios";
 import { IAuthContextProps } from "../Interfaces/admin.interfaces";
-import { errorToast, successToast } from "../services/toast-messages/toast-messages";
+import {
+  errorToast,
+  successToast,
+} from "../services/toast-messages/toast-messages";
 
 const AppContext = createContext<IAuthContextProps | undefined>({
   user: null,
@@ -55,8 +58,10 @@ export function AuthContext({ children }: { children: React.ReactNode }) {
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         console.log(error.response.data);
-        if (error.response.data === "Invalid email or password") {
-          return errorToast("O seu e-mail ou senha está incorreto");
+        if (error.response.data.message === "Invalid email or password") {
+          return errorToast(
+            "E-mail ou senha inválidos. Verifique e tente novamente."
+          );
         }
       } else {
         errorToast(

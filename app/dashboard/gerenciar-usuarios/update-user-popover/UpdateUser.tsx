@@ -200,7 +200,7 @@ const UpdateUser: React.FC = () => {
         !validateEmail(formUpdate.emailRecovery)
       ) {
         showError(
-          "O endereço de e-mail de recuperação fornecido não é válido. Por favor, verifique e tente novamente.",
+          "O e-mail de recuperação é inválido. Verifique e tente novamente.",
           errorToast
         );
         return;

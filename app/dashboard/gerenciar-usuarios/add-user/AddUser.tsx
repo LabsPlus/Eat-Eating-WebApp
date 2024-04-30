@@ -6,7 +6,10 @@ import { useStore } from "../../../../store";
 import axios from "axios";
 import { validateEmail } from "@/app/helpers/isValidEmailUser";
 import { validatePassword } from "@/app/helpers/idValidPasswordUser";
-import { errorToast, successToast } from "@/app/services/toast-messages/toast-messages";
+import {
+  errorToast,
+  successToast,
+} from "@/app/services/toast-messages/toast-messages";
 
 const AddUser = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -147,14 +150,12 @@ const AddUser = () => {
   const handleCreateUser = async () => {
     if (validateForm()) {
       if (!validateEmail(formData.email)) {
-        error(
-          "O endereço de e-mail fornecido não é válido. Por favor, verifique e tente novamente."
-        );
+        error("O e-mail é inválido. Verifique e tente novamente.");
         return;
       }
       if (!validateEmail(formData.emailRecovery)) {
         error(
-          "O endereço de e-mail de recuperação fornecido não é válido. Por favor, verifique e tente novamente."
+          "O e-mail de recuperação é inválido. Verifique e tente novamente."
         );
         return;
       }
@@ -180,7 +181,7 @@ const AddUser = () => {
       } catch (error: any) {
         console.log(error);
         showError(
-          "Não foi possível adicionar usuário. Verifique e tente novamente.",
+          "Não foi possível cadastrar usuário. Verifique e tente novamente.",
           errorToast
         );
       }
@@ -196,7 +197,9 @@ const AddUser = () => {
         picture: "",
       });
     } else {
-      error("Os campos não podem estar vazios. Por favor, preencha-os antes de prosseguir.");
+      error(
+        "Os campos não podem estar vazios. Por favor, preencha-os antes de prosseguir."
+      );
     }
   };
 

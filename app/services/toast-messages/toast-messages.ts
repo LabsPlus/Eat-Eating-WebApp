@@ -1,4 +1,3 @@
-"use-client";
 import toast from "react-hot-toast";
 import styles from "./page.module.css";
 
