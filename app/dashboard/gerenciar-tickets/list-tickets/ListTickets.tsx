@@ -17,7 +17,7 @@ const ListTickets = () => {
   const [pageSize, setPageSize] = useState(5);
   const [purchaseTicketVisible, setPurchaseTicketVisible] = useState(false);
 
-  const { users, getAllUsers, selectedUser, setSelectedUser } = useStore();
+  const { users, getAllUsers, selectedUser, setSelectedUser, noUsersFound } = useStore();
 
   useEffect(() => {
     getAllUsers();
@@ -161,9 +161,9 @@ const ListTickets = () => {
 
   return (
     <div className={styles.container}>
-      <Table
+       <Table
         className={styles.table}
-        dataSource={users.map((user) => ({
+        dataSource={users.map((user: any) => ({
           ...user,
           serialNumber: ++serialNumber,
         }))}
