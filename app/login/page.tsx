@@ -9,9 +9,9 @@ import { Input, Button } from "antd";
 import Image from "next/image";
 import { isLoginValid } from "../helpers/isLoginValid";
 import { useAuthContext } from "@/app/contexts/AuthContext";
-import toast from "react-hot-toast";
 import { IUserData } from "../Interfaces/admin.interfaces";
 import { useRouter } from "next/navigation";
+import { errorToast } from "../services/toast-messages/toast-messages";
 
 const LoginForm = () => {
   const { login, user } = useAuthContext();
@@ -45,13 +45,13 @@ const LoginForm = () => {
 
     try {
       if (response) {
-        return toast.error(response);
+        return errorToast(response);
       } else {
         login(userData, remember);
       }
     } catch (error) {
       console.error("Ocorreu um erro durante o login.", error);
-      return toast.error(
+      return errorToast(
         "Ocorreu um erro durante o login. Tente novamente mais tarde."
       );
     }
@@ -68,6 +68,7 @@ const LoginForm = () => {
       ></Image>
       <form className={styles.form}>
         <h2>Insira seu e-mail e senha para iniciar!</h2>
+
         <div className={styles.inputsContents}>
           <Input
             style={{ borderColor: "#022971" }}

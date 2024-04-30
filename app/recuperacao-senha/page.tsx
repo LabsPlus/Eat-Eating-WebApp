@@ -8,7 +8,7 @@ import Link from "next/link";
 import axios from "axios";
 import { IEmailRecovery } from "../Interfaces/admin.interfaces";
 import { isValidEmail } from "../helpers/isValidEmail";
-import toast from "react-hot-toast";
+import { errorToast, successToast } from "../services/toast-messages/toast-messages";
 
 const RecoverPassword = () => {
   const [emailData, setEmailData] = useState<IEmailRecovery>({
@@ -31,7 +31,7 @@ const RecoverPassword = () => {
 
     try {
       if (response) {
-        return toast.error(response);
+        return errorToast(response);
       } else {
         const response = await axios.patch(
           `${process.env.NEXT_PUBLIC_API_URL}/login/forgot-password-login`,
@@ -41,24 +41,24 @@ const RecoverPassword = () => {
         );
 
         setEmailData({ email: "" });
-        message.success(
-          "Um link de recuperação de senha foi enviado para o seu email! "
-        );
+        successToast("E-mail enviado com sucesso.");
         console.log("Resposta:", response.data);
       }
     } catch (error: any) {
       console.log(error);
-
-      if (error.response.statusText === "Not Found")
-        toast.error(
-          "Desculpe, não encontramos uma conta associada a esse e-mail."
+      console.log(
+        "Error de e-mail não encontrado" + error.response.data.message
+      );
+      if (error.response.data.message === "User not found")
+        errorToast(
+          "O endereço de e-mail fornecido não é válido. Verifique e tente novamente."
         );
       if (
-        error.response.data ===
+        error.response.data.message ===
         "Too many requests. This IP has been blocked for 15 minutes"
       )
-        toast.error(
-          "Ops! Parece que você excedeu o número máximo de tentativas permitidas. Sua conta foi bloqueada por 15 minutos. Por favor, tente novamente mais tarde."
+        errorToast(
+          "Sua conta foi bloqueada devido a múltiplas tentativas de login mal sucedidas. Aguarde 15 minutos para tentar novamente."
         );
       console.error("Erro ao enviar o email:", error);
     }

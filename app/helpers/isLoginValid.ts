@@ -5,8 +5,8 @@ const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,10}$/;
 
 export const isLoginValid = ({ email, password }: IUserData) => {
   if (!email || !password)
-    return "Por favor, preencha todos os campos obrigatórios.";
+    return "Os campos de e-mail e senha não podem estar vazios. Por favor, preencha-os antes de prosseguir.";
 
   if (!regexEmail.test(email) || !regexPassword.test(password))
-    return " Por favor, verifique seu e-mail e senha e tente novamente.";
+    return "E-mail ou senha inválidos. Verifique e tente novamente.";
 };
