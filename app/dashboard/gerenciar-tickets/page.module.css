@@ -97,4 +97,32 @@
   border-bottom-left-radius: 5px;
 }
 
+.ticketInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  height: 100%;
+  color: #fff;
+  text-align: center;
+  padding: 0 2.312rem;
+  width: 133px;
+  margin-top: 2.437rem;
+}
+
+.ticketContainer > div:nth-child(4) .ticketInfo {
+  color: #1d1d1d;
+}
+
+.ticketInfo span {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.ticketInfo p {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 20px;
+}
+
 

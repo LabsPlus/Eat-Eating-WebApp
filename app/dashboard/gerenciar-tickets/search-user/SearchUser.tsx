@@ -12,7 +12,7 @@ import { errorToast } from "@/app/services/toast-messages/toast-messages";
 const SearchUser = () => {
   const [dataSearch, setDataSearch] = useState("");
 
-  const { searchUsersByNameAndEnrrolment, noUsersFound, getAllUsers, users } = useStore();
+  const { searchUsersByNameAndEnrrolment, noUsersFound, getAllUsers } = useStore();
 
   useEffect(() => {
     if (noUsersFound) {
@@ -24,8 +24,6 @@ const SearchUser = () => {
 
   const handleSearch = async () => {
     await searchUsersByNameAndEnrrolment(dataSearch)
-
-    console.log(users);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
