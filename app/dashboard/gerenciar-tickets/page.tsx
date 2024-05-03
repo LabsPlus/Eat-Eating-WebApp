@@ -5,6 +5,8 @@ import SearchUser from "./search-user/SearchUser";
 
 import styles from "./page.module.css";
 
+import InfoTickets from "./info-tickets/InfoTickets";
+
 const page = () => {
   const currentDate = new Date();
   const dateFormatter = new Intl.DateTimeFormat("pt-BR");
@@ -16,12 +18,7 @@ const page = () => {
 
       <h1 className={styles.title}>Gerenciar Tickets</h1>
       
-      <div className={styles.ticketContainer}>
-        <div className={`${styles.ticketVerde} ${styles.ticketBg}`}></div>
-        <div className={`${styles.ticketRosa} ${styles.ticketBg}`}></div>
-        <div className={`${styles.ticketAzul} ${styles.ticketBg}`}></div>
-        <div className={`${styles.ticketLaranja} ${styles.ticketBg}`}></div>
-      </div>
+      <InfoTickets />
 
       <div className={styles.inputsContainer}>
         <SearchUser />

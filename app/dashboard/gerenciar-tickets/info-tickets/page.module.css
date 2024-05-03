@@ -1,0 +1,69 @@
+.ticketContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.ticketBg{
+    width: 240px;
+    height: 132px;
+    margin-right: 15px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.ticketRosa{
+    background-image: url("../../../../public/images/ticket-rosa.svg");
+}
+
+.ticketVerde {
+    background-image: url("../../../../public/images/ticket-verde.svg");
+}
+
+.ticketAzul{
+    background-image: url("../../../../public/images/ticket-azul.svg");
+}
+
+.ticketLaranja{
+    background-image: url("../../../../public/images/ticket-laranja.svg");
+}
+
+.ticketInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  height: 100%;
+  color: #fff;
+  text-align: center;
+  padding: 0 2.312rem;
+  width: 133px;
+  margin-top: 2.437rem;
+}
+
+.ticketContainer > div:nth-child(4) .ticketInfo {
+  color: #1d1d1d;
+}
+
+.ticketContainer > div:nth-child(4) .ticketInfo .spin{
+  color: #1d1d1d;
+}
+
+.ticketInfo span {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.ticketInfo .spin {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  line-height: 32px !important;
+  color: #fff;
+}
+
+.ticketInfo p {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 20px;
+}

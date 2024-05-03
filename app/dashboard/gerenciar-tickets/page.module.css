@@ -34,37 +34,6 @@
   background-color: #e6ecf8;
 }
 
-.ticketContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 25px;
-}
-
-.ticketBg{
-    width: 240px;
-    height: 132px;
-    margin-right: 15px;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.ticketRosa{
-    background-image: url("../../../public/images/ticket-rosa.svg");
-}
-
-.ticketVerde {
-    background-image: url("../../../public/images/ticket-verde.svg");
-}
-
-.ticketAzul{
-    background-image: url("../../../public/images/ticket-azul.svg");
-}
-
-.ticketLaranja{
-    background-image: url("../../../public/images/ticket-laranja.svg");
-}
-
 .inputsContainer {
   display: flex;
   align-items: center;

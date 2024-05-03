@@ -5,6 +5,13 @@ import { IStoreState } from "./app/Interfaces/storeState.interfaces";
 
 const initialState: IStoreState = {
   users: [],
+  infoTickets: {
+    id: null,
+    ticketsAvailable: null,
+    ticketsConsumed: null,
+    ticketsOpened: null,
+    ticketsSold: null,
+  },
   searchTerm: "",
   selectedUser: null,
   noUsersFound: false,
@@ -52,7 +59,7 @@ export const useStore = create((set: any) => ({
       const sortedUsers = response.data.sort((a: any, b: any) =>
         a.user.person.name.localeCompare(b.user.person.name)
       );
-      set({ users: sortedUsers });
+      set({ users: sortedUsers, noUsersFound: false });
     } catch (error) {
       console.log(error);
     }
@@ -152,9 +159,31 @@ export const useStore = create((set: any) => ({
           quantity,
         }
       );
+
+      console.log(response);
     } catch (error) {
       console.error("Erro ao adicionar ticket:", error);
       throw error;
     }
   },
+
+  getInfoTickets: async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/tickets/info`
+      );
+
+      set({ infoTickets: {
+        id: response.data.id,
+        ticketsAvailable: response.data.ticketsAvailable,
+        ticketsConsumed: response.data.ticketsConsumed,
+        ticketsOpened: response.data.ticketsOpened,
+        ticketsSold: response.data.ticketsSold,
+      }, })
+
+    } catch (error) { 
+      console.error("Erro ao buscar informações sobre tickets", error);
+      throw error;
+    }
+  }
 }));

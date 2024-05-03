@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { Button, Input, Modal, message } from "antd";
-import { useStore } from "../../../../store";
+import { useStore } from "@/store";
 import { IDataUser, IUserTickets } from "../../../Interfaces/user.interfaces";
 import moment from "moment";
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
@@ -16,6 +16,9 @@ const PurchaseTickets = () => {
   const [formData, setFormData] = useState<IDataUser | null>(null);
   const [currentStep, setCurrentStep] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { getAllUsers, selectedUser, purchaseTicket, setSelectedUser, getInfoTickets } =
+  useStore();
 
   const [formTicket, setFormTicket] = useState<IUserTickets>({
     name: formData?.user.person.name,
@@ -50,9 +53,6 @@ const PurchaseTickets = () => {
   const error = (errorMsg: any) => {
     errorToast(errorMsg);
   };
-
-  const { getAllUsers, selectedUser, purchaseTicket, setSelectedUser } =
-    useStore();
 
   useEffect(() => {
     if (selectedUser) {
@@ -97,6 +97,7 @@ const PurchaseTickets = () => {
       setTicketQuantity(0);
       setConfirmLoading(false);
       getAllUsers();
+      getInfoTickets();
 
       success("Ticket adicionado com sucesso.");
     } catch (erro) {
