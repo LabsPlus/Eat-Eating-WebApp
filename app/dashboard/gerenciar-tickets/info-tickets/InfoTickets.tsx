@@ -15,7 +15,7 @@ const InfoTickets = () => {
 
   useEffect(() => {
     getInfoTickets();
-  }, [infoTickets]);
+  }, []);
 
   return (
     <div className={styles.ticketContainer}>
