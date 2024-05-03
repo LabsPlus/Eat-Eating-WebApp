@@ -1,25 +1,16 @@
-'use client'
-
-import React, { useEffect } from "react";
+import React from "react";
 
 import ListTickets from "./list-tickets/ListTickets";
 import SearchUser from "./search-user/SearchUser";
 
 import styles from "./page.module.css";
-import { useStore } from "@/store";
+
+import InfoTickets from "./info-tickets/InfoTickets";
 
 const page = () => {
-  const { getInfoTickets, infoTickets } = useStore();
-
   const currentDate = new Date();
   const dateFormatter = new Intl.DateTimeFormat("pt-BR");
   const formattedDate = dateFormatter.format(currentDate);
-
-  useEffect(() => {
-    getInfoTickets();
-  }, []);
-
-  const { ticketsAvailable, ticketsConsumed, ticketsOpened, ticketsSold} = infoTickets;
 
   return (
     <div className={styles.container}>
@@ -27,32 +18,7 @@ const page = () => {
 
       <h1 className={styles.title}>Gerenciar Tickets</h1>
       
-      <div className={styles.ticketContainer}>
-        <div className={`${styles.ticketVerde} ${styles.ticketBg}`}>
-          <div className={styles.ticketInfo}>
-            <span>{ticketsOpened}</span>
-            <p>Tickects abertos</p>
-          </div>
-        </div>
-        <div className={`${styles.ticketRosa} ${styles.ticketBg}`}>
-          <div className={styles.ticketInfo}>
-            <span>{ticketsConsumed}</span>
-            <p>Tickects usados</p>
-          </div>
-        </div>
-        <div className={`${styles.ticketAzul} ${styles.ticketBg}`}>
-          <div className={styles.ticketInfo}>
-            <span>{ticketsAvailable}</span>
-            <p>Tickects à venda</p>
-          </div>
-        </div>
-        <div className={`${styles.ticketLaranja} ${styles.ticketBg}`}>
-          <div className={styles.ticketInfo}>
-            <span>{ticketsSold}</span>
-            <p>Total de tickets vendidos</p>
-          </div>
-        </div>
-      </div>
+      <InfoTickets />
 
       <div className={styles.inputsContainer}>
         <SearchUser />

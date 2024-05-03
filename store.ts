@@ -6,11 +6,11 @@ import { IStoreState } from "./app/Interfaces/storeState.interfaces";
 const initialState: IStoreState = {
   users: [],
   infoTickets: {
-    id: 0,
-    ticketsAvailable: 0,
-    ticketsConsumed: 0,
-    ticketsOpened: 0,
-    ticketsSold: 0,
+    id: null,
+    ticketsAvailable: null,
+    ticketsConsumed: null,
+    ticketsOpened: null,
+    ticketsSold: null,
   },
   searchTerm: "",
   selectedUser: null,

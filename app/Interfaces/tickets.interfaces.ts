@@ -1,8 +1,8 @@
 export interface TicketData {
-  id: number;
-  ticketsAvailable: number;
-  ticketsConsumed: number;
-  ticketsOpened: number;
-  ticketsSold: number;
+  id: number | null;
+  ticketsAvailable: number | null;
+  ticketsConsumed: number | null;
+  ticketsOpened: number | null;
+  ticketsSold: number | null;
 }
 
