@@ -300,19 +300,34 @@ const ListUsers = () => {
           </div>
         </>
       )}
+
       {selectedUser && <UpdateUserPopover />}
+
       <Modal
         title={
-          <span style={{ color: "#043DAA", fontSize: "20px" }}>Deletar</span>
+          <span className={styles.modalDeleteTitle}>Deletar usuário</span>
         }
-        visible={!!deleteUserId}
-        onOk={handleConfirmDelete}
-        onCancel={handleCancelDelete}
-        okText="Deletar"
-        cancelText="Cancelar"
-        className={styles.modalDelete}
+        open={!!deleteUserId}
+        className={styles.modalDeleteContainer}
+        closable={false} 
+        footer={[
+          <div className={styles.modalDeleteButtonContainer}>
+          <Button
+            className={`${styles.modalDeleteButton} ${styles.modalDeleteCancelButton}`}
+            onClick={handleCancelDelete}
+          >
+            Cancelar
+          </Button>
+          <Button
+            className={`${styles.modalDeleteButton} ${styles.modalDeleteOkButton}`}
+            onClick={handleConfirmDelete}
+          >
+            Deletar
+          </Button>
+        </div>
+        ]}
       >
-        <p>Deseja realmente excluir este usuário?</p>
+        <p className={styles.modalDeleteSubtitle}>Tem certeza que deseja deletar este usuário?</p>
       </Modal>
     </div>
   );

@@ -47,7 +47,6 @@
     width: 75px;
     height: 44px;
     margin-left: 10px;
-    /* border: 1px solid #0444BD !important; */
     border-radius: 5px;
 }
 
@@ -135,12 +134,67 @@
     background-color: #E6ECF8 !important;
 }
 
-.modalDelete {
-    width: 298px !important;
+.modalDeleteContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1.5rem;
+    width: 510px !important;
+    height: 228px !important;
+    padding: 2rem 4rem;
+
+    border-radius: 20px;
+    background:  #FFF;
+    box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.10);
 }
 
-.modalDelete p {
-    color: #0443BD !important;
+.modalDeleteSubtitle {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5rem;
     text-align: center;
-    font-size: 14px;
+    color: #595959;
 }
+
+.modalDeleteTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+
+    color: #0444BD;
+    line-height: 3rem;
+}
+
+.modalDeleteButtonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 0.5rem ;
+}
+
+.modalDeleteButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    width: 103px;
+    height: 44px;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+}
+
+.modalDeleteCancelButton {
+    border: 1px solid #0444BD;
+    background: #FFF;
+    color: #0444BD;
+}
+
+.modalDeleteOkButton {
+    background: #0444BD;
+    color: #FFF;
+}
+
