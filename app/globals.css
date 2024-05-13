@@ -17,3 +17,7 @@ body {
   border: 2px solid #022971;
   border-color: #022971;
 }
+
+.ant-modal .ant-modal-content {
+  border-radius: 20px !important;
+}
