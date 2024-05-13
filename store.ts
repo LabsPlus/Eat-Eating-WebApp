@@ -65,26 +65,6 @@ export const useStore = create((set: any) => ({
     }
   },
 
-  searchUsersByName: async (searchTerm: string) => {
-    try {
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/user/list-all-users`
-      );
-
-      const filteredUsers = response.data.filter((user: any) =>
-        user.user.person.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-
-      if (filteredUsers.length > 0) {
-        set({ users: filteredUsers, noUsersFound: false });
-      } else {
-        set({ users: [], noUsersFound: true });
-      }
-    } catch (error) {
-      console.log("Erro ao buscar usuários:", error);
-    }
-  },
-
   searchUsersByNameAndEnrrolment: async (searchTerm: string) => {
     try {
       const response = await axios.get(

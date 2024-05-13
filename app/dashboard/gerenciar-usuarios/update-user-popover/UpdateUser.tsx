@@ -305,6 +305,7 @@ const UpdateUser: React.FC = () => {
                   id="name"
                   value={formUpdate.name}
                   onChange={handleInputChange}
+                  maxLength={100}
                 />
               </div>
 

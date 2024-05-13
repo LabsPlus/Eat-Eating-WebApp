@@ -301,6 +301,7 @@ const AddUser = () => {
                   value={formData.name}
                   onChange={handleInputChange}
                   className={styles.name}
+                  maxLength={100}
                 />
                 <label htmlFor="name">Nome completo</label>
               </div>

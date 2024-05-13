@@ -7,11 +7,11 @@ import styles from "./page.module.css";
 
 const SearchUser = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const { searchUsersByName, users } = useStore();
+  const { searchUsersByNameAndEnrrolment } = useStore();
 
   const handleSearch = async (value: string) => {
     setSearchTerm(value);
-    await searchUsersByName(value);
+    await searchUsersByNameAndEnrrolment(value);
   };
 
   return (
