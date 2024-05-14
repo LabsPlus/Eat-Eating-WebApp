@@ -48,6 +48,7 @@ export interface IUserUpdate {
   typeGrant: string | undefined;
   dailyMeals: number | undefined;
   password: string | undefined;
+  email: string | undefined;
   emailRecovery: string | undefined;
   picture: string | undefined;
 }

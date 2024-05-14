@@ -24,6 +24,7 @@ const UpdateUser: React.FC = () => {
     typeGrant: formData?.user.typeGrant.name,
     dailyMeals: formData?.user.dailyMeals,
     password: formData?.user.loginUser.password,
+    email: formData?.user.loginUser.email,
     emailRecovery: formData?.user.loginUser.emailRecovery,
     picture: formData?.picture,
   });
@@ -45,6 +46,7 @@ const UpdateUser: React.FC = () => {
         typeGrant: formData.user.typeGrant.name,
         dailyMeals: formData.user.dailyMeals,
         password: formData.user.loginUser.password,
+        email: formData.user.loginUser.email,
         emailRecovery: formData.user.loginUser.emailRecovery,
         picture: formData?.picture,
       });
@@ -53,7 +55,7 @@ const UpdateUser: React.FC = () => {
 
   const [fileUploadUpdate, setFileUploadUpdate] = useState(false);
   const [fileUploadMessage, setFileUploadMessage] = useState(
-    "Nenhum Ficheiro Selecionado"
+    "Nenhuma Foto Selecionada"
   );
 
   const showError = (
@@ -81,14 +83,14 @@ const UpdateUser: React.FC = () => {
           "Por favor, selecione uma imagem nos formatos SVG, PNG ou JPEG.",
           errorToast
         );
-        setFileUploadMessage("Não foi possível atualizar ficheiro");
+        setFileUploadMessage("Não foi possível atualizar foto");
         setFileUploadUpdate(true);
         return;
       }
 
       if (file.size > 1048576) {
         showError("O tamanho do arquivo deve ser de até 1MB.", errorToast);
-        setFileUploadMessage("Não foi possível atualizar ficheiro");
+        setFileUploadMessage("Não foi possível atualizar foto");
         setFileUploadUpdate(true);
         return;
       }
@@ -103,7 +105,7 @@ const UpdateUser: React.FC = () => {
           ...prevFormData,
           picture: picture,
         }));
-        setFileUploadMessage("Ficheiro atualizado com sucesso");
+        setFileUploadMessage("Foto atualizada com sucesso");
         setFileUploadUpdate(true);
       } catch (error) {
         console.log(error);
@@ -140,7 +142,7 @@ const UpdateUser: React.FC = () => {
     if (validateForm()) {
       setCurrentStep(currentStep + 1);
     } else {
-      error("Por favor, preencha todos os campos obrigatórios.");
+      error("Os campos não podem estar vazios. Por favor preencha-os antes de prosseguir.");
     }
   };
 
@@ -194,6 +196,15 @@ const UpdateUser: React.FC = () => {
     }
 
     if (validateForm()) {
+      if (formUpdate &&
+        formUpdate.email &&
+        !validateEmail(formUpdate.email)) {
+        showError(
+          "O e-mail é inválido. Verifique e tente novamente.", 
+          errorToast
+        );
+        return;
+      }
       if (
         formUpdate &&
         formUpdate.emailRecovery &&
@@ -227,11 +238,11 @@ const UpdateUser: React.FC = () => {
           });
         setIsModalOpen(false);
         getAllUsers();
-        setFileUploadMessage("Nenhum Ficheiro Selecionado");
+        setFileUploadMessage("Nenhuma Foto Selecionada");
         setSelectedUser(null);
       } catch (error: any) {
         showError(
-          "Não foi possível atualizar o cadastro do usuário. Verifique e tente novamente",
+          "Não foi possível atualizar o cadastro do usuário. Verifique e tente novamente.",
           errorToast
         );
       }
