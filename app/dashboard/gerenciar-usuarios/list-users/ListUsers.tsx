@@ -1,14 +1,19 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
-import { Button, Modal, Pagination, Select, Table, message } from "antd";
-import styles from "./page.module.css";
-import { useStore } from "../../../../store";
-import UpdateUserPopover from "../update-user-popover/UpdateUser";
+import { Button, Select, Table } from "antd";
 import {
   LeftOutlined,
   RightOutlined,
   VerticalLeftOutlined,
 } from "@ant-design/icons";
+
+import { useStore } from "../../../../store";
+import UpdateUserPopover from "../update-user-popover/UpdateUser";
+
+import styles from "./page.module.css";
+import ModalDeleteUser from "../modal-delete-user/ModalDeleteUser";
+
 
 const ListUsers = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -60,7 +65,6 @@ const ListUsers = () => {
     getAllUsers,
     searchUsersByName,
     searchTerm,
-    deleteUser,
     selectedUser,
     setSelectedUser,
     noUsersFound,
@@ -108,28 +112,6 @@ const ListUsers = () => {
     setSelectedUser(user);
     setUpdatePopoverVisible(true);
     console.log("editando e pega id", user);
-  };
-
-  const handleDeleteUser = async (id: number) => {
-    try {
-      await deleteUser(id);
-      message.success("Usuário deletado com sucesso!");
-    } catch (error) {
-      console.error("Erro ao excluir usuário:", error);
-    }
-  };
-
-  const handleConfirmDelete = async () => {
-    if (deleteUserId) {
-      await handleDeleteUser(deleteUserId);
-      setDeleteUserId(null);
-      setDeleteModalVisible(false);
-    }
-  };
-
-  const handleCancelDelete = () => {
-    setDeleteModalVisible(false);
-    setDeleteUserId(null);
   };
 
   const rowClassName = (record: any, index: number) => {
@@ -303,31 +285,11 @@ const ListUsers = () => {
 
       {selectedUser && <UpdateUserPopover />}
 
-      <Modal
-        title={<h2 className={styles.modalDeleteTitle}>Deletar usuário</h2>}
-        open={!!deleteUserId}
-        closable={false}
-        footer={[
-          <div className={styles.modalDeleteButtonContainer}>
-            <Button
-              className={`${styles.modalDeleteButton} ${styles.modalDeleteCancelButton}`}
-              onClick={handleCancelDelete}
-            >
-              Cancelar
-            </Button>
-            <Button
-              className={`${styles.modalDeleteButton} ${styles.modalDeleteOkButton}`}
-              onClick={handleConfirmDelete}
-            >
-              Deletar
-            </Button>
-          </div>,
-        ]}
-      >
-        <p className={styles.modalDeleteSubtitle}>
-          Tem certeza que deseja deletar este usuário?
-        </p>
-      </Modal>
+      <ModalDeleteUser 
+        deleteUserId={deleteUserId}
+        setDeleteModalVisible={setDeleteModalVisible}
+        setDeleteUserId={setDeleteUserId as React.Dispatch<React.SetStateAction<number | null>>}
+      />
     </div>
   );
 };
