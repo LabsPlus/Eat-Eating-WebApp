@@ -55,24 +55,29 @@ const NewPassword = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const regexPassword =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,15}$/;
 
     const response = isValidPassword(passwordData);
+    if (response) {
+      return errorToast(response);
+    }
+
+    if (!regexPassword.test(passwordData.password)) {
+      return; // Retorna silenciosamente se a senha não atender aos critérios de validação
+    }
 
     try {
-      if (response) {
-        return errorToast(response);
-      } else {
-        const response = await axios.patch(
-          `${process.env.NEXT_PUBLIC_API_URL}/login/update-password-login`,
-          {
-            newPassword: passwordData.password,
-            token: token,
-          }
-        );
-        successToast("Senha alterada com sucesso.");
-        setPasswordData({ password: "", confirmPassword: "" });
-        router.push("/login");
-      }
+      const response = await axios.patch(
+        `${process.env.NEXT_PUBLIC_API_URL}/login/update-password-login`,
+        {
+          newPassword: passwordData.password,
+          token: token,
+        }
+      );
+      successToast("Senha alterada com sucesso.");
+      setPasswordData({ password: "", confirmPassword: "" });
+      router.push("/login");
     } catch (error) {
       console.error("Erro ao enviar o email:", error);
     }

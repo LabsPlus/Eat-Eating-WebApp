@@ -98,7 +98,6 @@
 .inputContainer .eyeIcon,
 .inputContainer .eyeVisible {
     cursor: pointer;
-
     right: 16px;
 }
 
@@ -112,9 +111,10 @@
 }
 
 .inputContainer .checkboxContainer {
-    margin-top: 12px;
-    margin-bottom: 15px;
+    margin-top: 8px;
+    margin-bottom: 16px;
     display: flex;
+    gap: 8px;
     align-items: flex-start;
     flex-direction: column;
     color: #161616;
@@ -124,7 +124,6 @@
 .checkboxContainer p {
     margin-bottom: 5px;
     font-weight: 800;
-
 }
 
 .checkboxContainer .checkbox {
@@ -140,7 +139,7 @@
 .form button {
     width: 285px;
     height: 52px;
-    margin-top: 55px;
+    margin-top: 50px;
     border: none;
     border-radius: 12px;
     cursor: pointer;
