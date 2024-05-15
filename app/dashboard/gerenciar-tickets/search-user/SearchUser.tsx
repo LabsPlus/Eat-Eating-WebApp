@@ -12,44 +12,49 @@ import { errorToast } from "@/app/services/toast-messages/toast-messages";
 const SearchUser = () => {
   const [dataSearch, setDataSearch] = useState("");
 
-  const { searchUsersByNameAndEnrrolment, noUsersFound, getAllUsers } = useStore();
+  const { searchUsersByNameAndEnrrolment, noUsersFound, getAllUsers } =
+    useStore();
 
+  if (
+    noUsersFound &&
+    window.location.pathname === "/dashboard/gerenciar-tickets"
+  ) {
+    var message =
+      "Nenhum usuário encontrado. Verifique o nome ou a matrícula e tente novamente.";
+  }
   useEffect(() => {
-    if (noUsersFound) {
-      errorToast("Nenhum usuário encontrado. Verifique o nome ou a matrícula e tente novamente.");
+    if (message) {
+      errorToast(message);
       setDataSearch("");
       getAllUsers();
     }
   }, [noUsersFound, getAllUsers]);
 
   const handleSearch = async () => {
-    await searchUsersByNameAndEnrrolment(dataSearch)
+    await searchUsersByNameAndEnrrolment(dataSearch);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      handleSearch()
+    if (e.key === "Enter") {
+      handleSearch();
     }
-  }
+  };
 
   return (
     <div className={styles.container}>
       <Input
         className={styles.inputSearch}
-        placeholder="Pesquisar..." 
+        placeholder="Pesquisar..."
         prefix={<SearchOutlined className={styles.searchOutlined} />}
         value={dataSearch}
         onChange={(e) => setDataSearch(e.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <button 
-        className={styles.buttonSearch}
-        onClick={handleSearch}
-      >
+      <button className={styles.buttonSearch} onClick={handleSearch}>
         Pesquisar
       </button>
     </div>
-  )
-}
+  );
+};
 
 export default SearchUser;
