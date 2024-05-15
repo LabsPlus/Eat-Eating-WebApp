@@ -196,6 +196,15 @@ const UpdateUser: React.FC = () => {
     }
 
     if (validateForm()) {
+      if (formUpdate.name && 
+          formUpdate.name.length < 2 || formUpdate.name &&
+          formUpdate.name.length > 100) {
+        showError(
+          "O nome deve ter entre 2 e 100 caracteres.",
+          errorToast
+        );
+        return;
+      }
       if (formUpdate &&
         formUpdate.email &&
         !validateEmail(formUpdate.email)) {
@@ -316,6 +325,8 @@ const UpdateUser: React.FC = () => {
                   id="name"
                   value={formUpdate.name}
                   onChange={handleInputChange}
+                  minLength={2}
+                  maxLength={100}
                 />
               </div>
 
@@ -358,7 +369,7 @@ const UpdateUser: React.FC = () => {
                   }
                   onChange={handleInputChange}
                   disabled={formUpdate.category === "VISITANTE"}
-                  maxLength={7}
+                  maxLength={50}
                 />
               </div>
 
