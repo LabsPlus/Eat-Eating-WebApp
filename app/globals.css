@@ -21,3 +21,13 @@ body {
 .ant-modal .ant-modal-content {
   border-radius: 20px !important;
 }
+
+.ant-modal .ant-modal-content .modal {
+  border-radius: 10px !important;
+}
+
+.ant-modal {
+  padding-bottom: 0 !important;
+  top: 200px;
+}
+

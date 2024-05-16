@@ -1,21 +1,26 @@
 "use client";
+
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import "moment-timezone";
-import React, { useEffect, useState } from "react";
-import styles from "./page.module.css";
 import { Button, Select, Table } from "antd";
 import {
   LeftOutlined,
   RightOutlined,
   VerticalLeftOutlined,
 } from "@ant-design/icons";
-import PurchaseTickets from "../purchase-tickets/PurchaseTickets";
+
 import { useStore } from "../../../../store";
+
+import styles from "./page.module.css";
+import ModalTicket from "../modal-ticket/ModalTicket";
 
 const ListTickets = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
   const [purchaseTicketVisible, setPurchaseTicketVisible] = useState(false);
+  const [openPurchaseModal, setOpenPurchaseModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
 
   const { users, getAllUsers, selectedUser, setSelectedUser, noUsersFound } = useStore();
 
@@ -26,6 +31,13 @@ const ListTickets = () => {
   const handlePurchaseTicket = (user: any) => {
     setSelectedUser(user);
     setPurchaseTicketVisible(true);
+    setOpenPurchaseModal(true);
+  };
+
+  const handleEditTicket = (user: any) => {
+    setSelectedUser(user);
+    setPurchaseTicketVisible(true);
+    setOpenEditModal(true);
   };
 
   const handlePageChange = (page: any) => {
@@ -137,13 +149,19 @@ const ListTickets = () => {
       key: "action",
       render: (text: any, record: any) => (
         <div className={styles.btnsContainer}>
-          <img
-            className={styles.icons}
-            src="/images/edit_square.svg"
-            alt="edit icon"
+          <Button
+            className={styles.btnEditPurchase}
+            icon={
+              <img
+                className={styles.icons}
+                src="/images/edit_square.svg"
+                alt="edit icon"
+              />
+            }
+            onClick={() => handleEditTicket(record.user.id)}
           />
           <Button
-            className={styles.btnPurchase}
+            className={styles.btnEditPurchase}
             icon={
               <img
                 className={styles.icons}
@@ -153,7 +171,22 @@ const ListTickets = () => {
             }
             onClick={() => handlePurchaseTicket(record.user.id)}
           />
-          {selectedUser && <PurchaseTickets />}
+          
+          {openPurchaseModal && 
+            <ModalTicket 
+              typeModal="purchase"
+              closePurchaseModal={setOpenPurchaseModal}
+              closeEditModal={setOpenEditModal}
+            />
+          }
+
+          {openEditModal && 
+            <ModalTicket 
+              typeModal="edit"
+              closePurchaseModal={setOpenPurchaseModal}
+              closeEditModal={setOpenEditModal}
+            />
+          }
         </div>
       ),
     },
