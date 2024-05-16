@@ -102,6 +102,8 @@ const ModalTicket = ({ typeModal, closePurchaseModal, closeEditModal }: IModalTi
         "Não foi possível alterar o ticket. Verifique e tente novamente."
        )
       }
+
+      setIsLoadingButton(false);
     }
   };
 
