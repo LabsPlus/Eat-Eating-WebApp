@@ -39,11 +39,11 @@
 
 .modalDeleteCancelButton {
   border: 1px solid #0444bd;
-  background: #fff;
+  background-color: #fff;
   color: #0444bd;
 }
 
 .modalDeleteOkButton {
-  background: #0444bd;
+  background-color: #0444bd;
   color: #fff;
 }

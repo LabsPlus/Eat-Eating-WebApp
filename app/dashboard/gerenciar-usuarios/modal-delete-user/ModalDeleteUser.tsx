@@ -55,7 +55,7 @@ const ModalDeleteUser = ({ deleteUserId, setDeleteUserId, setDeleteModalVisible 
             Cancelar
           </Button>
           <Button
-            className={`${styles.modalDeleteButton} ${styles.modalDeleteOkButton}`}
+            className={`${styles.modalDeleteButton} ${styles.modalDeleteOkButton} ant-btn-primary`}
             onClick={handleConfirmDelete}
           >
             Deletar
