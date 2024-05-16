@@ -5,19 +5,13 @@ import { Button, Modal, Select, Table, message } from "antd";
 import styles from "./page.module.css";
 import { useStore } from "../../../../store";
 import UpdateUserPopover from "../update-user-popover/UpdateUser";
+import ModalDeleteUser from "../modal-delete-user/ModalDeleteUser";
 
 import {
   LeftOutlined,
   RightOutlined,
   VerticalLeftOutlined,
 } from "@ant-design/icons";
-
-import { useStore } from "../../../../store";
-import UpdateUserPopover from "../update-user-popover/UpdateUser";
-
-import styles from "./page.module.css";
-import ModalDeleteUser from "../modal-delete-user/ModalDeleteUser";
-
 
 const ListUsers = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -67,7 +61,6 @@ const ListUsers = () => {
   const {
     users,
     getAllUsers,
-    searchUsersByName,
     searchTerm,
     deleteUser,
     selectedUser,
@@ -276,10 +269,12 @@ const ListUsers = () => {
       </div>
       {selectedUser && <UpdateUserPopover />}
 
-      <ModalDeleteUser 
+      <ModalDeleteUser
         deleteUserId={deleteUserId}
         setDeleteModalVisible={setDeleteModalVisible}
-        setDeleteUserId={setDeleteUserId as React.Dispatch<React.SetStateAction<number | null>>}
+        setDeleteUserId={
+          setDeleteUserId as React.Dispatch<React.SetStateAction<number | null>>
+        }
       />
     </div>
   );
