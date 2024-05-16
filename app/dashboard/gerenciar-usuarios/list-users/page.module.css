@@ -16,6 +16,18 @@
   display: none !important;
 }
 
+.tableContainer {
+    position: relative;
+}
+
+.errorMessage {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    color: #C50F1F;
+    transform: translate(-50%, -50%);
+}
+
 .paginationContainer {
   display: flex;
   align-items: center;
@@ -28,8 +40,8 @@
 }
 
 .paginationContainer .selectContainer {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .selectContainer span,

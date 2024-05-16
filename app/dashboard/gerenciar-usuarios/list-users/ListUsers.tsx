@@ -1,7 +1,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Button, Select, Table } from "antd";
+import { Button, Modal, Select, Table, message } from "antd";
+import styles from "./page.module.css";
+import { useStore } from "../../../../store";
+import UpdateUserPopover from "../update-user-popover/UpdateUser";
+
 import {
   LeftOutlined,
   RightOutlined,
@@ -65,26 +69,15 @@ const ListUsers = () => {
     getAllUsers,
     searchUsersByName,
     searchTerm,
+    deleteUser,
     selectedUser,
     setSelectedUser,
     noUsersFound,
   } = useStore();
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        if (!searchTerm) {
-          await getAllUsers();
-        } else {
-          await searchUsersByName(searchTerm);
-        }
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-    };
-
-    fetchUsers();
-  }, [searchTerm]);
+    getAllUsers();
+  }, [getAllUsers]);
 
   const handlePageChange = (page: any) => {
     setCurrentPage(page);
@@ -204,85 +197,83 @@ const ListUsers = () => {
 
   return (
     <div className={styles.container}>
-      {noUsersFound ? (
-        <p className={styles.noUsersMessage}>
-          Nenhum usuário encontrado. Por favor, verifique o nome e tente
-          novamente.
-        </p>
-      ) : (
-        <>
-          <Table
-            className={styles.table}
-            dataSource={users.map((user) => ({
-              ...user,
-              serialNumber: ++serialNumber,
-            }))}
-            columns={columns}
-            pagination={{
-              current: currentPage,
-              pageSize: pageSize,
-              total: users.length,
-              showSizeChanger: false,
-              onChange: handlePageChange,
-              className: styles.defaultPagination,
-            }}
-            rowKey="id"
-            rowClassName={rowClassName}
-          />
-          <div className={styles.paginationContainer}>
-            <div className={styles.selectContainer}>
-              <span>Itens por páginas</span>
-              <Select
-                defaultValue={pageSize}
-                onChange={handlePageSizeChange}
-                className={styles.pageSizeSelect}
-              >
-                <option value={5}>5</option>
-                <option value={10}>10</option>
-              </Select>
-            </div>
-
-            <div className={styles.paginationInfo}>
-              {`${(currentPage - 1) * pageSize + 1}-${
-                currentPage * pageSize
-              } de ${users.length}`}
-            </div>
-
-            <div className={styles.paginationButtons}>
-              <VerticalLeftOutlined
-                className={`${styles.first} ${
-                  currentPage === 1 ? styles.disabledButton : ""
-                }`}
-                style={{ transform: "rotate(900deg)" }}
-                onClick={goToFirstPage}
-              />
-              <LeftOutlined
-                className={`${styles.prev} ${
-                  currentPage === 1 ? styles.disabledButton : ""
-                }`}
-                onClick={handlePrevPage}
-              />
-              <RightOutlined
-                className={`${styles.next} ${
-                  currentPage === Math.ceil(users.length / pageSize)
-                    ? styles.disabledButton
-                    : ""
-                }`}
-                onClick={handleNextPage}
-              />
-              <VerticalLeftOutlined
-                className={`${styles.last} ${
-                  currentPage === Math.ceil(users.length / pageSize)
-                    ? styles.disabledButton
-                    : ""
-                }`}
-                onClick={goToLastPage}
-              />
-            </div>
+      <div className={styles.tableContainer}>
+        <Table
+          className={styles.table}
+          dataSource={users.map((user) => ({
+            ...user,
+            serialNumber: ++serialNumber,
+          }))}
+          columns={columns}
+          pagination={{
+            current: currentPage,
+            pageSize: pageSize,
+            total: users.length,
+            showSizeChanger: false,
+            onChange: handlePageChange,
+            className: styles.defaultPagination,
+          }}
+          rowKey="id"
+          rowClassName={rowClassName}
+        />
+        {noUsersFound && (
+          <div className={styles.errorMessage}>
+            Nenhum usuário encontrado. Verifique o nome ou a matrícula e tente
+            novamente.
           </div>
-        </>
-      )}
+        )}
+        <div className={styles.paginationContainer}>
+          <div className={styles.selectContainer}>
+            <span>Itens por páginas</span>
+            <Select
+              defaultValue={pageSize}
+              onChange={handlePageSizeChange}
+              className={styles.pageSizeSelect}
+            >
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+            </Select>
+          </div>
 
+          <div className={styles.paginationInfo}>
+            {`${(currentPage - 1) * pageSize + 1}-${
+              currentPage * pageSize
+            } de ${users.length}`}
+          </div>
+
+          <div className={styles.paginationButtons}>
+            <VerticalLeftOutlined
+              className={`${styles.first} ${
+                currentPage === 1 ? styles.disabledButton : ""
+              }`}
+              style={{ transform: "rotate(900deg)" }}
+              onClick={goToFirstPage}
+            />
+            <LeftOutlined
+              className={`${styles.prev} ${
+                currentPage === 1 ? styles.disabledButton : ""
+              }`}
+              onClick={handlePrevPage}
+            />
+            <RightOutlined
+              className={`${styles.next} ${
+                currentPage === Math.ceil(users.length / pageSize)
+                  ? styles.disabledButton
+                  : ""
+              }`}
+              onClick={handleNextPage}
+            />
+            <VerticalLeftOutlined
+              className={`${styles.last} ${
+                currentPage === Math.ceil(users.length / pageSize)
+                  ? styles.disabledButton
+                  : ""
+              }`}
+              onClick={goToLastPage}
+            />
+          </div>
+        </div>
+      </div>
       {selectedUser && <UpdateUserPopover />}
 
       <ModalDeleteUser 
