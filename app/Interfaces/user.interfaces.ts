@@ -67,3 +67,9 @@ export interface IUserTicketsData {
   totalTicketsOfUserActive: number;
   ticket: ITicket[];
 }
+
+export interface IModalDeleteUserProps {
+  deleteUserId: number | null;
+  setDeleteUserId: (userId: number | null) => void;
+  setDeleteModalVisible: (boolean: boolean) => void;
+}

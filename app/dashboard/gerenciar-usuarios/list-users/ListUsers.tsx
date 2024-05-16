@@ -1,9 +1,12 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Select, Table, message } from "antd";
 import styles from "./page.module.css";
 import { useStore } from "../../../../store";
 import UpdateUserPopover from "../update-user-popover/UpdateUser";
+import ModalDeleteUser from "../modal-delete-user/ModalDeleteUser";
+
 import {
   LeftOutlined,
   RightOutlined,
@@ -58,6 +61,7 @@ const ListUsers = () => {
   const {
     users,
     getAllUsers,
+    searchTerm,
     deleteUser,
     selectedUser,
     setSelectedUser,
@@ -94,28 +98,6 @@ const ListUsers = () => {
     setSelectedUser(user);
     setUpdatePopoverVisible(true);
     console.log("editando e pega id", user);
-  };
-
-  const handleDeleteUser = async (id: number) => {
-    try {
-      await deleteUser(id);
-      message.success("Usuário deletado com sucesso!");
-    } catch (error) {
-      console.error("Erro ao excluir usuário:", error);
-    }
-  };
-
-  const handleConfirmDelete = async () => {
-    if (deleteUserId) {
-      await handleDeleteUser(deleteUserId);
-      setDeleteUserId(null);
-      setDeleteModalVisible(false);
-    }
-  };
-
-  const handleCancelDelete = () => {
-    setDeleteModalVisible(false);
-    setDeleteUserId(null);
   };
 
   const rowClassName = (record: any, index: number) => {
@@ -286,19 +268,14 @@ const ListUsers = () => {
         </div>
       </div>
       {selectedUser && <UpdateUserPopover />}
-      <Modal
-        title={
-          <span style={{ color: "#043DAA", fontSize: "20px" }}>Deletar</span>
+
+      <ModalDeleteUser
+        deleteUserId={deleteUserId}
+        setDeleteModalVisible={setDeleteModalVisible}
+        setDeleteUserId={
+          setDeleteUserId as React.Dispatch<React.SetStateAction<number | null>>
         }
-        visible={!!deleteUserId}
-        onOk={handleConfirmDelete}
-        onCancel={handleCancelDelete}
-        okText="Deletar"
-        cancelText="Cancelar"
-        className={styles.modalDelete}
-      >
-        <p>Deseja realmente excluir este usuário?</p>
-      </Modal>
+      />
     </div>
   );
 };
