@@ -149,6 +149,15 @@ const AddUser = () => {
 
   const handleCreateUser = async () => {
     if (validateForm()) {
+      if (formData.name && 
+        formData.name.length < 2 || formData.name &&
+        formData.name.length > 100) {
+        showError(
+          "O nome deve ter entre 2 e 100 caracteres.",
+          errorToast
+      );
+      return;
+    }
       if (!validateEmail(formData.email)) {
         error("O e-mail é inválido. Verifique e tente novamente.");
         return;
@@ -161,7 +170,7 @@ const AddUser = () => {
       }
       if (!validatePassword(formData.password)) {
         error(
-          "Sua senha deve incluir pelo menos 8 caracteres, com letras maiúsculas e minúsculas, números e caracteres especiais."
+          "Sua senha deve incluir pelo menos 8 caracteres, letras maiúsculas e minúsculas, números e caracteres especiais."
         );
         return;
       }
@@ -225,7 +234,7 @@ const AddUser = () => {
     if (validateForm()) {
       setCurrentStep(currentStep + 1);
     } else {
-      error("Por favor, preencha todos os campos obrigatórios.");
+      error("Os campos não podem estar vazios. Por favor preencha-os antes de prosseguir.");
       return;
     }
   };
@@ -301,6 +310,8 @@ const AddUser = () => {
                   value={formData.name}
                   onChange={handleInputChange}
                   className={styles.name}
+                  minLength={2}
+                  maxLength={100}
                 />
                 <label htmlFor="name">Nome completo</label>
               </div>
@@ -349,7 +360,7 @@ const AddUser = () => {
                   }
                   onChange={handleInputChange}
                   disabled={formData.category === "VISITANTE"}
-                  maxLength={7}
+                  maxLength={50}
                   className={styles.inputSmall}
                 />
                 <label htmlFor="enrollment">Matrícula</label>
