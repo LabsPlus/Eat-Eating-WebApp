@@ -128,9 +128,9 @@ export const useStore = create((set: any) => ({
     }
   },
 
-  purchaseTicket: async (userId: number, quantity: any) => {
+  purchaseTicket: async (userId: number, quantity: number) => {
     try {
-      const response = await axios.post(
+      await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/tickets/purchase`,
         {
           userId,
@@ -138,9 +138,24 @@ export const useStore = create((set: any) => ({
         }
       );
 
-      console.log(response);
     } catch (error) {
       console.error("Erro ao adicionar ticket:", error);
+      throw error;
+    }
+  },
+
+  editTicket: async (userId: number, quantity: number) => {
+    try {
+      await axios.put(
+        `${process.env.NEXT_PUBLIC_API_URL}/tickets/update`,
+        {
+          userId,
+          quantity,
+        }
+      );
+
+    } catch (error) {
+      console.error("Erro ao editar ticket:", error);
       throw error;
     }
   },

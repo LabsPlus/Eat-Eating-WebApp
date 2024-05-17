@@ -12,12 +12,13 @@
   text-align: end;
 }
 
+
 .icons {
   width: 20px !important;
   height: 20px !important;
 }
 
-.btnPurchase {
+.btnEditPurchase {
   border: none;
   background-color: transparent;
 }
