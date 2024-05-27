@@ -1,36 +1,53 @@
 .btnAdd {
-  width: 187px;
-  height: 37px;
-  margin-left: 32px;
+  width: 157px;
+  height: 44px;
+  margin-left: 25px;
   cursor: pointer;
-  color: #022971;
-  font-size: 12px;
-  font-weight: 400;
-  border: 1px solid #022971;
-  border-radius: 8px;
-  background-color: #b1c5eb;
-}
-
-.modal {
-  width: 564px !important;
-  border-radius: 8px;
-  border: 1px solid #6996ea;
-  background: #fcfcfc;
-  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.25);
-  height: 100px !important;
-  /* se o modal ficar grande o pequeno aqui alterar */
-}
-
-.modal .title {
-  color: #043daa;
-  font-size: 34px;
+  color: #0444BD;
+  font-size: 16px;
   font-weight: 700;
+  border: 1px solid #0444BD;
+  border-radius: 5px;
+  background-color: #FFF;
+}
+
+.modalAddUser {
+  width: 600px !important;
+  height: 522px !important;
+  border-radius: 8px;
+  background-color: #FFF;
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+.header {
+  margin-top: 8px;
+  margin-bottom: 24px;
+  width: 552px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header .title {
+  color: #043DAA;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.header img {
+  cursor: pointer;
+}
+
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .modalContainer .pictureContainer {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  /* margin-bottom: 20px; */
 }
 
 .modalContainer .pictureContainer img,
@@ -42,21 +59,20 @@
 }
 
 .modalContainer .pictureContainer .placeholder {
-  background-color: #0444bd;
+  background-image: url('/images/user.svg');
 }
 
 .modalContainer .pictureContainer .fileContainer {
-  margin-left: 10px;
+  margin-left: 16px;
   position: relative;
-  width: 370px;
-  height: 32px;
+  width: 480px !important;
+  height: 44px;
   display: flex;
   align-items: center;
   border-radius: 5px;
   background-color: #B1C5EB;
 }
 
-.modalContainer .pictureContainer .fileContainer label,
 .modalContainer .pictureContainer .fileContainer input {
   position: absolute;
   width: 133px;
@@ -64,14 +80,23 @@
   left: 5px;
 }
 
-.modalContainer .pictureContainer .fileContainer label {
+.modalContainer .pictureContainer .fileContainer .labelContainer {
   cursor: pointer;
+  margin-left: -4px;
   display: flex;
   align-items: center;
+  width: 120px;
+  height: 44px;
+  border-radius: 10px;
+  background-color: #0444BD;
+}
+
+.modalContainer .pictureContainer .fileContainer .labelContainer label {
+  cursor: pointer;
+  margin-left: -4px;
   font-size: 16px;
-  padding-left: 2px;
-  border-radius: 2px;
-  background-color: #E6ECF8;
+  font-weight: 700;
+  color: #FFFFFF;
 }
 
 .modalContainer .pictureContainer .fileContainer input {
@@ -80,39 +105,46 @@
 
 .modalContainer .pictureContainer .fileContainer span {
   position: absolute;
-  right: 10px;
+  left: 135px;
   color: #193160;
   font-size: 16px;
+  font-weight: 500;
 }
 
 .modalContainer .item {
   display: flex;
+}
+
+.modalContainer .item:last-child {
   margin-bottom: 10px;
 }
 
-.modalContainer .itens {
+.modalContainer .item .itens {
   display: flex;
   flex-direction: column;
-  margin-right: 35px;
+  margin-right: 16px;
 }
 
-.modalContainer .itens .name {
-  width: 214px;
+.modalContainer .item .itens .inputBig {
+  width: 552px;
 }
 
-.modalContainer .itens .inputMedium {
-  width: 114px;
+.modalContainer .item .itens .inputMedium {
+  width: 268px;
 }
 
-.modalContainer .itens .inputSmall {
-  width: 97px;
+.modalContainer .item .itens label {
+  margin-bottom: 4px;
+  color: #161616;
+  font-size: 16px;
+  font-weight: 700;
+  text-indent: 0;
 }
 
-.modalContainer input,
-.modalContainer select {
-  height: 40px;
-  padding-left: 5px;
-  border: 1px solid #0443bd;
+.modalContainer .item .itens input,
+.modalContainer .item .itens select {
+  height: 44px;
+  border: 1px solid #BFBFBF;
   border-radius: 5px;
 }
 
@@ -120,19 +152,45 @@
 .modalContainer input::placeholder,
 .modalContainer select,
 .modalContainer label {
-  color: #0443bd;
-  font-weight: 400;
-}
-
-.modalContainer input::placeholder {
+  color: #999999;
   font-size: 16px;
+  font-weight: 400;
+  text-indent: 16px;
 }
 
-.modalContainer input:focus {
+.modalContainer input:focus,
+.modalContainer select:focus {
   outline: none;
 }
 
-.modalContainer label {
-  margin-top: 2px;
-  font-size: 14px;
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 44px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 8px;
+  transition: 0.5s;
+}
+
+.btnNext {
+  margin: auto auto;
+}
+
+.btnNext, .btnSave {
+  background-color: #0444BD;
+}
+
+.btnsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -20px;
+}
+
+.btnPrev {
+  color: #0444BD;
+  border-color: #0444BD;
 }

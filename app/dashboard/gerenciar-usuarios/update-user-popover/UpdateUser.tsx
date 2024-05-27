@@ -8,7 +8,14 @@ import { validatePassword } from "@/app/helpers/idValidPasswordUser";
 import { IDataUser } from "../../../Interfaces/user.interfaces";
 import { IUserUpdate } from "../../../Interfaces/user.interfaces";
 import axios from "axios";
-import { errorToast, successToast } from "@/app/services/toast-messages/toast-messages";
+import {
+  errorToast,
+  successToast,
+} from "@/app/services/toast-messages/toast-messages";
+import PasswordValidationChecklist from "@/app/components/PasswordValidationChecklist/PasswordValidationChecklist";
+import Header from "../modal-user/header/Header";
+import Form from "../modal-user/Form/Form";
+import Buttons from "../modal-user/Buttons/Buttons";
 
 const UpdateUser: React.FC = () => {
   const [formData, setFormData] = useState<IDataUser | null>(null);
@@ -54,9 +61,40 @@ const UpdateUser: React.FC = () => {
   }, [formData]);
 
   const [fileUploadUpdate, setFileUploadUpdate] = useState(false);
-  const [fileUploadMessage, setFileUploadMessage] = useState(
+  const [fileUploadMessageUpdate, setFileUploadMessageUpdate] = useState(
     "Nenhuma Foto Selecionada"
   );
+
+  const [fileContainerColorUpdate, setFileContainerColorUpdate] = useState("");
+
+  const [passwordValidations, setPasswordValidations] = useState({
+    length: false,
+    lowercase: false,
+    uppercase: false,
+    number: false,
+    specialCharacter: false,
+  });
+
+  const validatePasswordChecklist = (password: string) => {
+    const validations = {
+      length: password.length >= 8 && password.length <= 15,
+      lowercase: /[a-z]/.test(password),
+      uppercase: /[A-Z]/.test(password),
+      number: /\d/.test(password),
+      specialCharacter: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+    };
+    setPasswordValidations(validations);
+  };
+
+  const resetPasswordValidations = () => {
+    setPasswordValidations({
+      length: false,
+      lowercase: false,
+      uppercase: false,
+      number: false,
+      specialCharacter: false,
+    });
+  };
 
   const showError = (
     errorMsg: any,
@@ -73,47 +111,59 @@ const UpdateUser: React.FC = () => {
     errorToast(errorMsg);
   };
 
-  const handlePictureUpload = async (e: any) => {
-    const { name } = e.target;
+  const handlePictureUploadUpdate = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = e.target.files?.[0];
+    if (!file) {
+      return;
+    }
 
-    if (name === "pictureUpdate") {
-      const file = e.target.files[0];
-      if (!["image/svg+xml", "image/png", "image/jpeg"].includes(file.type)) {
-        showError(
-          "Por favor, selecione uma imagem nos formatos SVG, PNG ou JPEG.",
-          errorToast
-        );
-        setFileUploadMessage("Não foi possível atualizar foto");
-        setFileUploadUpdate(true);
-        return;
-      }
+    if (!["image/svg+xml", "image/png", "image/jpeg"].includes(file.type)) {
+      showError(
+        "Por favor, selecione uma imagem nos formatos SVG, PNG ou JPEG.",
+        errorToast
+      );
+      setFileUploadMessageUpdate("Não foi possível atualizar foto");
+      setFileUploadUpdate(true);
+      setFileContainerColorUpdate("#C50F1F");
+      return;
+    }
 
-      if (file.size > 1048576) {
-        showError("O tamanho do arquivo deve ser de até 1MB.", errorToast);
-        setFileUploadMessage("Não foi possível atualizar foto");
-        setFileUploadUpdate(true);
-        return;
-      }
+    if (file.size > 1048576) {
+      showError("O tamanho do arquivo deve ser de até 1MB.", errorToast);
+      setFileUploadMessageUpdate("Não foi possível atualizar foto");
+      setFileUploadUpdate(true);
+      setFileContainerColorUpdate("#C50F1F");
+      return;
+    }
 
-      try {
-        const formData = new FormData();
-        formData.append("file", file);
-        const response = await axios.post("/api/upload", formData);
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const response = await axios.post("/api/upload", formData);
 
-        const picture = response.data;
-        setFormUpdate((prevFormData) => ({
-          ...prevFormData,
-          picture: picture,
-        }));
-        setFileUploadMessage("Foto atualizada com sucesso");
-        setFileUploadUpdate(true);
-      } catch (error) {
-        console.log(error);
-      }
+      const picture = response.data;
+      setFormUpdate((prevFormData) => ({
+        ...prevFormData,
+        picture: picture,
+      }));
+
+      setFileUploadMessageUpdate("Foto atualizada com sucesso");
+      setFileUploadUpdate(true);
+      setFileContainerColorUpdate("#107C10");
+    } catch (error) {
+      showError(
+        "Erro ao enviar a imagem. Por favor, tente novamente.",
+        errorToast
+      );
+      setFileUploadMessageUpdate("Não foi possível atualizar foto");
+      setFileUploadUpdate(true);
+      setFileContainerColorUpdate("#C50F1F");
     }
   };
 
-  const handleInputChange = (
+  const handleInputChangeUpdate = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { id, value } = e.target;
@@ -136,13 +186,19 @@ const UpdateUser: React.FC = () => {
     if (formData) {
       setFormUpdate((prevFormData) => ({ ...prevFormData!, [id]: newValue }));
     }
+
+    if (id === "password") {
+      validatePasswordChecklist(value);
+    }
   };
 
   const nextStep = () => {
     if (validateForm()) {
       setCurrentStep(currentStep + 1);
     } else {
-      error("Os campos não podem estar vazios. Por favor preencha-os antes de prosseguir.");
+      error(
+        "Os campos não podem estar vazios. Por favor, preencha-os antes de prosseguir."
+      );
     }
   };
 
@@ -175,12 +231,7 @@ const UpdateUser: React.FC = () => {
         }
         return false;
       case 2:
-        return (
-          formUpdate &&
-          // formData.user.loginUser.email  &&
-          // formUpdate.password &&
-          formUpdate.emailRecovery
-        );
+        return formUpdate && formUpdate.email && formUpdate.emailRecovery;
       default:
         return false;
     }
@@ -196,20 +247,16 @@ const UpdateUser: React.FC = () => {
     }
 
     if (validateForm()) {
-      if (formUpdate.name && 
-          formUpdate.name.length < 2 || formUpdate.name &&
-          formUpdate.name.length > 100) {
-        showError(
-          "O nome deve ter entre 2 e 100 caracteres.",
-          errorToast
-        );
+      if (
+        (formUpdate.name && formUpdate.name.length < 2) ||
+        (formUpdate.name && formUpdate.name.length > 100)
+      ) {
+        showError("O nome deve ter entre 2 e 100 caracteres.", errorToast);
         return;
       }
-      if (formUpdate &&
-        formUpdate.email &&
-        !validateEmail(formUpdate.email)) {
+      if (formUpdate && formUpdate.email && !validateEmail(formUpdate.email)) {
         showError(
-          "O e-mail é inválido. Verifique e tente novamente.", 
+          "O e-mail é inválido. Verifique e tente novamente.",
           errorToast
         );
         return;
@@ -230,10 +277,6 @@ const UpdateUser: React.FC = () => {
         formUpdate.password &&
         !validatePassword(formUpdate.password)
       ) {
-        showError(
-          "Sua senha deve incluir pelo menos 8 caracteres, com letras maiúsculas e minúsculas, números e caracteres especiais.",
-          errorToast
-        );
         return;
       }
       try {
@@ -247,182 +290,58 @@ const UpdateUser: React.FC = () => {
           });
         setIsModalOpen(false);
         getAllUsers();
-        setFileUploadMessage("Nenhuma Foto Selecionada");
+        setFileUploadMessageUpdate("Nenhuma Foto Selecionada");
         setSelectedUser(null);
+        setFileContainerColorUpdate("");
       } catch (error: any) {
         showError(
           "Não foi possível atualizar o cadastro do usuário. Verifique e tente novamente.",
           errorToast
         );
       }
+      resetPasswordValidations();
     } else {
-      errorToast("Os campos não podem estar vazios. Por favor, preencha-os antes de prosseguir.");
+      errorToast(
+        "Os campos não podem estar vazios. Por favor, preencha-os antes de prosseguir."
+      );
     }
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedUser(null);
+    resetPasswordValidations();
   };
 
   return (
     <>
       {contextHolder}
       <Modal
-        title="Atualizar usuário"
+        data-testid="modal"
+        title={<Header title="Atualizar usuário" handleClose={closeModal} />}
         open={isModalOpen}
         onCancel={closeModal}
-        footer={[
-          currentStep === 1 ? (
-            <Button key="cancel" onClick={closeModal}>
-              Cancelar
-            </Button>
-          ) : (
-            <Button key="prev" onClick={prevStep}>
-              Voltar
-            </Button>
-          ),
-          currentStep === 2 ? (
-            <Button key="update" type="primary" onClick={handleUpdateUser}>
-              Atualizar
-            </Button>
-          ) : (
-            <Button key="next" type="primary" onClick={nextStep}>
-              Próximo
-            </Button>
-          ),
-        ]}
+        closable={false}
+        className={styles.modalUpdateUser}
+        footer={null}
       >
-        {currentStep === 1 && (
-          <div className={styles.modalContainer}>
-            <div className={styles.pictureContainer}>
-              {formUpdate && formUpdate.picture ? (
-                <img src={formUpdate.picture} alt="Foto do usuário" />
-              ) : (
-                <img
-                  src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Free-Image.png"
-                  alt="Foto do usuário"
-                />
-              )}
-              <div
-                className={styles.fileContainer}
-                style={{ width: fileUploadUpdate ? "400px" : "370px" }}
-              >
-                <label htmlFor="pictureUpdate">Escolher ficheiro</label>
-                <input
-                  name="pictureUpdate"
-                  id="pictureUpdate"
-                  type="file"
-                  onChange={handlePictureUpload}
-                />
-                <span>{fileUploadMessage}</span>
-              </div>
-            </div>
-            <div className={styles.item}>
-              <div className={styles.itens}>
-                <label htmlFor="name">Nome:</label>
-                <Input
-                  id="name"
-                  value={formUpdate.name}
-                  onChange={handleInputChange}
-                  minLength={2}
-                  maxLength={100}
-                />
-              </div>
+        <Form
+          currentStep={currentStep}
+          formDataUser={formUpdate}
+          fileUploadMessage={fileUploadMessageUpdate}
+          fileContainerColor={fileContainerColorUpdate}
+          passwordValidations={passwordValidations}
+          handleInputChange={handleInputChangeUpdate}
+          handlePicture={handlePictureUploadUpdate}
+          pictureUser={"pictureUpdate"}
+        />
 
-              <div className={styles.itens}>
-                <label htmlFor="category">Categoria:</label>
-                <select
-                  id="category"
-                  value={formUpdate.category}
-                  onChange={handleInputChange}
-                >
-                  <option value="ALUNO">Aluno</option>
-                  <option value="FUNCIONARIO">Funcionário</option>
-                  <option value="VISITANTE">Visitante</option>
-                </select>
-              </div>
-
-              <div className={styles.itens}>
-                <label htmlFor="typeGrant">Bolsa:</label>
-                <select
-                  id="typeGrant"
-                  value={formUpdate.typeGrant || ""}
-                  onChange={handleInputChange}
-                >
-                  <option value="INTEGRAL">Integral</option>
-                  <option value="PARCIAL">Parcial</option>
-                  <option value="NAO_APLICAVEL ">Não aplicável</option>
-                </select>
-              </div>
-            </div>
-
-            <div className={styles.item}>
-              <div className={styles.itens}>
-                <label htmlFor="enrollment">Matrícula:</label>
-                <Input
-                  id="enrollment"
-                  value={
-                    formUpdate.category === "VISITANTE"
-                      ? "XXXXXXX"
-                      : formUpdate.enrollment || ""
-                  }
-                  onChange={handleInputChange}
-                  disabled={formUpdate.category === "VISITANTE"}
-                  maxLength={50}
-                />
-              </div>
-
-              <div className={styles.itens}>
-                <label htmlFor="dailyMeals">Refeições Realizadas:</label>
-                <Input
-                  id="dailyMeals"
-                  value={formUpdate.dailyMeals || ""}
-                  onChange={handleInputChange}
-                  type="number"
-                  max={3}
-                />
-              </div>
-            </div>
-          </div>
-        )}
-
-        {currentStep === 2 && (
-          <div className={styles.modalContainer}>
-            <div className={styles.item}>
-              {/* <div className={styles.itens}>
-                <label htmlFor="email">E-mail:</label>
-                <Input
-                  id="email"
-                  value={formData?.user.loginUser.email || ""}
-                  onChange={handleInputChange}
-                  type="email"
-                />
-              </div> */}
-
-              <div className={styles.itens}>
-                <label htmlFor="password">Senha:</label>
-                <Input
-                  id="password"
-                  value={formUpdate.password || ""}
-                  onChange={handleInputChange}
-                  type="password"
-                />
-              </div>
-            </div>
-            <div className={styles.item}>
-              <div className={styles.itens}>
-                <label htmlFor="emailRecovery">E-mail de Recuperação:</label>
-                <Input
-                  id="emailRecovery"
-                  value={formUpdate.emailRecovery || ""}
-                  onChange={handleInputChange}
-                  type="email"
-                />
-              </div>
-            </div>
-          </div>
-        )}
+        <Buttons
+          currentStep={currentStep}
+          nextStep={nextStep}
+          prevStep={prevStep}
+          handleUser={handleUpdateUser}
+        />
       </Modal>
     </>
   );

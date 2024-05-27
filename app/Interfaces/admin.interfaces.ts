@@ -16,6 +16,11 @@ export interface IUserData {
 export interface IPasswordData {
   password: string;
   confirmPassword: string;
+  length: boolean;
+  lowercase: boolean;
+  uppercase: boolean;
+  number: boolean;
+  specialCharacter: boolean;
 }
 
 export interface IEmailRecovery {
