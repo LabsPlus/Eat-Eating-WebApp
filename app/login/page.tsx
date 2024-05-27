@@ -1,17 +1,21 @@
 "use client";
 
-import Link from "next/link";
-import styles from "./page.module.css";
 import React, { useEffect, useState } from "react";
 import { UserOutlined } from "@ant-design/icons";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { Input, Button } from "antd";
+
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Image from "next/image";
+
 import { isLoginValid } from "../helpers/isLoginValid";
 import { useAuthContext } from "@/app/contexts/AuthContext";
 import { IUserData } from "../Interfaces/admin.interfaces";
-import { useRouter } from "next/navigation";
 import { errorToast } from "../services/toast-messages/toast-messages";
+
+import styles from "./page.module.css";
+import Loading from "../components/Loading/Loading";
 
 const LoginForm = () => {
   const { login, user } = useAuthContext();
@@ -23,6 +27,7 @@ const LoginForm = () => {
   }, [user]);
 
   const [remember, setRemember] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [userData, setUserdata] = useState<IUserData>({
     email: "",
@@ -41,16 +46,21 @@ const LoginForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    setIsLoading(true);
     const response = isLoginValid(userData);
 
     try {
       if (response) {
+        // setIsLoading(false);
+
         return errorToast(response);
       } else {
         login(userData, remember);
       }
     } catch (error) {
       console.error("Ocorreu um erro durante o login.", error);
+      setIsLoading(false);
+
       return errorToast(
         "Ocorreu um erro durante o login. Tente novamente mais tarde."
       );
@@ -104,11 +114,13 @@ const LoginForm = () => {
           <div className={styles.divButton}>
             <Button
               type="primary"
+              icon={isLoading && <Loading />             }
+              disabled={isLoading}
               onClick={(e: React.MouseEvent<HTMLFormElement>) =>
                 handleSubmit(e)
               }
             >
-              Login
+              Entrar
             </Button>
           </div>
         </div>
