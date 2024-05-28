@@ -51,7 +51,7 @@ const LoginForm = () => {
 
     try {
       if (response) {
-        // setIsLoading(false);
+        setIsLoading(false);
 
         return errorToast(response);
       } else {
