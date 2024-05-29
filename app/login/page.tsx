@@ -55,8 +55,15 @@ const LoginForm = () => {
 
         return errorToast(response);
       } else {
-        login(userData, remember);
+        const response = login(userData, remember)
+        response.then((data) => {
+          console.log(data)
+          if (data === undefined) {
+            setIsLoading(false);
+          }
+        })
       }
+
     } catch (error) {
       console.error("Ocorreu um erro durante o login.", error);
       setIsLoading(false);

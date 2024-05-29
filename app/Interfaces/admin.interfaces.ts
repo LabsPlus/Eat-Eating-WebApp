@@ -4,7 +4,7 @@ export interface IAuthContextProps {
   login: (
     userData: { email: string; password: string },
     remember: boolean
-  ) => void;
+  ) => Promise<void | boolean>;
   logout: () => void;
 }
 
