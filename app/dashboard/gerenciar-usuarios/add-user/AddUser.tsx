@@ -1,7 +1,7 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import styles from "./page.module.css";
-import { Modal, Button, message, Input, Image } from "antd";
+import { Modal, message } from "antd";
 import { useStore } from "../../../../store";
 import axios from "axios";
 import { validateEmail } from "@/app/helpers/isValidEmailUser";
@@ -10,11 +10,9 @@ import {
   errorToast,
   successToast,
 } from "@/app/services/toast-messages/toast-messages";
-import PasswordValidationChecklist from "@/app/components/PasswordValidationChecklist/PasswordValidationChecklist";
 import Header from "../modal-user/header/Header";
 import Form from "../modal-user/Form/Form";
 import Buttons from "../modal-user/Buttons/Buttons";
-import { tree } from "next/dist/build/templates/app-page";
 
 const AddUser = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,20 +28,6 @@ const AddUser = () => {
     emailRecovery: "",
     picture: "",
   });
-
-  const resetFormData = () => {
-    setFormData({
-      name: "",
-      enrollment: "",
-      category: "",
-      typeGrant: "",
-      dailyMeals: 1,
-      email: "",
-      password: "",
-      emailRecovery: "",
-      picture: "",
-    });
-  };
 
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -82,6 +66,26 @@ const AddUser = () => {
       number: false,
       specialCharacter: false,
     });
+  };
+
+  const resetAll = () => {
+    setFormData({
+      name: "",
+      enrollment: "",
+      category: "",
+      typeGrant: "",
+      dailyMeals: 1,
+      email: "",
+      password: "",
+      emailRecovery: "",
+      picture: "",
+    });
+    resetPasswordValidations();
+    setCurrentStep(1);
+    setIsModalOpen(false);
+    setFileUploadMessageAdd("Nenhuma foto foi selecionada");
+    setFileUploadAdd(false);
+    setFileContainerColorAdd("");
   };
 
   const showError = (
@@ -154,9 +158,8 @@ const AddUser = () => {
   const handleInputChangeAdd = (e: any) => {
     const { id, value } = e.target;
     let newValue: string | number = value;
-    // if (id === "category" || id === "typeGrant" || id === "dailyMeals") {
     if (id === "name") {
-      newValue = value.replace(/[^a-zA-ZÀ-ÖØ-öø-ÿ\s]/g, "").toUpperCase();
+      newValue = value.replace(/[^a-zA-ZÀ-ÖØ-öø-ÿ\s]/g, "");
     }
 
     if (id === "enrollment") {
@@ -185,7 +188,6 @@ const AddUser = () => {
           return (
             formData.name &&
             formData.category &&
-            formData.typeGrant &&
             formData.dailyMeals
           );
         } else {
@@ -237,9 +239,6 @@ const AddUser = () => {
             showError(error.message, errorToast);
           });
         getAllUsers();
-        setFileUploadMessageAdd("Nenhuma foto foi selecionada");
-        setFileUploadAdd(false);
-        setFileContainerColorAdd("");
       } catch (error: any) {
         console.log(error);
         showError(
@@ -247,8 +246,7 @@ const AddUser = () => {
           errorToast
         );
       }
-      resetFormData();
-      resetPasswordValidations();
+      resetAll();
     } else {
       error(
         "Os campos não podem estar vazios. Por favor, preencha-os antes de prosseguir."
@@ -257,13 +255,7 @@ const AddUser = () => {
   };
 
   const handleCancel = () => {
-    setIsModalOpen(false);
-    setCurrentStep(1);
-    resetFormData();
-    setFileUploadMessageAdd("Nenhuma foto foi selecionada");
-    setFileUploadAdd(false);
-    setFileContainerColorAdd("");
-    resetPasswordValidations();
+    resetAll();
   };
 
   const nextStep = () => {
@@ -285,7 +277,7 @@ const AddUser = () => {
     <>
       {contextHolder}
       <button className={styles.btnAdd} onClick={() => setIsModalOpen(true)}>
-        Adicionar usuários
+        Adicionar usuário
       </button>
       <Modal
         data-testid="modal"
@@ -312,9 +304,6 @@ const AddUser = () => {
           prevStep={prevStep}
           handleUser={handleCreateUser}
         />
-
-        {/* {renderContent()}
-        {renderFooterButtons()} */}
       </Modal>
     </>
   );

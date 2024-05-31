@@ -1,18 +1,18 @@
 .header {
-    margin-top: 8px;
-    margin-bottom: 24px;
-    width: 552px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .header .title {
-    color: #043DAA;
-    font-size: 32px;
-    font-weight: 700;
-  }
-  
-  .header img {
-    cursor: pointer;
-  }
+  margin-top: 6px;
+  margin-bottom: 24px;
+  width: 552px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header .title {
+  color: #043DAA;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.header img {
+  cursor: pointer;
+}

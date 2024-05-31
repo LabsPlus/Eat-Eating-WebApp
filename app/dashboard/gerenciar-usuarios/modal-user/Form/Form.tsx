@@ -133,7 +133,7 @@ const Form = ({
                 id="typeGrant"
                 value={
                   formDataUser.category === "VISITANTE"
-                    ? "Não aplicável"
+                    ? (formDataUser.typeGrant = "NAO_APLICAVEL")
                     : formDataUser.typeGrant
                 }
                 onChange={handleInputChange}

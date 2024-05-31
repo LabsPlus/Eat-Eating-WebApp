@@ -1,7 +1,7 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
-import { Modal, Button, Input, message } from "antd";
+import { Modal, message } from "antd";
 import { useStore } from "../../../../store";
 import { validateEmail } from "@/app/helpers/isValidEmailUser";
 import { validatePassword } from "@/app/helpers/idValidPasswordUser";
@@ -12,7 +12,6 @@ import {
   errorToast,
   successToast,
 } from "@/app/services/toast-messages/toast-messages";
-import PasswordValidationChecklist from "@/app/components/PasswordValidationChecklist/PasswordValidationChecklist";
 import Header from "../modal-user/header/Header";
 import Form from "../modal-user/Form/Form";
 import Buttons from "../modal-user/Buttons/Buttons";
@@ -59,6 +58,13 @@ const UpdateUser: React.FC = () => {
       });
     }
   }, [formData]);
+
+  useEffect(() => {
+    if (formUpdate && formUpdate.password) {
+      validatePasswordChecklist(formUpdate.password);
+      console.log("Senha: " + formUpdate.password)
+    }
+  }, [formUpdate.password]);
 
   const [fileUploadUpdate, setFileUploadUpdate] = useState(false);
   const [fileUploadMessageUpdate, setFileUploadMessageUpdate] = useState(
@@ -169,7 +175,7 @@ const UpdateUser: React.FC = () => {
     const { id, value } = e.target;
     let newValue: string | number;
     if (id === "name") {
-      newValue = value.replace(/[^a-zA-ZÀ-ÖØ-öø-ÿ\s]/g, "").toUpperCase();
+      newValue = value.replace(/[^a-zA-ZÀ-ÖØ-öø-ÿ\s]/g, "");
     } else if (
       id === "dailyMeals"
       //||
