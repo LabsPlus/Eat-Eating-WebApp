@@ -22,6 +22,10 @@ body {
   border-radius: 20px !important;
 }
 
+.ant-modal-content {
+  width: fit-content;
+}
+
 .ant-modal .ant-modal-content .modal {
   border-radius: 10px !important;
 }
@@ -30,4 +34,3 @@ body {
   padding-bottom: 0 !important;
   top: 200px;
 }
-
