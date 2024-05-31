@@ -33,6 +33,7 @@ export function AuthContext({ children }: { children: React.ReactNode }) {
         userData
       );
       const { user, token, refreshToken } = response.data;
+      console.log(user)
 
       if (remember) {
         localStorage.setItem("user", JSON.stringify(user.email));

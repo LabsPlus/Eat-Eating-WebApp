@@ -1,10 +1,14 @@
 "use client";
+
 import React from "react";
-import styles from "./page.module.css";
+
 import Popover from "@/app/dashboard/gerenciar-usuarios/add-user/AddUser";
 import PaginationUsers from "@/app/dashboard/gerenciar-usuarios/list-users/ListUsers";
-import Search from "./search-user/SearchUser";
 import PrivateRoute from "@/app/components/PrivateRoute/PrivateRoute";
+import Search from "./search-user/SearchUser";
+import PopUpProfile from "./pop-up-profile/PopUpProfile";
+
+import styles from "./page.module.css";
 
 const UserManager = () => {
   const currentDate = new Date();
@@ -40,6 +44,7 @@ const UserManager = () => {
                   />
                 </svg>
               </div>
+              <PopUpProfile />
               <button>Copiar</button>
               <button>CSV</button>
               <button>Excel</button>
