@@ -15,9 +15,11 @@ const Buttons = ({
   prevStep,
   handleUser,
 }: ButtonsProps) => {
+  let content;
+
   switch (currentStep) {
     case 1:
-      return [
+      content = (
         <Button
           key="next"
           type="primary"
@@ -25,10 +27,11 @@ const Buttons = ({
           className={`${styles.btn} ${styles.btnNext}`}
         >
           Próximo
-        </Button>,
-      ];
+        </Button>
+      );
+      break;
     case 2:
-      return [
+      content = (
         <div className={styles.btnsContainer}>
           <Button
             key="prev"
@@ -37,7 +40,6 @@ const Buttons = ({
           >
             Voltar
           </Button>
-
           <Button
             key="save"
             type="primary"
@@ -46,11 +48,13 @@ const Buttons = ({
           >
             Salvar
           </Button>
-        </div>,
-      ];
+        </div>
+      );
+      break;
     default:
-      return null;
+      content = null;
   }
+  return content;
 };
 
 export default Buttons;

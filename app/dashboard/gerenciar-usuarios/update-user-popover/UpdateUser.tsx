@@ -62,7 +62,7 @@ const UpdateUser: React.FC = () => {
   useEffect(() => {
     if (formUpdate && formUpdate.password) {
       validatePasswordChecklist(formUpdate.password);
-      console.log("Senha: " + formUpdate.password)
+      console.log("Senha: " + formUpdate.password);
     }
   }, [formUpdate.password]);
 
@@ -329,7 +329,16 @@ const UpdateUser: React.FC = () => {
         onCancel={closeModal}
         closable={false}
         className={styles.modalUpdateUser}
-        footer={null}
+        footer={
+          <>
+            <Buttons
+              currentStep={currentStep}
+              nextStep={nextStep}
+              prevStep={prevStep}
+              handleUser={handleUpdateUser}
+            />
+          </>
+        }
       >
         <Form
           currentStep={currentStep}
@@ -340,13 +349,6 @@ const UpdateUser: React.FC = () => {
           handleInputChange={handleInputChangeUpdate}
           handlePicture={handlePictureUploadUpdate}
           pictureUser={"pictureUpdate"}
-        />
-
-        <Buttons
-          currentStep={currentStep}
-          nextStep={nextStep}
-          prevStep={prevStep}
-          handleUser={handleUpdateUser}
         />
       </Modal>
     </>

@@ -185,11 +185,7 @@ const AddUser = () => {
     switch (currentStep) {
       case 1:
         if (formData.category === "VISITANTE") {
-          return (
-            formData.name &&
-            formData.category &&
-            formData.dailyMeals
-          );
+          return formData.name && formData.category && formData.dailyMeals;
         } else {
           return (
             formData.name &&
@@ -285,7 +281,16 @@ const AddUser = () => {
         open={isModalOpen}
         onCancel={handleCancel}
         closable={false}
-        footer={null}
+        footer={
+          <>
+            <Buttons
+              currentStep={currentStep}
+              nextStep={nextStep}
+              prevStep={prevStep}
+              handleUser={handleCreateUser}
+            />
+          </>
+        }
         className={styles.modalAddUser}
       >
         <Form
@@ -297,12 +302,6 @@ const AddUser = () => {
           handleInputChange={handleInputChangeAdd}
           handlePicture={handlePictureUpload}
           pictureUser={"picture"}
-        />
-        <Buttons
-          currentStep={currentStep}
-          nextStep={nextStep}
-          prevStep={prevStep}
-          handleUser={handleCreateUser}
         />
       </Modal>
     </>
