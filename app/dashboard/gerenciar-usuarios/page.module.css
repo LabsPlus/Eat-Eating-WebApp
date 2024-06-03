@@ -16,7 +16,7 @@
     display: flex;
     position: absolute;
     top: 20px;
-    right: 5px;
+    right: 10px;
     align-items: center;
     justify-content: center;
     color: var(--foundation-blue-dark-hover, #022971);
