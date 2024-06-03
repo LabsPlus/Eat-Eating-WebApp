@@ -1,23 +1,30 @@
+.gerenciarUsuariosContainer{
+    width: 90%;
+}
+
 .container {
     position: relative;
-    width: 98%;
+    width: 100%;
+    height: 100%;
+    background-color: #E6ECF8;
     padding: 10px;
-    border-radius: 10px;
-    background-color: #EEF2F9;
 }
 
 .time {
-    width: 150px;
-    height: 37px;
+    width: 142px;
+    height: 40px;
     display: flex;
     position: absolute;
     top: 20px;
-    right: 10px;
+    right: 5px;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
-    border-radius: 10px;
-    background-color: #B1C5EB;
+    color: var(--foundation-blue-dark-hover, #022971);
+    font: 400 12px/16px Inter;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid var(--Blue-Normal, #0444BD);
+    background: var(--Blue-Light-Active, #B1C5EB);
 }
 
 .title {
@@ -29,27 +36,30 @@
     height: 65px;
     color: #022971;
     font-size: 22px;
-    border: 1px solid #03338E;
-    border-radius: 10px;
-    background-color: #E6ECF8;
+    border-radius: 5px;
+    border: 1px solid var(--Blue-Normal, #0444BD);
+    background: #EEF2F9;
 }
 
 .inputsContainer {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction:column-reverse;
 }
 
 .inputsContainer .searchAndAdd {
     display: flex;
+    margin-bottom: 24px;
 }
 
 .btnsContainer {
-    margin-top: -18px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+    margin-bottom: -44px;
 }
 
 .btnsContainer .personIcon {
-    margin: auto auto;
     width: 72px;
     height: 72px;
     display: flex;
@@ -57,26 +67,42 @@
     justify-content: center;
     border-radius: 50%;
     background-color: #B1C5EB;
+    margin-bottom: 24px;
+    align-self: flex-end;
+}
+
+.btnGroup {
+    display: flex;
+    justify-content: flex-end;
+    border-radius: 5px;
 }
 
 .btnsContainer button {
-    margin-top: 6px;
-    height: 37px;
-    padding: 5px;
-    font-size: 14px;
-    font-weight: 400;
+    width: 77px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
     cursor: pointer;
-    color: #03338E;
-    background-color: #B1C5EB;
-    border: 1px solid #03338E;
+    color: #0443BD;
+    font: 700 16px Inter;
+    border: 1px solid var(--Foundation-Blue-Normal, #0443BD);
+    background: var(--Blue-Light-Hover, #D9E3F5);
+    margin: 0;
 }
 
-.btnsContainer .personIcon+button {
+.btnGroup .personIcon + button {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
 
-.btnsContainer button:last-child {
+.btnGroup button:first-child{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.btnGroup button:last-child {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }

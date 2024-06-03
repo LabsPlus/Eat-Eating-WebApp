@@ -22,7 +22,7 @@ const SearchUser = () => {
       <Input
         className={styles.search}
         size="large"
-        placeholder="Pesquisar por"
+        placeholder="Pesquisar..."
         prefix={<SearchOutlined className={styles.searchOutlined} />}
         value={searchTerm}
         onChange={(e) => handleSearch(e.target.value)}

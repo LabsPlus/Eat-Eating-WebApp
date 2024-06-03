@@ -16,7 +16,7 @@ const UserManager = () => {
       <div className={styles.container}>
         <div className={styles.time}>{formattedDate}</div>
 
-        <h1 className={styles.title}>Gerenciamento de Usuarios</h1>
+        <h1 className={styles.title}>Gerenciamento de Usuários</h1>
 
         <div className={styles.inputsContainer}>
           <div className={styles.searchAndAdd}>
@@ -25,7 +25,6 @@ const UserManager = () => {
           </div>
 
           <div className={styles.btnsContainer}>
-            <div>
               <div className={styles.personIcon}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -40,6 +39,7 @@ const UserManager = () => {
                   />
                 </svg>
               </div>
+            <div className={styles.btnGroup}>
               <button>Copiar</button>
               <button>CSV</button>
               <button>Excel</button>
