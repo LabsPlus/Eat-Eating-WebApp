@@ -1,138 +1,20 @@
 .btnAdd {
-  width: 187px;
-  height: 37px;
-  margin-left: 32px;
+  width: 157px;
+  height: 44px;
+  margin-left: 25px;
   cursor: pointer;
-  color: #022971;
-  font-size: 12px;
-  font-weight: 400;
-  border: 1px solid #022971;
-  border-radius: 8px;
-  background-color: #b1c5eb;
-}
-
-.modal {
-  width: 564px !important;
-  border-radius: 8px;
-  border: 1px solid #6996ea;
-  background: #fcfcfc;
-  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.25);
-  height: 100px !important;
-  /* se o modal ficar grande o pequeno aqui alterar */
-}
-
-.modal .title {
-  color: #043daa;
-  font-size: 34px;
+  color: #0444BD;
+  font-size: 16px;
   font-weight: 700;
-}
-
-.modalContainer .pictureContainer {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.modalContainer .pictureContainer img,
-.modalContainer .pictureContainer .placeholder {
-  width: 56px;
-  height: 56px;
-  border-radius: 56px;
-  object-fit: cover;
-}
-
-.modalContainer .pictureContainer .placeholder {
-  background-color: #0444bd;
-}
-
-.modalContainer .pictureContainer .fileContainer {
-  margin-left: 10px;
-  position: relative;
-  width: 370px;
-  height: 32px;
-  display: flex;
-  align-items: center;
+  border: 1px solid #0444BD;
   border-radius: 5px;
-  background-color: #B1C5EB;
+  background-color: #FFF;
 }
 
-.modalContainer .pictureContainer .fileContainer label,
-.modalContainer .pictureContainer .fileContainer input {
-  position: absolute;
-  width: 133px;
-  height: 19px;
-  left: 5px;
-}
-
-.modalContainer .pictureContainer .fileContainer label {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  padding-left: 2px;
-  border-radius: 2px;
-  background-color: #E6ECF8;
-}
-
-.modalContainer .pictureContainer .fileContainer input {
-  display: none;
-}
-
-.modalContainer .pictureContainer .fileContainer span {
-  position: absolute;
-  right: 10px;
-  color: #193160;
-  font-size: 16px;
-}
-
-.modalContainer .item {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.modalContainer .itens {
-  display: flex;
-  flex-direction: column;
-  margin-right: 35px;
-}
-
-.modalContainer .itens .name {
-  width: 214px;
-}
-
-.modalContainer .itens .inputMedium {
-  width: 114px;
-}
-
-.modalContainer .itens .inputSmall {
-  width: 97px;
-}
-
-.modalContainer input,
-.modalContainer select {
-  height: 40px;
-  padding-left: 5px;
-  border: 1px solid #0443bd;
-  border-radius: 5px;
-}
-
-.modalContainer input,
-.modalContainer input::placeholder,
-.modalContainer select,
-.modalContainer label {
-  color: #0443bd;
-  font-weight: 400;
-}
-
-.modalContainer input::placeholder {
-  font-size: 16px;
-}
-
-.modalContainer input:focus {
-  outline: none;
-}
-
-.modalContainer label {
-  margin-top: 2px;
-  font-size: 14px;
+.modalAddUser {
+  width: 600px !important;
+  height: 500px !important;
+  border-radius: 8px;
+  background-color: #FFF;
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.25);
 }

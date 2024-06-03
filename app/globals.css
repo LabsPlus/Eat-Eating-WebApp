@@ -18,9 +18,9 @@ body {
   border-color: #022971;
 }
 
-.ant-modal .ant-modal-content {
+/* .ant-modal .ant-modal-content {
   border-radius: 20px !important;
-}
+} */
 
 .ant-modal .ant-modal-content .modal {
   border-radius: 10px !important;
@@ -30,4 +30,3 @@ body {
   padding-bottom: 0 !important;
   top: 200px;
 }
-
