@@ -141,6 +141,7 @@ const ListUsers = () => {
       title: "Matrícula ",
       dataIndex: "enrrolment",
       key: "enrollment",
+      className:styles.tableColumn,
       render: (text: any, record: any) => {
         if (record.user.category.name === "VISITANTE") {
           return "XXXXXXX";
@@ -154,17 +155,20 @@ const ListUsers = () => {
       dataIndex: ["user", "category", "name"],
       key: "category",
       render: (text: any) => capitalizeFirstLetter(text),
+      className:styles.tableColumn,
     },
     {
       title: "Tipo de bolsa",
       dataIndex: ["user", "typeGrant", "name"],
       key: "typeGrant",
       render: (text: any) => capitalizeFirstLetter(text),
+      className:styles.tableColumn
     },
     {
-      title: "Refeições Realizadas",
+      title: "Refeições realizadas",
       dataIndex: ["user", "dailyMeals"],
       key: "dailyMeals",
+      className:styles.tableColumn
     },
     {
       title: "Ações",

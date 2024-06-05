@@ -18,8 +18,10 @@
 
 .tableContainer {
   position: relative;
+  align-items: center !important;
   border-radius: 5px;
   border: 1px solid var(--Blue-Normal, #0444BD);
+  box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.1) !important;
 }
 
 .errorMessage {
@@ -77,8 +79,8 @@
 }
 
 .paginationContainer .paginationInfo {
-  margin-left: 15px;
-  margin-right: 15px;
+  margin-left: 24px;
+  margin-right: 10px;
   color: #03328E;
   font-size: 14px;
   font-weight: 400;
@@ -87,8 +89,11 @@
 .paginationContainer .paginationButtons {
   color: #03338e;
 }
+
 .first,
 .last {
+  margin-left: 12px;
+  margin-right: 12px;
   width: 18px;
   height: 20px;
   color: #0443BD;
@@ -96,23 +101,22 @@
 
 .prev,
 .next {
+  margin-right: 12px;
+  margin-left: 12px;
   width: 14px;
   height: 20px;
   color: #0443BD;
 }
 
 .first {
-  margin-right: 15px;
   color: #0443BD
 }
 
 .prev {
-  margin-right: 10px;
   color: #0443BD;
 }
 
 .last {
-  margin-left: 15px;
   color: #0443BD;
 }
 
@@ -140,6 +144,13 @@
   line-height: 20px;
 }
 
+.tableColumn {
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+
+}
+
 .table td {
   font-size: 16px;
 }
@@ -150,6 +161,12 @@
   margin-right: 10px;
   border-radius: 20px;
   object-fit: cover;
+}
+
+.ant-table-cell {
+  padding-right: 24px;
+  align-self: center !important;
+  justify-self: center !important;
 }
 
 .nameAndPicture {

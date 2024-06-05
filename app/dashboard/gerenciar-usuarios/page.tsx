@@ -44,7 +44,7 @@ const UserManager = () => {
               <button>CSV</button>
               <button>Excel</button>
               <button>PDF</button>
-              <button>Imprimir</button>
+              <button className={styles.btnPrint}>Imprimir</button>
             </div>
           </div>
         </div>
