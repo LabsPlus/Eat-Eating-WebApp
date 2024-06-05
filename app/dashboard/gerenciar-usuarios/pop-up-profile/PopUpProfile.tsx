@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useAuthContext } from "@/app/contexts/AuthContext";
 
 import styles from "./page.module.css";
+import { errorToast } from "@/app/services/toast-messages/toast-messages";
 
 const PopUpProfile = () => {
   const { logout } = useAuthContext();
@@ -38,6 +39,7 @@ const PopUpProfile = () => {
         <Button
           className={styles.buttonsPopUp}
           icon={<User className={styles.iconsPopUp} />}
+          onClick={() => errorToast("Página em desenvolvimento.")}
         >
           Meu perfil
         </Button>

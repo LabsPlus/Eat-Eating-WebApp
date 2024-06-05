@@ -12,6 +12,7 @@ import {
   errorToast,
   successToast,
 } from "../services/toast-messages/toast-messages";
+import PasswordValidationChecklist from "../components/PasswordValidationChecklist/PasswordValidationChecklist";
 
 const NewPassword = () => {
   const searchParams = useSearchParams();
@@ -23,14 +24,19 @@ const NewPassword = () => {
   const [passwordData, setPasswordData] = useState<IPasswordData>({
     password: "",
     confirmPassword: "",
-  });
-  const [passawordValidations, setPassawordValidations] = useState({
     length: false,
     lowercase: false,
     uppercase: false,
     number: false,
     specialCharacter: false,
   });
+  // const [passawordValidations, setPassawordValidations] = useState({
+  //   length: false,
+  //   lowercase: false,
+  //   uppercase: false,
+  //   number: false,
+  //   specialCharacter: false,
+  // });
 
   const handleConfirmPasswordVisibilityToggle = () => {
     setConfirmPasswordVisible(!confirmPasswordVisible);
@@ -41,16 +47,26 @@ const NewPassword = () => {
     field: string
   ) => {
     const value = e.target.value;
-    setPasswordData({ ...passwordData, [field]: value });
+    const updatedPasswordData = { ...passwordData, [field]: value };
+    updatedPasswordData.length = value.length >= 8 && value.length <= 15;
+    updatedPasswordData.lowercase = /[a-z]/.test(value);
+    updatedPasswordData.uppercase = /[A-Z]/.test(value);
+    updatedPasswordData.number = /\d/.test(value);
+    updatedPasswordData.specialCharacter =
+      /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(value);
 
-    const validations = {
-      length: value.length >= 8 && value.length <= 15,
-      lowercase: /[a-z]/.test(value),
-      uppercase: /[A-Z]/.test(value),
-      number: /\d/.test(value),
-      specialCharacter: /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(value),
-    };
-    setPassawordValidations(validations);
+    setPasswordData(updatedPasswordData);
+
+    // setPasswordData({ ...passwordData, [field]: value });
+
+    // const validations = {
+    //   length: value.length >= 8 && value.length <= 15,
+    //   lowercase: /[a-z]/.test(value),
+    //   uppercase: /[A-Z]/.test(value),
+    //   number: /\d/.test(value),
+    //   specialCharacter: /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(value),
+    // };
+    // setPassawordValidations(validations);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -64,7 +80,7 @@ const NewPassword = () => {
     }
 
     if (!regexPassword.test(passwordData.password)) {
-      return; // Retorna silenciosamente se a senha não atender aos critérios de validação
+      return; 
     }
 
     try {
@@ -76,7 +92,15 @@ const NewPassword = () => {
         }
       );
       successToast("Senha alterada com sucesso.");
-      setPasswordData({ password: "", confirmPassword: "" });
+      setPasswordData({
+        password: "",
+        confirmPassword: "",
+        length: false,
+        lowercase: false,
+        uppercase: false,
+        number: false,
+        specialCharacter: false,
+      });
       router.push("/login");
     } catch (error) {
       console.error("Erro ao enviar o email:", error);
@@ -130,7 +154,7 @@ const NewPassword = () => {
             )}
           </div>
 
-          <div className={styles.checkboxContainer}>
+          {/* <div className={styles.checkboxContainer}>
             <p>Sua senha deve conter</p>
             <div className={styles.checkbox}>
               <img
@@ -191,7 +215,9 @@ const NewPassword = () => {
               />
               <span>Símbolo especial (Ex. !#$%)</span>
             </div>
-          </div>
+          </div> */}
+
+          <PasswordValidationChecklist validations={passwordData} />
 
           <div>
             <input
