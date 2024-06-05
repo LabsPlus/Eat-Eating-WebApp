@@ -5,7 +5,7 @@ import PrivateRoute from "@/app/components/PrivateRoute/PrivateRoute";
 function Dashboard() {
   return (
     <PrivateRoute>
-      <div>
+      <div >
         {/* <h1>Hi on Dashboard home</h1> */}
       </div>
     </PrivateRoute>

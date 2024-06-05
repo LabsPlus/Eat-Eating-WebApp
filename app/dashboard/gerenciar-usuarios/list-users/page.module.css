@@ -17,7 +17,11 @@
 }
 
 .tableContainer {
-    position: relative;
+  position: relative;
+  align-items: center !important;
+  border-radius: 5px;
+  border: 1px solid var(--Blue-Normal, #0444BD);
+  box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.1) !important;
 }
 
 .errorMessage {
@@ -29,24 +33,24 @@
 }
 
 .paginationContainer {
+  padding: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 92px;
   background-color: #ffffff;
-  border-left: 1px solid #03338e;
-  border-bottom: 1px solid #03338e;
-  border-right: 1px solid #03338e;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .paginationContainer .selectContainer {
     display: flex;
     align-items: center;
+    color: #0443BD;
 }
 
 .selectContainer span,
 .selectContainer .pageSizeSelect .selectContainer .pageSizeSelect option {
-  color: #03328e;
+  color: var(--Foundation-Blue-Dark, #03328E);
   font-size: 14px;
   font-weight: 400;
   text-align: center;
@@ -57,12 +61,27 @@
   height: 44px;
   margin-left: 10px;
   border-radius: 5px;
+  color: #0443BD !important;
+  border: 1px solid #0444BD;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.optionSizeSelectOption {
+  display: flex;
+  color: #0444BD !important;
+  font-weight: 700 !important;
+}
+
+.optionSizeSelectOption:hover{
+  background: var(--foundation-blue-light-hover, #D9E3F5) !important;
 }
 
 .paginationContainer .paginationInfo {
-  margin-left: 15px;
-  margin-right: 15px;
-  color: #03338e;
+  margin-left: 24px;
+  margin-right: 10px;
+  color: #03328E;
   font-size: 14px;
   font-weight: 400;
 }
@@ -73,26 +92,32 @@
 
 .first,
 .last {
+  margin-left: 12px;
+  margin-right: 12px;
   width: 18px;
   height: 20px;
+  color: #0443BD;
 }
 
 .prev,
 .next {
+  margin-right: 12px;
+  margin-left: 12px;
   width: 14px;
   height: 20px;
+  color: #0443BD;
 }
 
 .first {
-  margin-right: 15px;
+  color: #0443BD
 }
 
 .prev {
-  margin-right: 10px;
+  color: #0443BD;
 }
 
 .last {
-  margin-left: 15px;
+  color: #0443BD;
 }
 
 .disabledButton {
@@ -100,22 +125,30 @@
   cursor: not-allowed !important;
 }
 
-.table {
-  border-left: 1px solid #03338e;
-  border-top: 1px solid #03338e;
-  border-right: 1px solid #03338e;
-}
-
 .table th,
 .table td {
-  color: #03338e !important;
-  font-weight: 400;
+  color: var(--Foundation-Blue-Normal, #0443BD) !important;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
 }
 
 .table th {
-  font-size: 18px;
-  border-bottom: 1px solid #d9e3f5 !important;
-  background-color: #e6ecf8 !important;
+  height: 72px;
+  background-color: #FFFFFF !important;
+  color: #03338E !important;
+  font-size: 16;
+  font-family: Inter;
+  font-weight: 700 !important;
+  line-height: 20px;
+}
+
+.tableColumn {
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+
 }
 
 .table td {
@@ -130,17 +163,23 @@
   object-fit: cover;
 }
 
+.ant-table-cell {
+  padding-right: 24px;
+  align-self: center !important;
+  justify-self: center !important;
+}
+
 .nameAndPicture {
   display: flex;
   align-items: center;
 }
 
 .evenRow {
-  background-color: #d9e3f5 !important;
+  background-color: #E6ECF8 !important;
 }
 
 .oddRow {
-  background-color: #e6ecf8 !important;
+  background-color: #FFFFFF !important;
 }
 
 .modalDeleteSubtitle {

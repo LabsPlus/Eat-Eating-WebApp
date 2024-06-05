@@ -18,7 +18,8 @@ body {
   border-color: #022971;
 }
 
-/* .ant-modal .ant-modal-content {
+/* styles globais modals */
+.ant-modal .ant-modal-content {
   border-radius: 20px !important;
 } */
 
@@ -30,3 +31,9 @@ body {
   padding-bottom: 0 !important;
   top: 200px;
 }
+
+/* styles globals background options select */
+.ant-select-item-option {
+  background-color: transparent !important;
+}
+
