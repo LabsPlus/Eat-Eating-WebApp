@@ -48,7 +48,7 @@ const UserManager = () => {
                 open={openModalUser}
                 onOpenChange={handleToggleModalUser}
                 placement="bottomRight"
-                overlayStyle={{ position: 'absolute', left: '990px', right: '25px' }}
+                arrow={false}
               >
                 <div 
                   className={styles.personIcon} 
