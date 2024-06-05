@@ -34,3 +34,7 @@ body {
   padding-bottom: 0 !important;
   top: 200px;
 }
+
+.ant-popover-arrow {
+  display: none;
+}
