@@ -4,7 +4,7 @@ export interface IAuthContextProps {
   login: (
     userData: { email: string; password: string },
     remember: boolean
-  ) => void;
+  ) => Promise<void | boolean>;
   logout: () => void;
 }
 
@@ -16,6 +16,11 @@ export interface IUserData {
 export interface IPasswordData {
   password: string;
   confirmPassword: string;
+  length: boolean;
+  lowercase: boolean;
+  uppercase: boolean;
+  number: boolean;
+  specialCharacter: boolean;
 }
 
 export interface IEmailRecovery {

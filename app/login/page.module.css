@@ -62,17 +62,51 @@
 }
 
 .inputsContents button {
-  border-radius: 12px;
   display: flex;
-  width: 262px;
-  height: 44px;
-  padding: 12px 8px;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  border-radius: 8px;
   flex-shrink: 0;
-  background-color: #0444bd;
+  width: 204px;
+  height: 44px;
+  padding: 0.75rem 1rem;
+  background-color: #0444BD;
+  font-weight: 700;
+  line-height: 20px;
+  font-size: 1rem; 
 }
+
+.inputsContents button:disabled {
+  background-color: #0444BD;
+  color: #FFF;
+  opacity: 0.85;
+  border-color: #0444BD
+}
+
+@keyframes rotate {
+  100% {
+  transform: rotate(360deg);
+  }
+}
+  
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(360deg, #0444BD 7.6%, #659AFF 52.44%, #FFFF 97.05%);
+  animation: rotate 1s linear infinite;
+}
+
+.circle {
+  width: 15.5px;
+  height: 15.5px;
+  border-radius: 50%;
+  background-color: #0444BD;
+}
+
 .inputsContents input::placeholder {
   color: #65737e !important;
   font-weight: 500;

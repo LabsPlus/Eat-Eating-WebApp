@@ -54,7 +54,9 @@ export function AuthContext({ children }: { children: React.ReactNode }) {
 
       successToast("Login realizado com sucesso.");
       router.push("/dashboard/gerenciar-usuarios");
+
       return true;
+      
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         console.log(error.response.data);
