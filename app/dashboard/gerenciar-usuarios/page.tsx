@@ -28,7 +28,7 @@ const UserManager = () => {
         
         <div className={styles.time}>{formattedDate}</div>
 
-        <h1 className={styles.title}>Gerenciamento de Usuarios</h1>
+        <h1 className={styles.title}>Gerenciamento de Usuários</h1>
 
         <div className={styles.inputsContainer}>
           <div className={styles.searchAndAdd}>
@@ -38,7 +38,6 @@ const UserManager = () => {
 
           <div className={styles.btnsContainer}>
             {openModalUser && <div className={styles.overlay} />} 
-            
             <div>
               <Popover 
                 content={
@@ -67,12 +66,13 @@ const UserManager = () => {
                     </svg>
                 </div>
               </Popover>
-
+             
+            <div className={styles.btnGroup}>
               <button>Copiar</button>
               <button>CSV</button>
               <button>Excel</button>
               <button>PDF</button>
-              <button>Imprimir</button>
+              <button className={styles.btnPrint}>Imprimir</button>
             </div>
           </div>
         </div>

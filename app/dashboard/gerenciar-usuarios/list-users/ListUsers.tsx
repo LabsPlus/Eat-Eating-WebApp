@@ -29,13 +29,13 @@ const ListUsers = () => {
   const UpdateIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="31"
-      height="42"
-      viewBox="0 0 31 42"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
       fill="none"
     >
       <path
-        d="M9.74959 11C7.67875 11 6 12.6787 6 14.7496V24.7485C6 26.8193 7.67875 28.4981 9.74959 28.4981H13.7747L14.0387 27.4424C14.055 27.3771 14.0729 27.3124 14.0924 27.2482H9.74959C8.36903 27.2482 7.24986 26.129 7.24986 24.7485V15.9994H22.2482V18.7887C22.6474 18.6176 23.0713 18.5224 23.4981 18.5029V14.7496C23.4981 12.6787 21.8193 11 19.7485 11H9.74959ZM7.24986 14.7496C7.24986 13.369 8.36903 12.2499 9.74959 12.2499H19.7485C21.129 12.2499 22.2482 13.369 22.2482 14.7496L7.24986 14.7496ZM15.9736 26.4698L22.0097 20.4337C22.9225 19.5208 24.4025 19.5208 25.3154 20.4337C26.2282 21.3465 26.2282 22.8265 25.3154 23.7393L19.2793 29.7754C18.9273 30.1274 18.4864 30.377 18.0035 30.4977L16.1313 30.9658C15.3172 31.1693 14.5797 30.4319 14.7832 29.6177L15.2513 27.7455C15.372 27.2627 15.6217 26.8217 15.9736 26.4698Z"
+        d="M4 20.1549C3.45 20.1549 2.97917 19.959 2.5875 19.5674C2.19583 19.1757 2 18.7049 2 18.1549V4.15488C2 3.60488 2.19583 3.13405 2.5875 2.74238C2.97917 2.35072 3.45 2.15488 4 2.15488H12.925L10.925 4.15488H4V18.1549H18V11.2049L20 9.20488V18.1549C20 18.7049 19.8042 19.1757 19.4125 19.5674C19.0208 19.959 18.55 20.1549 18 20.1549H4ZM8 14.1549V9.90488L17.175 0.729883C17.375 0.529883 17.6 0.379883 17.85 0.279883C18.1 0.179883 18.35 0.129883 18.6 0.129883C18.8667 0.129883 19.1208 0.179883 19.3625 0.279883C19.6042 0.379883 19.825 0.529883 20.025 0.729883L21.425 2.15488C21.6083 2.35488 21.75 2.57572 21.85 2.81738C21.95 3.05905 22 3.30488 22 3.55488C22 3.80488 21.9542 4.05072 21.8625 4.29238C21.7708 4.53405 21.625 4.75488 21.425 4.95488L12.25 14.1549H8ZM10 12.1549H11.4L17.2 6.35488L16.5 5.65488L15.775 4.95488L10 10.7299V12.1549Z"
         fill="#0443BD"
       />
     </svg>
@@ -50,7 +50,7 @@ const ListUsers = () => {
       fill="none"
     >
       <path
-        d="M10 5H14C14 3.89543 13.1046 3 12 3C10.8954 3 10 3.89543 10 5ZM8.5 5C8.5 3.067 10.067 1.5 12 1.5C13.933 1.5 15.5 3.067 15.5 5H21.25C21.6642 5 22 5.33579 22 5.75C22 6.16421 21.6642 6.5 21.25 6.5H19.9309L18.7589 18.6112C18.5729 20.5334 16.9575 22 15.0263 22H8.97369C7.04254 22 5.42715 20.5334 5.24113 18.6112L4.06908 6.5H2.75C2.33579 6.5 2 6.16421 2 5.75C2 5.33579 2.33579 5 2.75 5H8.5ZM10.5 9.75C10.5 9.33579 10.1642 9 9.75 9C9.33579 9 9 9.33579 9 9.75V17.25C9 17.6642 9.33579 18 9.75 18C10.1642 18 10.5 17.6642 10.5 17.25V9.75ZM14.25 9C14.6642 9 15 9.33579 15 9.75V17.25C15 17.6642 14.6642 18 14.25 18C13.8358 18 13.5 17.6642 13.5 17.25V9.75C13.5 9.33579 13.8358 9 14.25 9ZM6.73416 18.4667C6.84577 19.62 7.815 20.5 8.97369 20.5H15.0263C16.185 20.5 17.1542 19.62 17.2658 18.4667L18.4239 6.5H5.57608L6.73416 18.4667Z"
+        d="M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V7H6V19ZM8 9H16V19H8V9ZM15.5 4L14.5 3H9.5L8.5 4H5V6H19V4H15.5Z"
         fill="#0443BD"
       />
     </svg>
@@ -141,6 +141,7 @@ const ListUsers = () => {
       title: "Matrícula ",
       dataIndex: "enrrolment",
       key: "enrollment",
+      className:styles.tableColumn,
       render: (text: any, record: any) => {
         if (record.user.category.name === "VISITANTE") {
           return "XXXXXXX";
@@ -154,20 +155,23 @@ const ListUsers = () => {
       dataIndex: ["user", "category", "name"],
       key: "category",
       render: (text: any) => capitalizeFirstLetter(text),
+      className:styles.tableColumn,
     },
     {
       title: "Tipo de bolsa",
       dataIndex: ["user", "typeGrant", "name"],
       key: "typeGrant",
       render: (text: any) => capitalizeFirstLetter(text),
+      className:styles.tableColumn
     },
     {
-      title: "Refeições Realizadas",
+      title: "Refeições realizadas",
       dataIndex: ["user", "dailyMeals"],
       key: "dailyMeals",
+      className:styles.tableColumn
     },
     {
-      title: "Ação",
+      title: "Ações",
       dataIndex: "action",
       key: "action",
       render: (text: any, record: any) => (
@@ -223,8 +227,9 @@ const ListUsers = () => {
               onChange={handlePageSizeChange}
               className={styles.pageSizeSelect}
             >
-              <option value={5}>5</option>
-              <option value={10}>10</option>
+              <option className={styles.optionSizeSelectOption} value={5}>5</option>
+              <option className={styles.optionSizeSelectOption} value={10}>10</option>
+              <option className={styles.optionSizeSelectOption} value={15}>15</option>
             </Select>
           </div>
 
