@@ -1,8 +1,9 @@
 "use client";
-import { createContext, useState, useContext, useEffect } from "react";
+
+import React, { createContext, useState, useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import React from "react";
 import axios from "axios";
+
 import { IAuthContextProps } from "../Interfaces/admin.interfaces";
 import {
   errorToast,

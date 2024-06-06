@@ -23,6 +23,7 @@ body {
   border-radius: 20px !important;
 } 
 
+/* avaliar em dev se eses stylos sao uties */
 .ant-modal .ant-modal-content .modal {
   border-radius: 10px !important;
 }

@@ -60,6 +60,7 @@
 }
 
 .btnsContainer .personIcon {
+    cursor: pointer;
     width: 72px;
     height: 72px;
     display: flex;
@@ -110,4 +111,20 @@
 .btnGroup button:last-child {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+
+.popUpUser {
+    width: 332px !important;
+    padding: 0.75rem !important;
+    border-radius: 8px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(177, 197, 235, 0.50);
+    z-index: 1000;
 }
