@@ -37,7 +37,7 @@ const UserManager = () => {
 
           <div className={styles.btnsContainer}>
             {openModalUser && <div className={styles.overlay} />}
-            <div>
+            <div className={styles.containerIcons}>
               <Popover
                 content={<PopUpProfile />}
                 trigger="click"
