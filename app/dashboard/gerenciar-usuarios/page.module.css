@@ -72,6 +72,12 @@
     align-self: flex-end;
 }
 
+.containerIcons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
 .btnGroup {
     display: flex;
     justify-content: flex-end;
