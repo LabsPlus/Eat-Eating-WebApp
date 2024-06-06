@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { Popover } from "antd";
 
 import AddUser from "@/app/dashboard/gerenciar-usuarios/add-user/AddUser";
 import PaginationUsers from "@/app/dashboard/gerenciar-usuarios/list-users/ListUsers";
@@ -9,7 +10,6 @@ import Search from "./search-user/SearchUser";
 import PopUpProfile from "./pop-up-profile/PopUpProfile";
 
 import styles from "./page.module.css";
-import { Popover } from "antd";
 
 const UserManager = () => {
   const [openModalUser, setOpenModalUser] = useState(false);

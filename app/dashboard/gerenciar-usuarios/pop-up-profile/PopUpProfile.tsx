@@ -5,9 +5,9 @@ import { LogOut, User, Mail } from "lucide-react";
 import Image from "next/image";
 
 import { useAuthContext } from "@/app/contexts/AuthContext";
+import { errorToast } from "@/app/services/toast-messages/toast-messages";
 
 import styles from "./page.module.css";
-import { errorToast } from "@/app/services/toast-messages/toast-messages";
 
 const PopUpProfile = () => {
   const { logout } = useAuthContext();
