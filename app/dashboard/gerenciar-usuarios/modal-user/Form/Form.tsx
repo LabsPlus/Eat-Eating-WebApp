@@ -156,6 +156,32 @@ const Form = ({
     case 2:
       return (
         <div className={styles.modalContainer}>
+          <div
+            className={styles.pictureContainer}
+            style={{ alignItems: "flex-start" }}
+          >
+            {formDataUser && formDataUser.picture ? (
+              <img src={formDataUser.picture} alt="Foto do usuário" />
+            ) : (
+              <div className={styles.placeholder}></div>
+            )}
+            <div>
+              <div className={styles.biometryContainer}>
+                <div className={styles.labelContainer}>
+                  <label>Cadastrar biometria</label>
+                </div>
+                <span>Nenhuma biometria foi cadastrada</span>
+              </div>
+
+              <div className={styles.rfidContainer}>
+                <div className={styles.labelContainer}>
+                  <label>Cadastrar RFID</label>
+                </div>
+                <span>Nenhum RFID foi cadastrado</span>
+              </div>
+            </div>
+          </div>
+
           <div className={styles.item}>
             <div className={styles.itens}>
               <label htmlFor="email">E-mail</label>
