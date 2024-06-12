@@ -277,7 +277,7 @@ const AddUser = () => {
       </button>
       <Modal
         data-testid="modal"
-        title={<Header title="Adicionar usário" handleClose={handleCancel} />}
+        title={<Header title="Adicionar usuário" handleClose={handleCancel} />}
         open={isModalOpen}
         onCancel={handleCancel}
         closable={false}
