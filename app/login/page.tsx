@@ -1,13 +1,15 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { UserOutlined } from "@ant-design/icons";
-import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
-import { Input, Button } from "antd";
+import { Button } from "antd";
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
+
+import Loading from "../components/Loading/Loading";
+import ExternalPages from "../components/Layout/ExternalPages";
+import TextInput from "../components/Inputs/TextInput/TextInput";
+import PasswordInput from "../components/Inputs/PasswordInput/PasswordInput";
 
 import { isLoginValid } from "../helpers/isLoginValid";
 import { useAuthContext } from "@/app/contexts/AuthContext";
@@ -15,7 +17,6 @@ import { IUserData } from "../Interfaces/admin.interfaces";
 import { errorToast } from "../services/toast-messages/toast-messages";
 
 import styles from "./page.module.css";
-import Loading from "../components/Loading/Loading";
 
 const LoginForm = () => {
   const { login, user } = useAuthContext();
@@ -75,78 +76,91 @@ const LoginForm = () => {
   };
 
   return (
-    <div className={styles.main}>
-      <Image
-        className={styles.imgIFBa}
-        src="/images/Simbolo Ifba.jpg"
-        alt="IFBa"
-        width={70}
-        height={95}
-      ></Image>
-      <form className={styles.form}>
-        <h2>Insira seu e-mail e senha para iniciar!</h2>
-
-        <div className={styles.inputsContents}>
-          <Input
-            style={{ borderColor: "#022971" }}
-            size="large"
-            placeholder="Email"
-            prefix={<UserOutlined />}
-            name="email"
-            value={userData.email}
-            onChange={handleChange}
-          />
-          <Input.Password
-            style={{ borderColor: "#022971" }}
-            size="large"
-            placeholder="Senha"
-            name="password"
-            value={userData.password}
-            onChange={handleChange}
-            iconRender={(visible) =>
-              visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-            }
-          />
-          <div className={styles.divLinks}>
-            <label>
+    <ExternalPages 
+      titleMessage="Bem-vindo!"
+      message={`Entre e inicie essa\njornada conosco!`}
+    >
+      <h2 className={styles.title}>Insira seu e-mail e senha para iniciar!</h2>
+      <div className={styles.inputsContents}>
+        <TextInput 
+          value={userData.email}
+          urlIcon="/images/icon-user-form.svg"
+          altImage="Ícone de usuário no formulário de email"
+          placeholder="E-mail"
+          handleChange={handleChange}
+        />
+        <PasswordInput 
+          value={userData.password}
+          urlIcon="/images/icon-padlock-form.svg"
+          altImage="Ícone de um cadeado para o formulário de senha"
+          placeholder="Senha"
+          handleChange={handleChange}
+        />
+        {/* <Input
+          style={{ borderColor: "#0444BD", padding: "13px", borderRadius: "12px", fontSize: "1rem", fontWeight: "700", fontFamily: "Inter" }}
+          placeholder="E-mail"
+          name="email"
+          value={userData.email}
+          onChange={handleChange}
+          prefix={
+            <Image
+              className={styles.iconUser}
+              src="/images/icon-user-form.svg"
+              alt="Ícone de usuário no formulário de email"
+              width={24}
+              height={24}
+            />
+          }
+        />
+        <Input.Password
+          style={{ borderColor: "#0444BD", padding: "13px", borderRadius: "12px", fontSize: "1rem", fontWeight: "700" }}
+          className={styles.input}
+          placeholder="Senha"
+          name="password"
+          prefix={
+            <Image
+              className={styles.iconPadlock}
+              src="/images/icon-padlock-form.svg"
+              alt="Ícone de usuário no formulário de email"
+              width={13}
+              height={14}
+            />
+          }
+          value={userData.password}
+          onChange={handleChange}
+          iconRender={(visible) =>
+            visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+          }
+        /> */}
+        <div className={styles.divLinks}>
+          <label className={styles.switch}>
+            <div className={styles.switchWrapper}>
+              <span className={`${styles.switchButton} ${remember && styles.switchButtonActive}`}></span>
               <input
                 onClick={() => setRemember(!remember)}
-                className={styles.checkbox}
                 type="checkbox"
               ></input>
-              <span> Manter Conectado</span>
-            </label>
-            <Link href="/recuperacao-senha">Esqueceu sua senha?</Link>
-          </div>
-          <div className={styles.divButton}>
-            <Button
-              type="primary"
-              icon={isLoading && <Loading />             }
-              disabled={isLoading}
-              onClick={(e: React.MouseEvent<HTMLFormElement>) =>
-                handleSubmit(e)
-              }
-            >
-              Entrar
-            </Button>
-          </div>
+            </div>
+            <span className={styles.swicthText}> Manter Conectado</span>
+          </label>
+
+          <Link href="/recuperacao-senha">Esqueceu sua senha?</Link>
         </div>
-      </form>
-      <div className={styles.welcome}>
-        <h1>Bem-vindo!</h1>
-        <h2>
-          Entre e inicie essa <br />
-          jornada conosco!
-        </h2>
+        <div className={styles.divButton}>
+          <Button
+            type="primary"
+            icon={isLoading && <Loading />             }
+            disabled={isLoading}
+            onClick={(e: React.MouseEvent<HTMLFormElement>) =>
+              handleSubmit(e)
+            }
+          >
+            Entrar
+          </Button>
+        </div>
       </div>
-      <Image
-        className={styles.Ellipse}
-        src="/images/Ellipse 6.jpg"
-        alt="IFBa"
-        width={170}
-        height={130}
-      ></Image>
-    </div>
+    </ExternalPages>
+          
   );
 };
 

@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <ConfigProvider theme={theme}>
       <main className={styles.main}>
-        <HeaderHome />
+        <HeaderHome hasButtons />
 
         <section className={styles.sectionWelcome}>
           <div className={styles.messageWelcome}>

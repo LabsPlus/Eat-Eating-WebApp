@@ -1,0 +1,78 @@
+.main {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;  
+  position: relative;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3.5rem;
+}
+
+.imgIFBa {
+  position: absolute;
+  top: 20px;
+  left: 25px;
+}
+
+.ellipseContainer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.ellipse {
+  display: block;
+}
+
+.form {
+  width: 560px;
+  height: 690px;
+  background-color: #B1C5EB;
+  stroke-width: 5px;
+  border: 1px solid #0444BD;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 12px;
+  position: relative;
+  left: 5em;
+}
+
+
+.welcome {
+  width: 614px;
+  height: 840px;
+  background-color: #0444BD;
+  border: 1px solid #022971;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3em;
+  text-align: center;
+}
+
+.welcome h1 {
+  font-family: Inter;
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 64px;
+  color: #ffffff;
+}
+
+.welcome h2 {
+  color: #ffffff;
+  font-family: Inter;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 48px;
+}

@@ -3,7 +3,7 @@
 .sectionWelcome {
   display: flex;
   align-items: center;
-  padding: 4rem;
+  padding: 0.5rem 4rem;
   justify-content: space-around;
 }
 

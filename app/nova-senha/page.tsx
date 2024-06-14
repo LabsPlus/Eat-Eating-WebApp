@@ -56,17 +56,6 @@ const NewPassword = () => {
       /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(value);
 
     setPasswordData(updatedPasswordData);
-
-    // setPasswordData({ ...passwordData, [field]: value });
-
-    // const validations = {
-    //   length: value.length >= 8 && value.length <= 15,
-    //   lowercase: /[a-z]/.test(value),
-    //   uppercase: /[A-Z]/.test(value),
-    //   number: /\d/.test(value),
-    //   specialCharacter: /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(value),
-    // };
-    // setPassawordValidations(validations);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -153,69 +142,6 @@ const NewPassword = () => {
               />
             )}
           </div>
-
-          {/* <div className={styles.checkboxContainer}>
-            <p>Sua senha deve conter</p>
-            <div className={styles.checkbox}>
-              <img
-                src={
-                  passawordValidations.length
-                    ? "/images/checked-circle.svg"
-                    : "/images/check-circle.svg"
-                }
-                alt="Icone de check"
-              />
-              <span>De 8 a 15 caracteres</span>
-            </div>
-
-            <div className={styles.checkbox}>
-              <img
-                src={
-                  passawordValidations.lowercase
-                    ? "/images/checked-circle.svg"
-                    : "/images/check-circle.svg"
-                }
-                alt="Icone de check"
-              />
-              <span>Letra minúscula</span>
-            </div>
-
-            <div className={styles.checkbox}>
-              <img
-                src={
-                  passawordValidations.uppercase
-                    ? "/images/checked-circle.svg"
-                    : "/images/check-circle.svg"
-                }
-                alt="Icone de check"
-              />
-              <span>Letra maiúscula</span>
-            </div>
-
-            <div className={styles.checkbox}>
-              <img
-                src={
-                  passawordValidations.number
-                    ? "/images/checked-circle.svg"
-                    : "/images/check-circle.svg"
-                }
-                alt="Icone de check"
-              />
-              <span>Número</span>
-            </div>
-
-            <div className={styles.checkbox}>
-              <img
-                src={
-                  passawordValidations.specialCharacter
-                    ? "/images/checked-circle.svg"
-                    : "/images/check-circle.svg"
-                }
-                alt="Icone de check"
-              />
-              <span>Símbolo especial (Ex. !#$%)</span>
-            </div>
-          </div> */}
 
           <PasswordValidationChecklist validations={passwordData} />
 
