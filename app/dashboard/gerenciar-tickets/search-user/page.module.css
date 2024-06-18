@@ -5,6 +5,7 @@
 
 .container .inputSearch {
   width: 312px;
+  height: 44px;
   padding: 0.625rem 1rem;
   border-radius: 5px;
   border: solid 1px #033697;
@@ -20,9 +21,11 @@
 .container .inputSearch .searchOutlined {
   color: #999999;
   font-size: 18px;
+  padding-right: 5px !important;
 }
 
 .buttonSearch {
+  height: 44px;
   cursor: pointer;
   border: solid 1px #033697;
   color: #0444BD;
