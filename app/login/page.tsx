@@ -87,6 +87,7 @@ const LoginForm = () => {
           urlIcon="/images/icon-user-form.svg"
           altImage="Ícone de usuário no formulário de email"
           placeholder="E-mail"
+          inputClassName="inputLogin"
           handleChange={handleChange}
         />
         <PasswordInput 
@@ -96,42 +97,7 @@ const LoginForm = () => {
           placeholder="Senha"
           handleChange={handleChange}
         />
-        {/* <Input
-          style={{ borderColor: "#0444BD", padding: "13px", borderRadius: "12px", fontSize: "1rem", fontWeight: "700", fontFamily: "Inter" }}
-          placeholder="E-mail"
-          name="email"
-          value={userData.email}
-          onChange={handleChange}
-          prefix={
-            <Image
-              className={styles.iconUser}
-              src="/images/icon-user-form.svg"
-              alt="Ícone de usuário no formulário de email"
-              width={24}
-              height={24}
-            />
-          }
-        />
-        <Input.Password
-          style={{ borderColor: "#0444BD", padding: "13px", borderRadius: "12px", fontSize: "1rem", fontWeight: "700" }}
-          className={styles.input}
-          placeholder="Senha"
-          name="password"
-          prefix={
-            <Image
-              className={styles.iconPadlock}
-              src="/images/icon-padlock-form.svg"
-              alt="Ícone de usuário no formulário de email"
-              width={13}
-              height={14}
-            />
-          }
-          value={userData.password}
-          onChange={handleChange}
-          iconRender={(visible) =>
-            visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-          }
-        /> */}
+
         <div className={styles.divLinks}>
           <label className={styles.switch}>
             <div className={styles.switchWrapper}>
@@ -146,18 +112,19 @@ const LoginForm = () => {
 
           <Link href="/recuperacao-senha">Esqueceu sua senha?</Link>
         </div>
-        <div className={styles.divButton}>
-          <Button
-            type="primary"
-            icon={isLoading && <Loading />             }
-            disabled={isLoading}
-            onClick={(e: React.MouseEvent<HTMLFormElement>) =>
-              handleSubmit(e)
-            }
-          >
-            Entrar
-          </Button>
-        </div>
+      </div>
+      
+      <div className={styles.divButton}>
+        <Button
+          type="primary"
+          icon={isLoading && <Loading />             }
+          disabled={isLoading}
+          onClick={(e: React.MouseEvent<HTMLFormElement>) =>
+            handleSubmit(e)
+          }
+        >
+          Entrar
+        </Button>
       </div>
     </ExternalPages>
           

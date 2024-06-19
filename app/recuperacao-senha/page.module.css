@@ -1,96 +1,36 @@
-/* .container {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.imgIFBa {
-    position: absolute;
-    top: 20px;
-    left: 25px;
-}
-
-.Ellipse {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-} */
-
-.container {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    padding: 4rem;
-}
-
 .title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    color: #03338E;
+    font-size: 22px;
+    margin: 5.25rem 0;
+    margin-left: 2rem;
 }
 
-.btnTtoGoBack {
+.btnToGoBack {
     position: absolute;
-    top: 35px;
-    left: 30px;
+    top: 111px;
+    left: 65px;
     cursor: pointer;
-    padding: 8px;
     color: #fff !important;
     border-radius: 50px;
     background-color: #0444BD;
-    width: 40px;
-    height: 40px;
+    padding: 0.5em;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.container h2 {
-    color: #03338E;
-    font-size: 22px;
-}
-
-.container .input {
+.inputContent {
     width: 388px;
-    height: 50px;
-    margin-bottom: 15px;
-    color: #022971;
+    margin-top: 3.5rem;
+    margin-left: 2.5rem;
 }
-
-.container input::placeholder {
-    color: #65737e !important;
-    font-weight: 500;
-}
-
-.container .error {
-    position: absolute;
-    top: 5px;
-    color: #9b0800;
-}
-
-/* .container button {
-    width: 162px;
-    height: 52px;
-    margin-top: 15px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    color: #fff;
-    background-color: #0444BD;
-} */
 
 .divButton {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: center;
-    margin-top: 0.5rem;
+    margin-top: 2.5rem;
+    margin-left: 2.5rem;
 }
 
-.container button {
+.divButton button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -103,27 +43,4 @@
     font-weight: 700;
     line-height: 20px;
     font-size: 1rem; 
-}
-
-.info {
-    width: 725px;
-    height: 840px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    border-radius: 10px;
-    background-color: #0444BD;
-}
-
-.info h1 {
-    font-size: 56px;
-    margin-bottom: 30px;
-}
-
-.info span {
-    text-align: center;
-    width: 517px;
-    font-size: 40px;
 }

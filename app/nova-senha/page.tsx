@@ -1,25 +1,28 @@
 "use client";
 
 import React, { useState } from "react";
-import { ArrowLeftOutlined } from "@ant-design/icons";
-import styles from "./page.module.css";
+import { Button } from "antd";
+import axios from "axios";
+
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
+
+import PasswordValidationChecklist from "../components/PasswordValidationChecklist/PasswordValidationChecklist";
+import PasswordInput from "../components/Inputs/PasswordInput/PasswordInput";
+import ExternalPages from "../components/Layout/ExternalPages";
+
 import { IPasswordData } from "../Interfaces/admin.interfaces";
 import { isValidPassword } from "../helpers/isValidPassword";
-import axios from "axios";
-import { useRouter, useSearchParams } from "next/navigation";
-import {
-  errorToast,
-  successToast,
-} from "../services/toast-messages/toast-messages";
-import PasswordValidationChecklist from "../components/PasswordValidationChecklist/PasswordValidationChecklist";
+import { errorToast, successToast,} from "../services/toast-messages/toast-messages";
+
+import styles from "./page.module.css";
 
 const NewPassword = () => {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
 
   const router = useRouter();
-  const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const [passwordData, setPasswordData] = useState<IPasswordData>({
     password: "",
@@ -30,17 +33,6 @@ const NewPassword = () => {
     number: false,
     specialCharacter: false,
   });
-  // const [passawordValidations, setPassawordValidations] = useState({
-  //   length: false,
-  //   lowercase: false,
-  //   uppercase: false,
-  //   number: false,
-  //   specialCharacter: false,
-  // });
-
-  const handleConfirmPasswordVisibilityToggle = () => {
-    setConfirmPasswordVisible(!confirmPasswordVisible);
-  };
 
   const handlePasswordChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -97,103 +89,54 @@ const NewPassword = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <Image
-        className={styles.imgIFBa}
-        src="/images/Simbolo Ifba.jpg"
-        alt="IFBa"
-        width={70}
-        height={95}
-      />
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.title}>
-          <ArrowLeftOutlined className={styles.btnTtoGoBack} />
-          <h2>Recuperar senha</h2>
-        </div>
+    <ExternalPages
+      className="messageNewPassword" 
+      titleMessage="Importante!"
+      message="Seguir as recomendações do check-list ajudará a proteger suas informações pessoais e evitar acessos não autorizados."
+    >
+      <Link href="/login" className={styles.btnToGoBack}>
+          <Image
+            src="/images/icon-arrow-back.svg"
+            alt="Seta horizontal para esquerda"
+            width={24}
+            height={24}
+          />
+        </Link>
+
+        <h2 className={styles.title}>Recuperar senha</h2>
 
         <div className={styles.inputContainer}>
-          <div>
-            <input
-              type={passwordVisible ? "text" : "password"}
-              placeholder="Digite sua nova senha"
-              value={passwordData.password}
-              onChange={(e) => handlePasswordChange(e, "password")}
-              className={styles.input}
-              max={30}
-            />
-            <img
-              className={styles.padlockIcon}
-              src="/images/padlock-icon.svg"
-              alt="Icone do cadeado"
-            />
-            {passwordVisible ? (
-              <img
-                src="/images/eye.svg"
-                alt=""
-                onClick={() => setPasswordVisible(!passwordVisible)}
-                className={styles.eyeIcon}
-              />
-            ) : (
-              <img
-                src="/images/eye-visible.svg"
-                alt=""
-                onClick={() => setPasswordVisible(!passwordVisible)}
-                className={styles.eyeVisible}
-              />
-            )}
-          </div>
+          <PasswordInput 
+            value={passwordData.password}
+            urlIcon="/images/icon-padlock-form.svg"
+            altImage="Ícone de um cadeado para o formulário de senha"
+            placeholder="Digite sua nova senha"
+            handleChange={(e) => handlePasswordChange(e, "password")}
+          />
 
           <PasswordValidationChecklist validations={passwordData} />
-
-          <div>
-            <input
-              type={confirmPasswordVisible ? "text" : "password"}
-              placeholder="Confirme sua senha"
+          
+          <PasswordInput 
               value={passwordData.confirmPassword}
-              onChange={(e) => handlePasswordChange(e, "confirmPassword")}
-              className={styles.input}
-            />
-            <img
-              className={styles.padlockIcon}
-              src="/images/padlock-icon.svg"
-              alt="Icone do cadeado"
-            />
-            {confirmPasswordVisible ? (
-              <img
-                src="/images/eye.svg"
-                alt=""
-                onClick={handleConfirmPasswordVisibilityToggle}
-                className={styles.eyeIcon}
-              />
-            ) : (
-              <img
-                src="/images/eye-visible.svg"
-                alt=""
-                onClick={handleConfirmPasswordVisibilityToggle}
-                className={styles.eyeVisible}
-              />
-            )}
-          </div>
-
-          <button type="submit">Confirmar</button>
+              urlIcon="/images/icon-padlock-form.svg"
+              altImage="Ícone de um cadeado para o formulário de senha"
+              placeholder="Confirme sua senha"
+              handleChange={(e) => handlePasswordChange(e, "confirmPassword")}
+          />
         </div>
-      </form>
 
-      <div className={styles.info}>
-        <h1>Importante!</h1>
-        <p>
-          Sua senha deve incluir pelo menos 8 caracteres, com letras maiúsculas
-          e minúsculas, números e caracteres especiais
-        </p>
-      </div>
-      <Image
-        className={styles.Ellipse}
-        src="/images/Ellipse 6.jpg"
-        alt="IFBa"
-        width={170}
-        height={130}
-      />
-    </div>
+        <div className={styles.divButton}>
+          <Button
+            type="primary"
+            onClick={(e: React.MouseEvent<HTMLFormElement>) =>
+              handleSubmit(e)
+            }
+          >
+            Enviar
+          </Button>
+        </div>
+   
+    </ExternalPages>
   );
 };
 

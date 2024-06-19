@@ -9,9 +9,10 @@ interface ExternalPagesProps {
   children: ReactNode;
   titleMessage: string;
   message: string;
+  className?: string;
 }
 
-const ExternalPages = ({ children, titleMessage, message }: ExternalPagesProps) => {
+const ExternalPages = ({ children, titleMessage, message, className }: ExternalPagesProps) => {
   return (
     <>
       <HeaderHome />
@@ -22,7 +23,7 @@ const ExternalPages = ({ children, titleMessage, message }: ExternalPagesProps) 
           </form>
           <div className={styles.welcome}>
             <h1>{titleMessage}</h1>
-            <h2>
+            <h2 className={styles[className ? className : '']}>
               {message.split('\n').map((line, index) => (
                 <span key={index}>
                   {line}

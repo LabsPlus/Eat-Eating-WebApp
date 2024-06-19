@@ -13,12 +13,14 @@ interface HeaderHomeProps {
 const HeaderHome = ({ hasButtons = false }: HeaderHomeProps) => {
   return (
     <nav className={styles.container}>
-      <Image
-        src="/images/Logo-preto.png"
-        alt="Logo EatEating"
-        width={190}
-        height={56}
-      />
+      <Link href="/">
+        <Image
+          src="/images/Logo-preto.png"
+          alt="Logo EatEating"
+          width={190}
+          height={56}
+        />
+      </Link>
       
       {hasButtons && (
         <div className={styles.divButtons}>

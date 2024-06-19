@@ -19,8 +19,8 @@ const PasswordInput = ({ value, urlIcon = '', altImage = '', placeholder, handle
   
   return (
     <Input.Password
-        style={{ borderColor: "#0444BD", padding: "13px", borderRadius: "12px", fontSize: "1rem", fontWeight: "700" }}
-        className={styles.input}
+        className={styles.inputPassword}
+        style={{ borderColor: "#0444BD", padding: "13px", borderRadius: "12px" }}
         placeholder={placeholder}
         name="password"
         prefix={

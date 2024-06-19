@@ -10,15 +10,17 @@ interface TextInputProps {
   urlIcon?: string;
   altImage?: string;
   placeholder?: string;
+  inputClassName?: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TextInput = ({ value, urlIcon = '', altImage = '', placeholder, handleChange }: TextInputProps) => {
+const TextInput = ({ value, urlIcon = '', altImage = '', placeholder, handleChange, inputClassName }: TextInputProps) => {
   const hasIcon = urlIcon.length > 0;
   
   return (
     <Input
-      style={{ borderColor: "#0444BD", padding: "13px", borderRadius: "12px", fontSize: "1rem", fontWeight: "700", fontFamily: "Inter" }}
+      className={styles[inputClassName ? inputClassName : '']}
+      style={{ borderColor: "#0444BD", padding: "13px", borderRadius: "12px" }}
       placeholder={placeholder}
       name="email"
       value={value}
