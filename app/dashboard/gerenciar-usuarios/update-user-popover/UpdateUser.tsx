@@ -68,7 +68,7 @@ const UpdateUser: React.FC = () => {
 
   const [fileUploadUpdate, setFileUploadUpdate] = useState(false);
   const [fileUploadMessageUpdate, setFileUploadMessageUpdate] = useState(
-    "Nenhuma Foto Selecionada"
+    "Nenhuma foto selecionada"
   );
 
   const [fileContainerColorUpdate, setFileContainerColorUpdate] = useState("");
@@ -291,12 +291,11 @@ const UpdateUser: React.FC = () => {
             success("Cadastro atualizado com sucesso.");
           })
           .catch((error) => {
-            //showError("error.message"); //it's not working
             errorToast(error.message);
           });
         setIsModalOpen(false);
         getAllUsers();
-        setFileUploadMessageUpdate("Nenhuma Foto Selecionada");
+        setFileUploadMessageUpdate("Nenhuma foto selecionada");
         setSelectedUser(null);
         setFileContainerColorUpdate("");
       } catch (error: any) {

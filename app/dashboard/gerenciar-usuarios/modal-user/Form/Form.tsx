@@ -86,7 +86,7 @@ const Form = ({
                 placeholder="Digite a matrícula"
                 value={
                   formDataUser.category === "VISITANTE"
-                    ? "XXXXXXX"
+                    ? "Não aplicável"
                     : formDataUser.enrollment
                 }
                 onChange={handleInputChange}
@@ -111,7 +111,8 @@ const Form = ({
 
           <div className={styles.item}>
             <div className={styles.itens}>
-              <label>Usuário</label>
+              <label htmlFor="category">Usuário</label>
+
               <select
                 name="category"
                 id="category"
@@ -127,7 +128,8 @@ const Form = ({
             </div>
 
             <div className={styles.itens}>
-              <label>Bolsa</label>
+              <label htmlFor="typeGrant">Bolsa</label>
+
               <select
                 name="typeGrant"
                 id="typeGrant"
