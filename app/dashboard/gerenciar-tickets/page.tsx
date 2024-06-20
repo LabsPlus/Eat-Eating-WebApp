@@ -16,12 +16,14 @@ const page = () => {
     <div className={styles.container}>
       <div className={styles.time}>{formattedDate}</div>
 
-      <h1 className={styles.title}>Gerenciar Tickets</h1>
+      <h1 className={styles.title}>Gerenciamento de Tickets</h1>
       
       <InfoTickets />
 
       <div className={styles.inputsContainer}>
-        <SearchUser />
+        <div className={styles.searchInput}>
+          <SearchUser />
+        </div>
 
         <div className={styles.btnsContainer}>
           <button>Copiar</button>

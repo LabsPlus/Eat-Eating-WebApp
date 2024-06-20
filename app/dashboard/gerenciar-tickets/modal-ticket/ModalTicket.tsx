@@ -111,12 +111,32 @@ const ModalTicket = ({ typeModal, closePurchaseModal, closeEditModal }: IModalTi
     <>
       <Modal
         mask={true}
-        styles={{ mask: { backgroundColor: "rgba(0, 0, 0, 0.10)" } }}
+        styles={{ mask: { backgroundColor: "rgba(177, 197, 235, 0.15)" } }}
         title={
           <span
-            style={{ color: "#011742", fontSize: "24px", fontWeight: "800" }}
+            style={{ color: "#011742", fontSize: "24px", fontWeight: "700", fontFamily: "Inter"}}
           >
-            {typeModalIsPurchase ? "Adquirir ticket" : "Editar Ticket"}
+            {typeModalIsPurchase ? "Adquirir ticket" : "Editar ticket"}
+          </span>
+        }
+        closeIcon={
+          <span
+            role="img"
+            aria-label="close"
+            className="anticon anticon-close ant-modal-close-icon"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"
+                fill="#333333"
+              />
+            </svg>
           </span>
         }
         open={isModalOpen}
@@ -140,11 +160,15 @@ const ModalTicket = ({ typeModal, closePurchaseModal, closeEditModal }: IModalTi
               onClick={handlePurchaseTicket}
               disabled={isLoadingButton}
             >
-              {isLoadingButton ? 
-                <Spin indicator={<LoadingOutlined className={styles.spin} spin />} /> : "Confirmar"
-              }
+              {isLoadingButton ? (
+                <Spin
+                  indicator={<LoadingOutlined className={styles.spin} spin />}
+                />
+              ) : (
+                "Confirmar"
+              )}
             </Button>
-          </div>
+          </div>,
         ]}
       >
         {formData && (
@@ -159,8 +183,7 @@ const ModalTicket = ({ typeModal, closePurchaseModal, closeEditModal }: IModalTi
               />
               <div className={styles.infoUser}>
                 <div>
-                  <span>Usuário:</span>{" "} 
-                  <span>{formData.user.person.name}</span>
+                  <span>Usuário:</span> <span>{formData.user.person.name}</span>
                 </div>
                 <div>
                   <span>Última Compra: </span>{" "}
@@ -180,7 +203,8 @@ const ModalTicket = ({ typeModal, closePurchaseModal, closeEditModal }: IModalTi
 
             <div className={styles.tickerQuantity}>
               <span>
-                Quantidade de tickets a ser {typeModalIsPurchase ? "comprado" : "removido"}
+                Quantidade de tickets a ser{" "}
+                {typeModalIsPurchase ? "comprado" : "removido"}
               </span>
               <div className={styles.inputContainer}>
                 <Input
