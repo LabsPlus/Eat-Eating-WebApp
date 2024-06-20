@@ -1,16 +1,11 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
 import Image from "next/image";
 
-import styles from "./page.module.css";
 import HeaderHome from "../HeaderHome/HeaderHome";
+import { ExternalPagesProps } from "@/app/Interfaces/components.interfaces";
 
-interface ExternalPagesProps {
-  children: ReactNode;
-  titleMessage: string;
-  message: string;
-  className?: string;
-}
+import styles from "./page.module.css";
 
 const ExternalPages = ({ children, titleMessage, message, className }: ExternalPagesProps) => {
   return (

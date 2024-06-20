@@ -3,16 +3,9 @@ import { Input } from "antd";
 
 import Image from "next/image";
 
-import styles from "./page.module.css";
+import { TextInputProps } from "@/app/Interfaces/components.interfaces";
 
-interface TextInputProps {
-  value: string;
-  urlIcon?: string;
-  altImage?: string;
-  placeholder?: string;
-  inputClassName?: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+import styles from "./page.module.css";
 
 const TextInput = ({ value, urlIcon = '', altImage = '', placeholder, handleChange, inputClassName }: TextInputProps) => {
   const hasIcon = urlIcon.length > 0;

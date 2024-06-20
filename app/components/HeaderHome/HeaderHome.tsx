@@ -4,11 +4,9 @@ import { Button } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 
-import styles from "./page.module.css";
+import { HeaderHomeProps } from "@/app/Interfaces/components.interfaces";
 
-interface HeaderHomeProps {
-  hasButtons?: boolean;
-}
+import styles from "./page.module.css";
 
 const HeaderHome = ({ hasButtons = false }: HeaderHomeProps) => {
   return (

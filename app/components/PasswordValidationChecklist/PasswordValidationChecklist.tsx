@@ -1,18 +1,10 @@
 import React from "react";
-import styles from "./passwordValidationChecklist.module.css";
-interface PasswordValidationChecklistProps {
-  validations: {
-    length: boolean;
-    lowercase: boolean;
-    uppercase: boolean;
-    number: boolean;
-    specialCharacter: boolean;
-  };
-}
 
-const PasswordValidationChecklist = ({
-  validations,
-}: PasswordValidationChecklistProps) => {
+import { PasswordValidationChecklistProps } from "@/app/Interfaces/components.interfaces";
+
+import styles from "./passwordValidationChecklist.module.css";
+
+const PasswordValidationChecklist = ({ validations }: PasswordValidationChecklistProps) => {
   return (
     <div className={styles.checkboxContainer}>
       <p>Sua senha deve conter</p>

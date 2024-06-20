@@ -4,15 +4,9 @@ import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 
 import Image from "next/image";
 
-import styles from "./page.module.css";
+import { PasswordInputProps } from "@/app/Interfaces/components.interfaces";
 
-interface PasswordInputProps {
-  value: string;
-  urlIcon?: string;
-  altImage?: string;
-  placeholder?: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+import styles from "./page.module.css";
 
 const PasswordInput = ({ value, urlIcon = '', altImage = '', placeholder, handleChange }: PasswordInputProps) => {
   const hasIcon = urlIcon.length > 0;
