@@ -1,5 +1,4 @@
-:root {
-}
+:root {}
 
 * {
   padding: 0;
@@ -29,6 +28,21 @@ body {
   padding-bottom: 0 !important;
   top: 200px;
 }
+
+/* styles globals background select */
+.ant-select-selector {
+  padding-right: 35px !important;
+  width: 86px !important;
+  border: none !important;
+  background-color: transparent !important;
+}
+
+.ant-select-selector .ant-select-selection-item {
+  color: #0443BD;
+  font-size: 16px;
+  font-weight: 400;
+}
+
 
 /* styles globals background options select */
 .ant-select-item-option {

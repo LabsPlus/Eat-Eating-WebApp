@@ -91,7 +91,7 @@
     width: 134px;
 }
 
-/*Estilos dos formulários*/  
+/*Estilos dos formulários*/
 .modalContainer .item {
     display: flex;
     margin-bottom: -10px;
@@ -138,6 +138,11 @@
     font-size: 16px;
     font-weight: 400;
     text-indent: 16px;
+}
+
+.modalContainer select {
+    appearance: none;
+    background: url('/images/down-arrow-form.svg') no-repeat right 16px center;
 }
 
 .modalContainer input:focus,
