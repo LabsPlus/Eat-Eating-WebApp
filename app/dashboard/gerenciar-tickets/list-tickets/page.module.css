@@ -146,15 +146,11 @@
 }
 
 .selectContainer .pageSizeSelect {
-  width: 75px;
+  width: 86px;
   height: 44px;
   margin-left: 10px;
-  color: #0443BD !important;
-  border: 1px solid #0443BD;
   border-radius: 5px;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 450;
+  border: 1px solid #0444BD;
 }
 
 .optionSizeSelectOption {
@@ -175,38 +171,15 @@
   font-weight: 400;
 }
 
-.paginationContainer .paginationButtons {
-  color: #03338e;
+.paginationContainer .paginationButtons img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+
 }
 
-.first,
-.last {
-  margin-left: 12px;
-  margin-right: 12px;
-  width: 18px;
-  height: 20px;
-  color: #0443BD;
-}
-
-.prev,
-.next {
-  margin-right: 12px;
-  margin-left: 12px;
-  width: 14px;
-  height: 20px;
-  color: #0443BD;
-}
-
-.first {
-  color: #0443BD
-}
-
-.prev {
-  color: #0443BD;
-}
-
-.last {
-  color: #0443BD;
+.paginationContainer .paginationButtons img:not(:first-child) {
+  margin-left: 16px;
 }
 
 .disabledButton {

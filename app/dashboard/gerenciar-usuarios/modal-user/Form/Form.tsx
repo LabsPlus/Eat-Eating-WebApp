@@ -200,7 +200,7 @@ const Form = ({
 
           <div className={styles.item}>
             <div className={styles.itens}>
-              <label htmlFor="emailRecovery">Confirmação de e-mail</label>
+              <label htmlFor="emailRecovery">E-mail de recuperação</label>
               <input
                 id="emailRecovery"
                 type="email"

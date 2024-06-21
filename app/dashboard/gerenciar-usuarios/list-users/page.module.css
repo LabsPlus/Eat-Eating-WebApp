@@ -99,18 +99,6 @@
   margin-left: 16px;
 }
 
-/* .first,
-.last {
-  margin-left: 8px;
-  margin-right: 8px;
-}
-
-.prev,
-.next {
-  margin-right: 10px;
-  margin-left: 10px;
-} */
-
 .disabledButton {
   opacity: 0.5;
   cursor: not-allowed !important;
