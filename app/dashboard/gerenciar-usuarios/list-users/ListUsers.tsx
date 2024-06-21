@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Button, Modal, Select, Table, message } from "antd";
+import { Button, Select, Table } from "antd";
 import styles from "./page.module.css";
 import { useStore } from "../../../../store";
 import UpdateUserPopover from "../update-user-popover/UpdateUser";
@@ -19,6 +19,15 @@ const ListUsers = () => {
 
   const capitalizeFirstLetter = (string: any) => {
     if (!string) return "";
+
+    if (string.toLowerCase() === "funcionario") {
+      return "Funcionário";
+    }
+
+    if (string.toLowerCase() === "nao_aplicavel") {
+      return "Não aplicável";
+    }
+
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
   };
 
@@ -58,15 +67,8 @@ const ListUsers = () => {
 
   let serialNumber = 0;
 
-  const {
-    users,
-    getAllUsers,
-    searchTerm,
-    deleteUser,
-    selectedUser,
-    setSelectedUser,
-    noUsersFound,
-  } = useStore();
+  const { users, getAllUsers, selectedUser, setSelectedUser, noUsersFound } =
+    useStore();
 
   useEffect(() => {
     getAllUsers();
@@ -141,10 +143,10 @@ const ListUsers = () => {
       title: "Matrícula ",
       dataIndex: "enrrolment",
       key: "enrollment",
-      className:styles.tableColumn,
+      className: styles.tableColumn,
       render: (text: any, record: any) => {
         if (record.user.category.name === "VISITANTE") {
-          return "XXXXXXX";
+          return "Não aplicável";
         } else {
           return text;
         }
@@ -155,20 +157,20 @@ const ListUsers = () => {
       dataIndex: ["user", "category", "name"],
       key: "category",
       render: (text: any) => capitalizeFirstLetter(text),
-      className:styles.tableColumn,
+      className: styles.tableColumn,
     },
     {
       title: "Tipo de bolsa",
       dataIndex: ["user", "typeGrant", "name"],
       key: "typeGrant",
       render: (text: any) => capitalizeFirstLetter(text),
-      className:styles.tableColumn
+      className: styles.tableColumn,
     },
     {
       title: "Refeições realizadas",
       dataIndex: ["user", "dailyMeals"],
       key: "dailyMeals",
-      className:styles.tableColumn
+      className: styles.tableColumn,
     },
     {
       title: "Ações",
@@ -222,38 +224,57 @@ const ListUsers = () => {
         <div className={styles.paginationContainer}>
           <div className={styles.selectContainer}>
             <span>Itens por páginas</span>
+
             <Select
               defaultValue={pageSize}
               onChange={handlePageSizeChange}
               className={styles.pageSizeSelect}
+              suffixIcon={
+                <img
+                  src="/images/down-arrow.svg"
+                  alt="Seta para baixo"
+                  style={{ paddingRight: "4px" }}
+                />
+              }
             >
-              <option className={styles.optionSizeSelectOption} value={5}>5</option>
-              <option className={styles.optionSizeSelectOption} value={10}>10</option>
-              <option className={styles.optionSizeSelectOption} value={15}>15</option>
+              <option className={styles.optionSizeSelectOption} value={5}>
+                5
+              </option>
+              <option className={styles.optionSizeSelectOption} value={10}>
+                10
+              </option>
+              <option className={styles.optionSizeSelectOption} value={15}>
+                15
+              </option>
             </Select>
           </div>
 
           <div className={styles.paginationInfo}>
-            {`${(currentPage - 1) * pageSize + 1}-${
+            {`${(currentPage - 1) * pageSize + 1} - ${
               currentPage * pageSize
             } de ${users.length}`}
           </div>
 
           <div className={styles.paginationButtons}>
-            <VerticalLeftOutlined
+            <img
+              src="/images/first-page.svg"
+              alt="Seta que navega para a primeira página"
               className={`${styles.first} ${
                 currentPage === 1 ? styles.disabledButton : ""
               }`}
-              style={{ transform: "rotate(900deg)" }}
               onClick={goToFirstPage}
             />
-            <LeftOutlined
+            <img
+              src="/images/left-arrow.svg"
+              alt="Seta para esquerda"
               className={`${styles.prev} ${
                 currentPage === 1 ? styles.disabledButton : ""
               }`}
               onClick={handlePrevPage}
             />
-            <RightOutlined
+            <img
+              src="/images/right-arrow.svg"
+              alt="Seta para direita"
               className={`${styles.next} ${
                 currentPage === Math.ceil(users.length / pageSize)
                   ? styles.disabledButton
@@ -261,7 +282,9 @@ const ListUsers = () => {
               }`}
               onClick={handleNextPage}
             />
-            <VerticalLeftOutlined
+            <img
+              src="/images/last-page.svg"
+              alt="Seta que navega para a primeira página"
               className={`${styles.last} ${
                 currentPage === Math.ceil(users.length / pageSize)
                   ? styles.disabledButton

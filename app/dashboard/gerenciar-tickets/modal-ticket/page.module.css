@@ -1,6 +1,7 @@
 .modal {
   overflow: hidden !important;
-  width: 415px !important;
+  width: 421px !important;
+  height: 260px !important;
   border-radius: 10px;
   background-color: #FFFFFF;
 }
@@ -21,16 +22,17 @@
   padding: 0.75rem 1rem;
   width: 103px;
   height: 44px;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  font-weight: 700;
+  border-radius: 8px;
+  font-size: 14px !important;
+  line-height: 15px;
+  font-weight: 550;
+  font-style: normal !important;
 }
 
 .containerBtns .btnCancel {
   border: 1px solid #0444bd;
   background: #fff;
-  color: #0444bd;
+  color: #0444BD;
 }
 
 .containerBtns .btnConfirm {
@@ -43,10 +45,14 @@
 }
 
 .container {
-  color: #1D1D1D;
-  font-size: 1rem;
+  width: max-content !important;
+  color: var(--foundation-grey-dark-active, #1D1D1D);
+  text-align:start;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
   font-weight: 400;
-  margin: 1rem 0;
+  line-height: 100%; /* 22.4px */
 }
 
 .profile {
@@ -80,13 +86,11 @@
 }
 
 .input {
-  margin-left: 15px;
+  margin-left: 5px !important;
   width: 68px !important;
   height: 44px;
   border-radius: 5px;
-  padding-left: 16px;
   font-size: 16px;
-
 }
 
 .input::-webkit-inner-spin-button {

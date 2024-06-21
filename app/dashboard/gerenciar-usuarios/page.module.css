@@ -85,18 +85,20 @@
 }
 
 .btnsContainer button {
-    width: 77px;
     height: 44px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 18px;
+    padding: 8px 16px;
     cursor: pointer;
     color: #0443BD;
     font: 700 16px Inter;
     border: 1px solid var(--Foundation-Blue-Normal, #0443BD);
     background: var(--Blue-Light-Hover, #D9E3F5);
-    margin: 0;
+}
+
+.btnsContainer button:not(:first-child) {
+    border-left: none;
 }
 
 .btnPrint{

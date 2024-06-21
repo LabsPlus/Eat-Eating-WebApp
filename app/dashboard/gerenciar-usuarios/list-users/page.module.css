@@ -21,15 +21,15 @@
   align-items: center !important;
   border-radius: 5px;
   border: 1px solid var(--Blue-Normal, #0444BD);
-  box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.1) !important;
+  box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.1) !important;
 }
 
 .errorMessage {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    color: #C50F1F;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  color: #C50F1F;
+  transform: translate(-50%, -50%);
 }
 
 .paginationContainer {
@@ -43,9 +43,9 @@
 }
 
 .paginationContainer .selectContainer {
-    display: flex;
-    align-items: center;
-    color: #0443BD;
+  display: flex;
+  align-items: center;
+  color: #0443BD;
 }
 
 .selectContainer span,
@@ -57,15 +57,11 @@
 }
 
 .selectContainer .pageSizeSelect {
-  width: 75px;
+  width: 86px;
   height: 44px;
   margin-left: 10px;
   border-radius: 5px;
-  color: #0443BD !important;
   border: 1px solid #0444BD;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
 }
 
 .optionSizeSelectOption {
@@ -74,7 +70,7 @@
   font-weight: 700 !important;
 }
 
-.optionSizeSelectOption:hover{
+.optionSizeSelectOption:hover {
   background: var(--foundation-blue-light-hover, #D9E3F5) !important;
 }
 
@@ -87,38 +83,33 @@
 }
 
 .paginationContainer .paginationButtons {
-  color: #03338e;
+  display: flex;
+  align-items: center;
+  justify-items: center;
 }
 
-.first,
+.paginationContainer .paginationButtons img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+
+}
+
+.paginationContainer .paginationButtons img:not(:first-child) {
+  margin-left: 16px;
+}
+
+/* .first,
 .last {
-  margin-left: 12px;
-  margin-right: 12px;
-  width: 18px;
-  height: 20px;
-  color: #0443BD;
+  margin-left: 8px;
+  margin-right: 8px;
 }
 
 .prev,
 .next {
-  margin-right: 12px;
-  margin-left: 12px;
-  width: 14px;
-  height: 20px;
-  color: #0443BD;
-}
-
-.first {
-  color: #0443BD
-}
-
-.prev {
-  color: #0443BD;
-}
-
-.last {
-  color: #0443BD;
-}
+  margin-right: 10px;
+  margin-left: 10px;
+} */
 
 .disabledButton {
   opacity: 0.5;

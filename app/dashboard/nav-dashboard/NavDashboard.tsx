@@ -57,6 +57,10 @@ const NavDashboard = () => {
             <Menu 
               className={styles.menu}
               onClick={toggleMenu} 
+              style={{
+                paddingLeft: "5px",
+              }}
+
             />
           </div>
         )}
@@ -72,15 +76,15 @@ const NavDashboard = () => {
           >
             <Link href={"/dashboard/gerenciar-usuarios"}>
               <Image
-                src={"/images/userLogo.png"}
+                src={"/images/people_alt.svg"}
                 alt="User Logo"
                 width={24}
-                height={18.1}
-                style={{
-                  padding: "5px",
-                  paddingRight: "3px",
-                }}
+                height={24}
                 className={styles.icon}
+                style={{
+                  paddingLeft: "10px",
+                }}
+
               />
             
               { menuOpen && <span>Gerenciar usuários</span> }
@@ -97,11 +101,15 @@ const NavDashboard = () => {
           >
             <Link href={"/dashboard/gerenciar-tickets"}>
               <Image
-                src={"/images/ticketLogo.png"}
+                src={"/images/confirmation_number.svg"}
                 alt="Ticket Logo"
-                width={30}
-                height={33}
+                width={24}
+                height={24}
                 className={styles.icon}
+                style={{
+                  paddingLeft: "10px",
+                }}
+
               />
             
               { menuOpen && <span>Gerenciar tickets</span> }
@@ -118,12 +126,15 @@ const NavDashboard = () => {
           >
             <Link href={"/dashboard/gerenciar-dashboards"}>
               <Image
-                src={"/images/dashboardLogo.png"}
+                src={"/images/dashboard.svg"}
                 alt="Dashboard Logo"
-                width={18}
-                height={20.3}
-                style={{ padding: "6px" }}
+                width={24}
+                height={24}
                 className={styles.icon}
+                style={{
+                  paddingLeft: "10px",
+                }}
+
               />
             
               { menuOpen && <span>Gerenciar dashboards</span> }
@@ -131,7 +142,11 @@ const NavDashboard = () => {
           </li>
         </ul>
         <div className={styles.logoutContainer} onClick={handleLogout}>
-          <LogOut />
+          <LogOut 
+           style={{
+            paddingLeft: "10px",
+            }}
+          />
 
           { menuOpen && <span>Sair</span> }
         </div>

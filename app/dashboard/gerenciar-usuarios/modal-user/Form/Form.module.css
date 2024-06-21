@@ -21,55 +21,77 @@
     background-image: url('/images/user.svg');
 }
 
-.modalContainer .pictureContainer .fileContainer {
+/*Estilos semelhantes de foto, biometria e rfid*/
+.modalContainer .pictureContainer .fileContainer,
+.modalContainer .pictureContainer .biometryContainer,
+.modalContainer .pictureContainer .rfidContainer {
     margin-left: 16px;
-    position: relative;
     width: 480px !important;
     height: 44px;
     display: flex;
     align-items: center;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: #B1C5EB;
 }
 
-.modalContainer .pictureContainer .fileContainer input {
-    position: absolute;
-    width: 133px;
-    height: 19px;
-    left: 5px;
-}
-
-.modalContainer .pictureContainer .fileContainer .labelContainer {
+.modalContainer .pictureContainer .fileContainer .labelContainer,
+.modalContainer .pictureContainer .biometryContainer .labelContainer,
+.modalContainer .pictureContainer .rfidContainer .labelContainer {
+    height: 44px;
     cursor: pointer;
-    margin-left: -4px;
     display: flex;
     align-items: center;
-    width: 120px;
-    height: 44px;
     border-radius: 10px;
     background-color: #0444BD;
 }
 
-.modalContainer .pictureContainer .fileContainer .labelContainer label {
+.modalContainer .pictureContainer .fileContainer .labelContainer label,
+.modalContainer .pictureContainer .biometryContainer .labelContainer label,
+.modalContainer .pictureContainer .rfidContainer .labelContainer label {
+    margin-left: -5px;
     cursor: pointer;
-    margin-left: -4px;
     font-size: 16px;
     font-weight: 700;
     color: #FFFFFF;
 }
 
-.modalContainer .pictureContainer .fileContainer input {
-    display: none;
-}
-
-.modalContainer .pictureContainer .fileContainer span {
-    position: absolute;
-    left: 135px;
+.modalContainer .pictureContainer .fileContainer span,
+.modalContainer .pictureContainer .biometryContainer span,
+.modalContainer .pictureContainer .rfidContainer span {
+    margin-left: 16px;
     color: #193160;
     font-size: 16px;
     font-weight: 500;
 }
 
+/*Estilos apenas de foto*/
+.modalContainer .pictureContainer .fileContainer .labelContainer {
+    width: 120px;
+}
+
+.modalContainer .pictureContainer .fileContainer input {
+    position: absolute;
+    display: none;
+    width: 133px;
+    height: 19px;
+    left: 5px;
+}
+
+/*Estilos apenas de biometria*/
+.modalContainer .pictureContainer .biometryContainer {
+    margin-bottom: 8px;
+}
+
+.modalContainer .pictureContainer .biometryContainer .labelContainer {
+    width: 173px;
+}
+
+/*Estilos apenas de rfid*/
+.modalContainer .pictureContainer .rfidContainer .labelContainer {
+    width: 134px;
+}
+
+/*Estilos dos formulários*/
 .modalContainer .item {
     display: flex;
     margin-bottom: -10px;
@@ -116,6 +138,11 @@
     font-size: 16px;
     font-weight: 400;
     text-indent: 16px;
+}
+
+.modalContainer select {
+    appearance: none;
+    background: url('/images/down-arrow-form.svg') no-repeat right 16px center;
 }
 
 .modalContainer input:focus,

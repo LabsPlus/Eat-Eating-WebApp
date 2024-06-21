@@ -86,7 +86,7 @@ const Form = ({
                 placeholder="Digite a matrícula"
                 value={
                   formDataUser.category === "VISITANTE"
-                    ? "XXXXXXX"
+                    ? "Não aplicável"
                     : formDataUser.enrollment
                 }
                 onChange={handleInputChange}
@@ -111,7 +111,8 @@ const Form = ({
 
           <div className={styles.item}>
             <div className={styles.itens}>
-              <label>Usuário</label>
+              <label htmlFor="category">Usuário</label>
+
               <select
                 name="category"
                 id="category"
@@ -127,7 +128,8 @@ const Form = ({
             </div>
 
             <div className={styles.itens}>
-              <label>Bolsa</label>
+              <label htmlFor="typeGrant">Bolsa</label>
+
               <select
                 name="typeGrant"
                 id="typeGrant"
@@ -156,6 +158,32 @@ const Form = ({
     case 2:
       return (
         <div className={styles.modalContainer}>
+          <div
+            className={styles.pictureContainer}
+            style={{ alignItems: "flex-start" }}
+          >
+            {formDataUser && formDataUser.picture ? (
+              <img src={formDataUser.picture} alt="Foto do usuário" />
+            ) : (
+              <div className={styles.placeholder}></div>
+            )}
+            <div>
+              <div className={styles.biometryContainer}>
+                <div className={styles.labelContainer}>
+                  <label>Cadastrar biometria</label>
+                </div>
+                <span>Nenhuma biometria foi cadastrada</span>
+              </div>
+
+              <div className={styles.rfidContainer}>
+                <div className={styles.labelContainer}>
+                  <label>Cadastrar RFID</label>
+                </div>
+                <span>Nenhum RFID foi cadastrado</span>
+              </div>
+            </div>
+          </div>
+
           <div className={styles.item}>
             <div className={styles.itens}>
               <label htmlFor="email">E-mail</label>

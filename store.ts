@@ -69,9 +69,12 @@ export const useStore = create((set: any) => ({
     try {
       const { users } = useStore.getState();
 
-      const filteredUsers = users.filter((user: any) =>
-        user.user.person.name.toLowerCase().includes(searchTerm.toLowerCase()) || user.enrrolment
-      .includes(searchTerm)
+      const filteredUsers = users.filter(
+        (user: any) =>
+          user.user.person.name
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()) ||
+          user.enrrolment.includes(searchTerm)
       );
 
       if (filteredUsers.length > 0) {
@@ -110,10 +113,12 @@ export const useStore = create((set: any) => ({
 
       if (
         error.response.data.message ==
-        "Email Recovery already exists, only one email is allowed."
+          "Email already exists, only one email is allowed." ||
+        error.response.data.message ==
+          "Email Recovery already exists, only one email is allowed."
       ) {
         throw new Error(
-          "Ops! Parece que o e-mail de recuperação já pertence a outra conta. Verifique e tente novamente."
+          "Ops! Parece que o e-mail ou e-mail de recuperação já pertence a outra conta. Verifique e tente novamente."
         );
       } else if (
         error.response.data.message ==
@@ -130,14 +135,10 @@ export const useStore = create((set: any) => ({
 
   purchaseTicket: async (userId: number, quantity: number) => {
     try {
-      await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/tickets/purchase`,
-        {
-          userId,
-          quantity,
-        }
-      );
-
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/tickets/purchase`, {
+        userId,
+        quantity,
+      });
     } catch (error) {
       console.error("Erro ao adicionar ticket:", error);
       throw error;
@@ -146,14 +147,10 @@ export const useStore = create((set: any) => ({
 
   editTicket: async (userId: number, quantity: number) => {
     try {
-      await axios.put(
-        `${process.env.NEXT_PUBLIC_API_URL}/tickets/update`,
-        {
-          userId,
-          quantity,
-        }
-      );
-
+      await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/tickets/update`, {
+        userId,
+        quantity,
+      });
     } catch (error) {
       console.error("Erro ao editar ticket:", error);
       throw error;
@@ -166,17 +163,18 @@ export const useStore = create((set: any) => ({
         `${process.env.NEXT_PUBLIC_API_URL}/tickets/info`
       );
 
-      set({ infoTickets: {
-        id: response.data.id,
-        ticketsAvailable: response.data.ticketsAvailable,
-        ticketsConsumed: response.data.ticketsConsumed,
-        ticketsOpened: response.data.ticketsOpened,
-        ticketsSold: response.data.ticketsSold,
-      }, })
-
-    } catch (error) { 
+      set({
+        infoTickets: {
+          id: response.data.id,
+          ticketsAvailable: response.data.ticketsAvailable,
+          ticketsConsumed: response.data.ticketsConsumed,
+          ticketsOpened: response.data.ticketsOpened,
+          ticketsSold: response.data.ticketsSold,
+        },
+      });
+    } catch (error) {
       console.error("Erro ao buscar informações sobre tickets", error);
       throw error;
     }
-  }
+  },
 }));
