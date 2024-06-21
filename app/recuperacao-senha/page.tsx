@@ -1,14 +1,20 @@
 "use client";
+
 import React, { useState } from "react";
-import { UserOutlined, ArrowLeftOutlined } from "@ant-design/icons";
-import { Input, message } from "antd";
-import styles from "./page.module.css";
+import { Button } from "antd";
+import axios from "axios";
+
 import Image from "next/image";
 import Link from "next/link";
-import axios from "axios";
+
+import ExternalPages from "../components/Layout/ExternalPages";
+import TextInput from "../components/Inputs/TextInput/TextInput";
+
 import { IEmailRecovery } from "../Interfaces/admin.interfaces";
 import { isValidEmail } from "../helpers/isValidEmail";
 import { errorToast, successToast } from "../services/toast-messages/toast-messages";
+
+import styles from "./page.module.css";
 
 const RecoverPassword = () => {
   const [emailData, setEmailData] = useState<IEmailRecovery>({
@@ -65,44 +71,43 @@ const RecoverPassword = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <Image
-        className={styles.imgIFBa}
-        src="/images/Simbolo Ifba.jpg"
-        alt="IFBa"
-        width={70}
-        height={95}
-      />
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.title}>
-          <Link href="/login" className={styles.btnTtoGoBack}>
-            <ArrowLeftOutlined />
-          </Link>
-          <h2>Recuperar senha</h2>
+      <ExternalPages 
+        titleMessage="Quase lá!"
+        message={`Entre com o e-mail\n cadastrado na plataforma!`}
+      >
+
+        <Link href="/login" className={styles.btnToGoBack}>
+          <Image
+            src="/images/icon-arrow-back.svg"
+            alt="Seta horizontal para esquerda"
+            width={24}
+            height={24}
+          />
+        </Link>
+
+        <h2 className={styles.title}>Recuperar senha</h2>
+
+        <div className={styles.inputContent}>
+          <TextInput 
+            value={emailData.email}
+            urlIcon="/images/icon-user-form.svg"
+            altImage="Ícone de usuário no formulário de email"
+            placeholder="E-mail"
+            inputClassName="inputLogin"
+            handleChange={handleEmailChange}
+          />
         </div>
-        <Input
-          type="email"
-          className={styles.input}
-          placeholder="Email"
-          size="middle"
-          prefix={<UserOutlined />}
-          value={emailData.email}
-          onChange={handleEmailChange}
-        />
-        <button type="submit">Enviar</button>
-      </form>
-      <div className={styles.info}>
-        <h1>Quase lá!</h1>
-        <span>Entre com o email cadastrado na plataforma!</span>
-      </div>
-      <Image
-        className={styles.Ellipse}
-        src="/images/Ellipse 6.jpg"
-        alt="IFBa"
-        width={170}
-        height={130}
-      />
-    </div>
+        <div className={styles.divButton}>
+          <Button
+            type="primary"
+            onClick={(e: React.MouseEvent<HTMLFormElement>) =>
+              handleSubmit(e)
+            }
+          >
+            Enviar
+          </Button>
+        </div>
+    </ExternalPages>
   );
 };
 

@@ -1,20 +1,17 @@
 .container {
-  background-color: #F1F6FF;
-  padding: 1rem 3rem;
+  background-color: #E6ECF8;
+  padding: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.divLogo {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  margin-bottom: 2.625rem;
 }
 
 .divLogo p {
   color: #022971;
-  font-weight: bold;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 40px;
 }
 
 .divButtons {
@@ -24,10 +21,11 @@
 }
 
 .divButtons > .buttonRestaurante {
-  background-color: #F1F6FF;
+  background-color: #E6ECF8;
   color: #0444BD;
   border: none;
   font-weight: bold;
+  box-shadow: none;
 }
 
 .divButtons > .buttonAdmin {
