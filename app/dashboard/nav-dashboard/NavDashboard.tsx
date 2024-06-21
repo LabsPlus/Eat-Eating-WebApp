@@ -87,7 +87,7 @@ const NavDashboard = () => {
 
               />
             
-              { menuOpen && <span>Gerenciar usuários</span> }
+              { menuOpen && <span>Gerenciar Usuários</span> }
             </Link>
           </li>
           <li
@@ -112,7 +112,7 @@ const NavDashboard = () => {
 
               />
             
-              { menuOpen && <span>Gerenciar tickets</span> }
+              { menuOpen && <span>Gerenciar Tickets</span> }
             </Link>
           </li>
           <li
@@ -137,7 +137,7 @@ const NavDashboard = () => {
 
               />
             
-              { menuOpen && <span>Gerenciar dashboards</span> }
+              { menuOpen && <span>Gerenciar Dashboard</span> }
             </Link>
           </li>
         </ul>

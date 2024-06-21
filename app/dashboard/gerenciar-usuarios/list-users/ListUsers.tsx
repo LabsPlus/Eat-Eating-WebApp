@@ -284,7 +284,7 @@ const ListUsers = () => {
             />
             <img
               src="/images/last-page.svg"
-              alt="Seta que navega para a primeira página"
+              alt="Seta que navega para a última página"
               className={`${styles.last} ${
                 currentPage === Math.ceil(users.length / pageSize)
                   ? styles.disabledButton

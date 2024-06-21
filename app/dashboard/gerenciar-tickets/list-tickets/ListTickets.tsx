@@ -22,7 +22,8 @@ const ListTickets = () => {
   const [openPurchaseModal, setOpenPurchaseModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
 
-  const { users, getAllUsers, selectedUser, setSelectedUser, noUsersFound } = useStore();
+  const { users, getAllUsers, selectedUser, setSelectedUser, noUsersFound } =
+    useStore();
 
   useEffect(() => {
     getAllUsers();
@@ -130,7 +131,7 @@ const ListTickets = () => {
       className: styles.textCenter,
       render: (text: any, record: any) => {
         if (record.user.category.name === "VISITANTE") {
-          return "XXXXXXX";
+          return "Não aplicável";
         } else {
           return text;
         }
@@ -182,7 +183,7 @@ const ListTickets = () => {
           />
           <Button
             className={styles.btnEditPurchase}
-            icon={<AddIcon/>}
+            icon={<AddIcon />}
             onClick={() => handlePurchaseTicket(record.user.id)}
           />
 
@@ -208,7 +209,7 @@ const ListTickets = () => {
 
   return (
     <div className={styles.container}>
-       <Table
+      <Table
         className={styles.table}
         dataSource={users.map((user: any) => ({
           ...user,
@@ -231,34 +232,52 @@ const ListTickets = () => {
             className={styles.pageSizeSelect}
             defaultValue={pageSize}
             onChange={handlePageSizeChange}
+            suffixIcon={
+              <img
+                src="/images/down-arrow.svg"
+                alt="Seta para baixo"
+                style={{ paddingRight: "4px" }}
+              />
+            }
           >
-            <option className={styles.optionSizeSelectOption} value={5}>5</option>
-            <option className={styles.optionSizeSelectOption} value={10}>10</option>
-            <option className={styles.optionSizeSelectOption} value={15}>15</option>
+            <option className={styles.optionSizeSelectOption} value={5}>
+              5
+            </option>
+            <option className={styles.optionSizeSelectOption} value={10}>
+              10
+            </option>
+            <option className={styles.optionSizeSelectOption} value={15}>
+              15
+            </option>
           </Select>
         </div>
 
         <div className={styles.paginationInfo}>
-          {`${(currentPage - 1) * pageSize + 1}-${currentPage * pageSize} de ${
-            users.length
-          }`}
+          {`${(currentPage - 1) * pageSize + 1} - ${
+            currentPage * pageSize
+          } de ${users.length}`}
         </div>
 
         <div className={styles.paginationButtons}>
-          <VerticalLeftOutlined
+          <img
+            src="/images/first-page.svg"
+            alt="Seta que navega para a primeira página"
             className={`${styles.first} ${
               currentPage === 1 ? styles.disabledButton : ""
             }`}
-            style={{ transform: "rotate(900deg)" }}
             onClick={goToFirstPage}
           />
-          <LeftOutlined
+          <img
+            src="/images/left-arrow.svg"
+            alt="Seta para esquerda"
             className={`${styles.prev} ${
               currentPage === 1 ? styles.disabledButton : ""
             }`}
             onClick={handlePrevPage}
           />
-          <RightOutlined
+          <img
+            src="/images/right-arrow.svg"
+            alt="Seta para direita"
             className={`${styles.next} ${
               currentPage === Math.ceil(users.length / pageSize)
                 ? styles.disabledButton
@@ -266,7 +285,9 @@ const ListTickets = () => {
             }`}
             onClick={handleNextPage}
           />
-          <VerticalLeftOutlined
+          <img
+            src="/images/last-page.svg"
+            alt="Seta que navega para a última página"
             className={`${styles.last} ${
               currentPage === Math.ceil(users.length / pageSize)
                 ? styles.disabledButton
