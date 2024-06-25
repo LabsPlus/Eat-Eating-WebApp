@@ -39,7 +39,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 12px;
+  border-radius: 20px;
   position: relative;
   left: 4rem;
 }
@@ -50,7 +50,7 @@
   height: 840px;
   background-color: #0444BD;
   border: 1px solid #022971;
-  border-radius: 10px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   flex-direction: column;
