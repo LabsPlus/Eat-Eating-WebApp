@@ -206,7 +206,7 @@ const Form = ({
                 type="email"
                 value={formDataUser.emailRecovery}
                 onChange={handleInputChange}
-                placeholder="Digite o e-mail novamente"
+                placeholder="Digite o e-mail de recuperação"
                 className={styles.inputBig}
               />
             </div>
