@@ -337,7 +337,7 @@ const AddUser = () => {
         />
       </Modal>
       <RFIDModal
-        visible={isRFIDModalOpen}
+        open={isRFIDModalOpen}
         onClose={closeRFIDModal}
         handleRFID={handleRFID}
       />

@@ -17,6 +17,7 @@ import Form from "../modal-user/Form/Form";
 import Buttons from "../modal-user/Buttons/Buttons";
 
 const UpdateUser: React.FC = () => {
+  const [isRFIDModalOpen, setIsRFIDModalOpen] = useState(false);
   const [formData, setFormData] = useState<IDataUser | null>(null);
   const [currentStep, setCurrentStep] = useState(1);
   const { updateUser, getAllUsers, selectedUser, setSelectedUser } = useStore();
@@ -70,6 +71,14 @@ const UpdateUser: React.FC = () => {
   const [fileUploadMessageUpdate, setFileUploadMessageUpdate] = useState(
     "Nenhuma foto selecionada"
   );
+
+  const openRFIDModal = () => {
+    setIsRFIDModalOpen(true);
+  };
+  
+  const closeRFIDModal = () => {
+    setIsRFIDModalOpen(false);
+  };
 
   const [fileContainerColorUpdate, setFileContainerColorUpdate] = useState("");
 
@@ -348,6 +357,7 @@ const UpdateUser: React.FC = () => {
           handleInputChange={handleInputChangeUpdate}
           handlePicture={handlePictureUploadUpdate}
           pictureUser={"pictureUpdate"}
+          openRFIDModal={openRFIDModal}
         />
       </Modal>
     </>

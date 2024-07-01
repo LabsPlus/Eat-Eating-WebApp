@@ -2,16 +2,16 @@ import React from "react";
 import { Modal } from "antd";
 
 interface ModalProps {
-    visible: boolean;
+    open: boolean;
     onClose: () => void;
     handleRFID: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const RFIDModal = ({ visible, onClose, handleRFID } : ModalProps) => {
+const RFIDModal = ({ open, onClose, handleRFID } : ModalProps) => {
   return (
     <Modal
       title="Cadastrar RFID"
-      visible={visible}
+      open={open}
       onCancel={onClose}
       footer={null}
     >
