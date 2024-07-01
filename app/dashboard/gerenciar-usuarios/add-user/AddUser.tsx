@@ -13,8 +13,10 @@ import {
 import Header from "../modal-user/header/Header";
 import Form from "../modal-user/Form/Form";
 import Buttons from "../modal-user/Buttons/Buttons";
+import RFIDModal from '@/app/components/RFID-modal/RFID-modal'
 
 const AddUser = () => {
+  const [isRFIDModalOpen, setIsRFIDModalOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -27,7 +29,17 @@ const AddUser = () => {
     password: "",
     emailRecovery: "",
     picture: "",
+    rfid: "",	
   });
+
+  const openRFIDModal = () => {
+    setIsRFIDModalOpen(true);
+  };
+  
+  const closeRFIDModal = () => {
+    setIsRFIDModalOpen(false);
+  };
+  
 
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -79,6 +91,7 @@ const AddUser = () => {
       password: "",
       emailRecovery: "",
       picture: "",
+      rfid: "",
     });
     resetPasswordValidations();
     setCurrentStep(1);
@@ -102,6 +115,24 @@ const AddUser = () => {
   const error = (errorMsg: any) => {
     errorToast(errorMsg);
   };
+
+  //RFID
+  const handleRFID = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const rfid = e.target.value;
+    console.log(rfid)
+    if (rfid.length > 10) {
+      error("O código RFID deve ter no máximo 10 caracteres.");
+      setFormData((prevInputs) => ({
+        ...prevInputs,
+        rfid: "",
+      }));
+      return;
+    }
+    setFormData((prevInputs) => ({
+      ...prevInputs,
+      rfid: rfid,
+    }));
+  }
 
   //cloudinary
   const handlePictureUpload = async (
@@ -302,8 +333,14 @@ const AddUser = () => {
           handleInputChange={handleInputChangeAdd}
           handlePicture={handlePictureUpload}
           pictureUser={"picture"}
+          openRFIDModal={openRFIDModal}
         />
       </Modal>
+      <RFIDModal
+        visible={isRFIDModalOpen}
+        onClose={closeRFIDModal}
+        handleRFID={handleRFID}
+      />
     </>
   );
 };

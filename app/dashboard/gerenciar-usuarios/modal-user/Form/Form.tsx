@@ -13,6 +13,7 @@ interface FormProps {
   ) => void;
   handlePicture: (e: React.ChangeEvent<HTMLInputElement>) => void;
   pictureUser: string;
+  openRFIDModal: () => void;
 }
 
 const Form = ({
@@ -24,6 +25,7 @@ const Form = ({
   handleInputChange,
   pictureUser,
   handlePicture,
+  openRFIDModal
 }: FormProps) => {
   switch (currentStep) {
     case 1:
@@ -176,11 +178,18 @@ const Form = ({
               </div>
 
               <div className={styles.rfidContainer}>
-                <div className={styles.labelContainer}>
-                  <label>Cadastrar RFID</label>
-                </div>
-                <span>Nenhum RFID foi cadastrado</span>
+                {formDataUser && formDataUser.rfid ? (
+                  <span>{formDataUser.rfid}</span>
+                ) : (
+                  <>
+                    <div className={styles.labelContainer}>
+                      <label onClick={openRFIDModal}>Cadastrar RFID</label>
+                    </div>
+                    <span>Nenhum RFID foi cadastrado</span>
+                  </>
+                )}
               </div>
+
             </div>
           </div>
 
