@@ -1,0 +1,87 @@
+.modalRFID{
+    width: 728px !important;
+    height: 563px !important;
+    border-radius: 8px !important;
+}
+
+.rfidReader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.rfidReaderText {
+    display: flex;
+    align-items: center;
+}
+
+.rfidReaderText img {
+    margin-right: 8px;
+}
+
+.rfidInfo {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+}
+
+.rfidInfoText {
+    display: flex;
+    align-items: center;
+    color: #000;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+
+.rfidAnimation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px !important;
+}
+
+.btns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnCancel{
+    width: auto;
+    height: auto;
+    display: flex;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid var(--Blue-Normal, #0444BD);
+    background: var(--Foundation-White-Light, #FFF);
+    color: var(--Foundation-Blue-Normal, var(--Blue-Normal, #0444BD));
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.btnConfirm{
+    width: auto;
+    height: auto;
+    display: flex;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    background: var(--Blue-Normal, #0444BD);
+    color: var(--Foundation-White-Light, #FFF);
+    border-radius: 8px;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+}
