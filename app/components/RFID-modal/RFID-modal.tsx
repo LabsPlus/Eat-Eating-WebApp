@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Modal } from "antd";
 import styles from "./page.module.css";
 import Header  from "../RFID-modal/header/Header";
+import Image from "next/image";
 
 interface ModalProps {
     open: boolean;
@@ -10,6 +11,55 @@ interface ModalProps {
 }
 
 const RFIDModal = ({ open, onClose, handleRFID } : ModalProps) => {
+  const [requestRfid, setRequestRfid] = useState(true)
+  const [statusRfid, setStatusRfid] = useState({
+    percent: 0,
+    url: 'RFID.svg'
+  })
+
+  const colorPercent = requestRfid && statusRfid.percent === 100 ? 'rfidPercentColorGreen' : 'rfidPercentColorBlack'
+  const showPercent = !requestRfid && statusRfid.percent === 100
+  
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
+    if (open) {
+      interval = setInterval(() => {
+        setStatusRfid(prevData => {
+          let newData = { ...prevData, percent: prevData.percent + 1 };
+
+          if (prevData.percent === 36) {
+            newData.url = 'RFID-thirty-six.png';
+          } 
+          
+          if (prevData.percent === 50) {
+            newData.url = 'RFID-fifty.png';
+          }
+
+          if (prevData.percent === 87) {
+            newData.url = 'RFID-eighty-seven.png';
+          }
+         
+          if (prevData.percent === 99) {
+            clearInterval(interval);
+
+            if (requestRfid) {
+              newData.url = 'RFID-success.png';
+            } else {
+              newData.url = 'RFID-error.png';
+            }
+          }
+
+          return newData;
+        });
+      }, 5000 / 100);
+    } else {
+      setStatusRfid({ percent: 0, url: 'RFID-zero.png' });
+    }
+
+    return () => clearInterval(interval);
+  }, [open]);
+
   return (
     <Modal
       className={styles.modalRFID}
@@ -75,7 +125,18 @@ const RFIDModal = ({ open, onClose, handleRFID } : ModalProps) => {
       </div>
 
       <div className={styles.rfidAnimation}>
-        <img src="/images/RFID.svg" alt="Animação do RFID" />
+        <Image
+          src={`/images/${statusRfid.url}`}
+          alt="Animação do RFID"
+          width={200}
+          height={200} 
+        />
+        
+        {showPercent ? (
+          <div></div>
+        ) : (
+          <p className={`${styles.rfidPercent} ${styles[colorPercent]}`}>%{statusRfid.percent}</p>
+        )}
       </div>
 
       <div className={styles.rfidInfo}>
