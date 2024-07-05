@@ -3,19 +3,39 @@ import { Button, Modal } from "antd";
 import styles from "./page.module.css";
 import Header  from "../RFID-modal/header/Header";
 import Image from "next/image";
+import useRfid from "../../hooks/useRfid";
+import { ModalRfidProps } from "../../Interfaces/modalrfid.interface";
 
-interface ModalProps {
-    open: boolean;
-    onClose: () => void;
-    handleRFID: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
 
-const RFIDModal = ({ open, onClose, handleRFID } : ModalProps) => {
+const RFIDModal = ({ open, onClose, handleRFID } : ModalRfidProps) => {
   const [requestRfid, setRequestRfid] = useState(true)
   const [statusRfid, setStatusRfid] = useState({
     percent: 0,
     url: 'RFID.svg'
   })
+
+  const [deviceStatus, setDeviceStatus] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const result = await useRfid.getDeviceStatus();
+        setDeviceStatus(result);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log('statusRfid', deviceStatus)
+  
 
   const colorPercent = requestRfid && statusRfid.percent === 100 ? 'rfidPercentColorGreen' : 'rfidPercentColorBlack'
   const showPercent = !requestRfid && statusRfid.percent === 100
