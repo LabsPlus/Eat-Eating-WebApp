@@ -1,7 +1,8 @@
-.modalRFID{
+.modalRFID {
     width: 728px !important;
     height: 563px !important;
     border-radius: 8px !important;
+    padding: 1rem !important; 
 }
 
 .rfidReader {
