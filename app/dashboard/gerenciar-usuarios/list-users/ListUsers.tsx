@@ -16,6 +16,7 @@ import {
 const ListUsers = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
+  const { Option } = Select;
 
   const capitalizeFirstLetter = (string: any) => {
     if (!string) return "";
@@ -212,7 +213,7 @@ const ListUsers = () => {
             onChange: handlePageChange,
             className: styles.defaultPagination,
           }}
-          rowKey="id"
+          rowKey={(record: any) => record.user.id}
           rowClassName={rowClassName}
         />
         {noUsersFound && (
@@ -237,15 +238,13 @@ const ListUsers = () => {
                 />
               }
             >
-              <option className={styles.optionSizeSelectOption} value={5}>
-                5
-              </option>
-              <option className={styles.optionSizeSelectOption} value={10}>
+              <Option className={styles.optionSizeSelectOption} value="5">5</Option>
+              <Option className={styles.optionSizeSelectOption} value="10">
                 10
-              </option>
-              <option className={styles.optionSizeSelectOption} value={15}>
+              </Option>
+              <Option className={styles.optionSizeSelectOption} value="15">
                 15
-              </option>
+              </Option>
             </Select>
           </div>
 
