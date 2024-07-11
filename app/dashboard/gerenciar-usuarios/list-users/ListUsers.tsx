@@ -213,7 +213,7 @@ const ListUsers = () => {
             onChange: handlePageChange,
             className: styles.defaultPagination,
           }}
-          rowKey={(record) => record.user.id}
+          rowKey={(record: any) => record.user.id}
           rowClassName={rowClassName}
         />
         {noUsersFound && (

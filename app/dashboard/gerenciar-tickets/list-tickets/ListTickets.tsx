@@ -224,7 +224,7 @@ const ListTickets = () => {
           onChange: handlePageChange,
           className: styles.defaultPagination,
         }}
-        rowKey={(record) => record.user.id}
+        rowKey={(record:any) => record.user.id}
       />
 
       <div className={styles.paginationContainer}>
