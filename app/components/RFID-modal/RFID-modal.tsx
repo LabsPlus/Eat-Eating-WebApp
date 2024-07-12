@@ -20,7 +20,7 @@ const RFIDModal = ({ open, onClose, handleRFID } : ModalRfidProps) => {
     url: 'RFID.svg'
   })
 
-  const [deviceStatus, setDeviceStatus] = useState(false);
+  const [deviceStatus, setDeviceStatus] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -29,7 +29,7 @@ const RFIDModal = ({ open, onClose, handleRFID } : ModalRfidProps) => {
       setLoading(true);
       try {
         const result = await useRfid.getDeviceStatus();
-        // setDeviceStatus(result);
+        setDeviceStatus(result);
       } catch (err: any) {
         setError(err.message);
       } finally {
@@ -70,7 +70,7 @@ const RFIDModal = ({ open, onClose, handleRFID } : ModalRfidProps) => {
               newData.url = 'RFID-success.png';
               setShowStatusRfid(prev => ({
                 ...prev, 
-                message: 'RFID atualizado com sucesso.'
+                message: 'RFID cadastrado com sucesso.'
               }));
             } else {
               newData.url = 'RFID-error.png';
@@ -91,16 +91,25 @@ const RFIDModal = ({ open, onClose, handleRFID } : ModalRfidProps) => {
     return () => clearInterval(interval);
   }, [open]);
 
+  const handleCancel = () => {
+    onClose();
+
+    setShowStatusRfid(prev => ({
+      ...prev, 
+      message: 'Nenhum RFID foi cadastrado.'
+    }));
+  }
+
   return (
     <Modal
       className={styles.modalRFID}
       title={<Header title="Cadastro do RFID" />}
       open={open}
-      onCancel={onClose}
+      onCancel={handleCancel}
       footer={
         <div className={styles.btns}>
           <Button
-            onClick={onClose}
+            onClick={handleCancel}
             className={styles.btnCancel}
             icon={
               <svg
