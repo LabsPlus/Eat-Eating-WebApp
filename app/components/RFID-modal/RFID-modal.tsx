@@ -1,25 +1,115 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Modal } from "antd";
-import styles from "./page.module.css";
+
 import Header  from "../RFID-modal/header/Header";
+import Image from "next/image";
 
-interface ModalProps {
-    open: boolean;
-    onClose: () => void;
-    handleRFID: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+import { ModalRfidProps } from "../../Interfaces/modalrfid.interface";
 
-const RFIDModal = ({ open, onClose, handleRFID } : ModalProps) => {
+import useRfid from "../../hooks/useRfid";
+
+import styles from "./page.module.css";
+
+const RFIDModal = ({ open, onClose, handleRFID } : ModalRfidProps) => {
+  const [showStatusRfid, setShowStatusRfid] = useState({
+    urlImage: "RFID-one-hundred.png",
+    message: "Nenhum RFID foi cadastrado."
+  })
+  const [statusRfid, setStatusRfid] = useState({
+    percent: 0,
+    url: 'RFID.svg'
+  })
+
+  const [deviceStatus, setDeviceStatus] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const result = await useRfid.getDeviceStatus();
+        setDeviceStatus(result);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const colorPercent = deviceStatus && statusRfid.percent === 100 ? 'rfidPercentColorGreen' : 'rfidPercentColorBlack';
+  const showPercent = !deviceStatus && statusRfid.percent === 100;
+  
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
+    if (open) {
+      interval = setInterval(() => {
+        setStatusRfid(prevData => {
+          let newData = { ...prevData, percent: prevData.percent + 1 };
+
+          if (prevData.percent === 36) {
+            newData.url = 'RFID-thirty-six.png';
+          } 
+          
+          if (prevData.percent === 50) {
+            newData.url = 'RFID-fifty.png';
+          }
+
+          if (prevData.percent === 87) {
+            newData.url = 'RFID-eighty-seven.png';
+          }
+         
+          if (prevData.percent === 99) {
+            clearInterval(interval);
+
+            if (deviceStatus) {
+              newData.url = 'RFID-success.png';
+              setShowStatusRfid(prev => ({
+                ...prev, 
+                message: 'RFID cadastrado com sucesso.'
+              }));
+            } else {
+              newData.url = 'RFID-error.png';
+              setShowStatusRfid({
+                urlImage: 'RFID-error-small.png',
+                message: 'Erro na leitura do RFID. Verifique e tente novamente.'
+              });
+            }
+          }
+
+          return newData;
+        });
+      }, 5000 / 100);
+    } else {
+      setStatusRfid({ percent: 0, url: 'RFID-zero.png' });
+    }
+
+    return () => clearInterval(interval);
+  }, [open]);
+
+  const handleCancel = () => {
+    onClose();
+
+    setShowStatusRfid(prev => ({
+      ...prev, 
+      message: 'Nenhum RFID foi cadastrado.'
+    }));
+  }
+
   return (
     <Modal
       className={styles.modalRFID}
       title={<Header title="Cadastro do RFID" />}
       open={open}
-      onCancel={onClose}
+      onCancel={handleCancel}
       footer={
         <div className={styles.btns}>
           <Button
-            onClick={onClose}
+            onClick={handleCancel}
             className={styles.btnCancel}
             icon={
               <svg
@@ -62,10 +152,6 @@ const RFIDModal = ({ open, onClose, handleRFID } : ModalProps) => {
         </div>
       }
     >
-      {/* <div>
-        <label htmlFor="rfid">RFID</label>
-        <input id="rfid" type="text" onChange={handleRFID} />
-      </div> */}
 
       <div className={styles.rfidReader}>
         <p className={styles.rfidReaderText}>
@@ -75,13 +161,29 @@ const RFIDModal = ({ open, onClose, handleRFID } : ModalProps) => {
       </div>
 
       <div className={styles.rfidAnimation}>
-        <img src="/images/RFID.svg" alt="Animação do RFID" />
+        <Image
+          src={`/images/${statusRfid.url}`}
+          alt="Animação do RFID"
+          width={200}
+          height={200} 
+        />
+        
+        {showPercent ? (
+          <div></div>
+        ) : (
+          <p className={`${styles.rfidPercent} ${styles[colorPercent]}`}>%{statusRfid.percent}</p>
+        )}
       </div>
 
       <div className={styles.rfidInfo}>
         <p className={styles.rfidInfoText}>
-          <img src="/images/rfid pequeño.svg" alt="Informação RFID" />
-          Nenhum RFID foi cadastrado.
+          <Image 
+            src={`/images/${showStatusRfid.urlImage}`}
+            alt="Animação do RFID"
+            width={130}
+            height={130}
+          />
+          {showStatusRfid.message}
         </p>
       </div>
     </Modal>

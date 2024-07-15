@@ -1,7 +1,8 @@
-.modalRFID{
+.modalRFID {
     width: 728px !important;
     height: 563px !important;
     border-radius: 8px !important;
+    padding: 1rem !important; 
 }
 
 .rfidReader {
@@ -42,9 +43,28 @@
 
 .rfidAnimation{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1rem;
     margin-top: 24px !important;
+    min-height: 255px;
+}
+
+.rfidPercent {
+    font-family: Inter;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.5rem;
+    color: #5C5C5C;
+}
+
+.rfidPercentColorBlack {
+    color: #5C5C5C; 
+}
+
+.rfidPercentColorGreen {
+    color: #359936; 
 }
 
 .btns{
