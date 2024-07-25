@@ -12,6 +12,7 @@ import {
   RightOutlined,
   VerticalLeftOutlined,
 } from "@ant-design/icons";
+import NoData from "@/app/components/NoData/NoData";
 
 const ListUsers = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -214,6 +215,9 @@ const ListUsers = () => {
           }}
           rowKey="id"
           rowClassName={rowClassName}
+          locale={{
+            emptyText: <NoData />
+          }}
         />
         {noUsersFound && (
           <div className={styles.errorMessage}>
