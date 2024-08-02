@@ -140,6 +140,31 @@ const NavDashboard = () => {
               { menuOpen && <span>Gerenciar Dashboard</span> }
             </Link>
           </li>
+          <li
+            className={
+              menuOpen ? (
+                pathname === "/dashboard/perfil-adm" ? styles.activeOpen : ""
+              ) : (
+                pathname === "/dashboard/perfil-adm" ? styles.activeClose : ""
+              )
+            }
+          >
+            <Link href={"/dashboard/perfil-adm"}>
+              <Image
+                src={"/images/perm_identity.svg"}
+                alt="Perfil Administrador Logo"
+                width={24}
+                height={24}
+                className={styles.icon}
+                style={{
+                  paddingLeft: "10px",
+                }}
+
+              />
+            
+              { menuOpen && <span>Meu Perfil</span> }
+            </Link>
+          </li>
         </ul>
         <div className={styles.logoutContainer} onClick={handleLogout}>
           <LogOut 

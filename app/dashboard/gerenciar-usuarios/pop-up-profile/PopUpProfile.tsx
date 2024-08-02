@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "antd";
 import { LogOut, User, Mail } from "lucide-react";
 
@@ -8,14 +8,14 @@ import { useAuthContext } from "@/app/contexts/AuthContext";
 import { errorToast } from "@/app/services/toast-messages/toast-messages";
 
 import styles from "./page.module.css";
+import Page from "../../perfil-adm/page";
+import Link from "next/link";
 
 const PopUpProfile = () => {
   const { logout } = useAuthContext();
 
   return (
-    <div
-      className={styles.popUpUser}
-    >
+    <div className={styles.popUpUser}>
       <div className={styles.containerPopUpInfo}>
         <Image
           src="/images/Avatar.png"
@@ -37,11 +37,10 @@ const PopUpProfile = () => {
       </div>
       <div className={styles.containerButtonsPopUp}>
         <Button
-          className={styles.buttonsPopUp}
           icon={<User className={styles.iconsPopUp} />}
-          onClick={() => errorToast("Página em desenvolvimento.")}
+          className={styles.buttonsPopUp}
         >
-          Meu perfil
+          <Link href="/dashboard/perfil-adm">Meu perfil </Link>
         </Button>
         <Button
           icon={<LogOut className={styles.iconsPopUp} />}
