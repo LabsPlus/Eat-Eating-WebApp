@@ -22,6 +22,7 @@ const ListTickets = () => {
   const [purchaseTicketVisible, setPurchaseTicketVisible] = useState(false);
   const [openPurchaseModal, setOpenPurchaseModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
+  const { Option } = Select;
 
   const { users, getAllUsers, selectedUser, setSelectedUser, noUsersFound } =
     useStore();
@@ -227,9 +228,8 @@ const ListTickets = () => {
         locale={{
           emptyText: <NoData />
         }}
+        rowKey={(record:any) => record.user.id}
       />
-{/*       
-      <NoData /> */}
 
       <div className={styles.paginationContainer}>
         <div className={styles.selectContainer}>
@@ -246,15 +246,13 @@ const ListTickets = () => {
               />
             }
           >
-            <option className={styles.optionSizeSelectOption} value={5}>
-              5
-            </option>
-            <option className={styles.optionSizeSelectOption} value={10}>
+            <Option className={styles.optionSizeSelectOption} value="5">5</Option>
+            <Option className={styles.optionSizeSelectOption} value="10">
               10
-            </option>
-            <option className={styles.optionSizeSelectOption} value={15}>
+            </Option>
+            <Option className={styles.optionSizeSelectOption} value="15">
               15
-            </option>
+            </Option>
           </Select>
         </div>
 
