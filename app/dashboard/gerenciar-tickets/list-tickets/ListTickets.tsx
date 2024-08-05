@@ -14,6 +14,7 @@ import { useStore } from "../../../../store";
 
 import styles from "./page.module.css";
 import ModalTicket from "../modal-ticket/ModalTicket";
+import NoData from "@/app/components/NoData/NoData";
 
 const ListTickets = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -223,6 +224,9 @@ const ListTickets = () => {
           total: users.length,
           onChange: handlePageChange,
           className: styles.defaultPagination,
+        }}
+        locale={{
+          emptyText: <NoData />
         }}
         rowKey={(record:any) => record.user.id}
       />
