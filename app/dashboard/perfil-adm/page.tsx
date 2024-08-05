@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Button, Divider } from "antd";
 import Icon from "@ant-design/icons/lib/components/Icon";
 
-// Função simulada para obter dados do usuário logado
+
 const getUserData = async () => {
   return {
     name: "Amanda Oliveira",
@@ -26,7 +26,6 @@ const Page = (p0?: string) => {
   const formattedDate = dateFormatter.format(currentDate);
 
   useEffect(() => {
-    // Função para carregar os dados do usuário
     const fetchUserData = async () => {
       const data = await getUserData();
       setUserData(data);
@@ -41,11 +40,6 @@ const Page = (p0?: string) => {
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
-  };
-
-  const handleChangePassword = () => {
-    // Função para alterar a senha
-    console.log("Alterar senha");
   };
 
   return (
@@ -126,7 +120,6 @@ const Page = (p0?: string) => {
               </button>
               <Button
                 className={styles.buttonEditPassword}
-                onClick={handleChangePassword}
               >
                 Alterar senha
               </Button>

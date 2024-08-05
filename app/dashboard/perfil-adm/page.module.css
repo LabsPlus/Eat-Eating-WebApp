@@ -57,6 +57,7 @@
     align-items: stretch;
     flex-direction: column;
     margin-top: 15px;
+    margin-left: 1rem;
 }
 
 .dataProfilePicture {
@@ -250,7 +251,9 @@
 }
 
 .buttonRemovePicture {
-    align-self: start;
+    align-self:start;
+    margin-left: 5.8rem;
+    margin-top: -0.5rem;
     border: none;
     background: none;
     color: var(--Foundation-Blue-Normal, var(--Blue-Normal, #0444BD));
