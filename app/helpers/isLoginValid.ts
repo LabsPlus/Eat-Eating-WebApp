@@ -1,7 +1,7 @@
 import { IUserData } from "../Interfaces/admin.interfaces";
 
 const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,10}$/;
+const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,11}$/;
 
 export const isLoginValid = ({ email, password }: IUserData) => {
   if (!email || !password)
