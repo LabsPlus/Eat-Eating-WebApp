@@ -1,0 +1,51 @@
+:root {}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+.custom-input {
+  border: 2px solid #022971;
+  border-color: #022971;
+}
+
+/* styles globais modals */
+.ant-modal .ant-modal-content {
+  border-radius: 20px !important;
+  box-shadow: none !important;
+}
+
+/* styles globais modals */
+.ant-modal {
+  padding-bottom: 0 !important;
+  top: 200px;
+}
+
+/* styles globals background select */
+.ant-select-selector {
+  padding-right: 35px !important;
+  width: 86px !important;
+  border: none !important;
+  background-color: transparent !important;
+}
+
+.ant-select-selector .ant-select-selection-item {
+  color: #0443BD;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+
+/* styles globals background options select */
+.ant-select-item-option {
+  background-color: transparent !important;
+}
+
