@@ -1,4 +1,4 @@
-import { IUser, IDataUser } from "../Interfaces/user.interfaces";
+import { IUser, IDataUser } from "../interfaces/user.interfaces";
 import { TicketData } from "./tickets.interfaces";
 
 export interface IStoreState {

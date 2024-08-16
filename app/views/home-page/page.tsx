@@ -1,15 +1,16 @@
 "use client";
+
 import styles from "./page.module.css";
 import { Button, ConfigProvider } from "antd";
 import React from "react";
-import theme from "../theme/themeConfig";
-import { useAuthContext } from "@/app/contexts/AuthContext";
-import HeaderHome from "./components/HeaderHome/HeaderHome";
+import theme from "../../../theme/themeConfig";
+import { useAuthContext } from "../../context/AuthContext";
+import HeaderHome from "../../components/HeaderHome/HeaderHome";
 import Link from "next/link";
 import Image from "next/image";
-import FooterHome from "./components/FooterHome/FooterHome";
+import FooterHome from "../../components/FooterHome/FooterHome";
 
-export default function Home() {
+export default function HomePage() {
   const { user, logout } = useAuthContext();
 
   return (

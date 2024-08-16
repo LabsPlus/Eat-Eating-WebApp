@@ -1,7 +1,7 @@
 import axios from "axios";
 import { create } from "zustand";
-import { IDataUser } from "./app/Interfaces/user.interfaces";
-import { IStoreState } from "./app/Interfaces/storeState.interfaces";
+import { IDataUser } from "./app/interfaces/user.interfaces";
+import { IStoreState } from "./app/interfaces/storeState.interfaces";
 
 const initialState: IStoreState = {
   users: [],

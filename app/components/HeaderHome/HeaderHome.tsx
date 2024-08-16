@@ -4,7 +4,7 @@ import { Button } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 
-import { HeaderHomeProps } from "@/app/Interfaces/components.interfaces";
+import { HeaderHomeProps } from "@/app/interfaces/components.interfaces";
 
 import styles from "./page.module.css";
 
