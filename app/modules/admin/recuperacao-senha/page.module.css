@@ -1,0 +1,46 @@
+.title {
+    color: #03338E;
+    font-size: 22px;
+    margin: 5.25rem 0;
+    margin-left: 2rem;
+}
+
+.btnToGoBack {
+    position: absolute;
+    top: 111px;
+    left: 65px;
+    cursor: pointer;
+    color: #fff !important;
+    border-radius: 50px;
+    background-color: #0444BD;
+    padding: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputContent {
+    width: 388px;
+    margin-top: 3.5rem;
+    margin-left: 2.5rem;
+}
+
+.divButton {
+    margin-top: 2.5rem;
+    margin-left: 2.5rem;
+}
+
+.divButton button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    flex-shrink: 0;
+    width: 204px;
+    height: 44px;
+    padding: 0.75rem 1rem;
+    background-color: #0444BD;
+    font-weight: 700;
+    line-height: 20px;
+    font-size: 1rem; 
+}

@@ -1,0 +1,138 @@
+.gerenciarUsuariosContainer{
+    width: 90%;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #E6ECF8;
+    padding: 10px;
+}
+
+.time {
+    width: 142px;
+    height: 40px;
+    display: flex;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    align-items: center;
+    justify-content: center;
+    color: var(--foundation-blue-dark-hover, #022971);
+    font: 600 16px/16px Inter !important;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid var(--Blue-Normal, #0444BD);
+    background: var(--Blue-Light-Active, #B1C5EB);
+}
+
+.title {
+    margin-top: 85px;
+    margin-bottom: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 65px;
+    color: #022971;
+    font-size: 22px;
+    border-radius: 5px;
+    border: 1px solid var(--Blue-Normal, #0444BD);
+    background: #EEF2F9;
+}
+
+.inputsContainer {
+    display: flex;
+    flex-direction:column-reverse;
+}
+
+.inputsContainer .searchAndAdd {
+    display: flex;
+    margin-bottom: 24px;
+}
+
+.btnsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+    margin-bottom: -44px;
+}
+
+.btnsContainer .personIcon {
+    cursor: pointer;
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #B1C5EB;
+    margin-bottom: 24px;
+    align-self: flex-end;
+}
+
+.containerIcons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.btnGroup {
+    display: flex;
+    justify-content: flex-end;
+    border-radius: 5px;
+}
+
+.btnsContainer button {
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: #0443BD;
+    font: 700 16px Inter;
+    border: 1px solid var(--Foundation-Blue-Normal, #0443BD);
+    background: var(--Blue-Light-Hover, #D9E3F5);
+}
+
+.btnsContainer button:not(:first-child) {
+    border-left: none;
+}
+
+.btnPrint{
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.btnGroup .personIcon + button {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.btnGroup button:first-child{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.btnGroup button:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.popUpUser {
+    width: 332px !important;
+    padding: 0.75rem !important;
+    border-radius: 8px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(177, 197, 235, 0.50);
+    z-index: 1000;
+}

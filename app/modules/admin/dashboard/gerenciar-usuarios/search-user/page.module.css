@@ -1,0 +1,16 @@
+.search {
+    width: 312px !important;
+    height: 44px;
+    border-radius: 5px;
+    border: 1px solid #033697 !important;
+    background-color: var(--Foundation-White-Light, #FFF);
+}
+
+.search ::-webkit-input-placeholder {
+    background: var(--Foundation-White-Light, #FFF);
+}
+
+.searchOutlined {
+    color: #999999 !important;
+    padding-right: 5px !important;
+}
