@@ -6,6 +6,7 @@ import styles from "./page.module.css";
 import { useStore } from "../../../../../../store";
 import UpdateUserPopover from "../update-user-popover/UpdateUser";
 import ModalDeleteUser from "../modal-delete-user/ModalDeleteUser";
+import Image from 'next/image';
 
 import {
   LeftOutlined,
@@ -130,9 +131,9 @@ const ListUsers = () => {
       render: (text: any, record: any) => (
         <div className={styles.nameAndPicture}>
           {record.picture ? (
-            <img src={record.picture} alt="Foto do usuário" />
+            <Image src={record.picture} alt="Foto do usuário" />
           ) : (
-            <img
+            <Image
               src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Free-Image.png"
               alt="Foto do usuário"
             />
@@ -235,7 +236,7 @@ const ListUsers = () => {
               onChange={handlePageSizeChange}
               className={styles.pageSizeSelect}
               suffixIcon={
-                <img
+                <Image
                   src="/images/down-arrow.svg"
                   alt="Seta para baixo"
                   style={{ paddingRight: "4px" }}
@@ -259,7 +260,7 @@ const ListUsers = () => {
           </div>
 
           <div className={styles.paginationButtons}>
-            <img
+            <Image
               src="/images/first-page.svg"
               alt="Seta que navega para a primeira página"
               className={`${styles.first} ${
@@ -267,7 +268,7 @@ const ListUsers = () => {
               }`}
               onClick={goToFirstPage}
             />
-            <img
+            <Image
               src="/images/left-arrow.svg"
               alt="Seta para esquerda"
               className={`${styles.prev} ${
@@ -275,7 +276,7 @@ const ListUsers = () => {
               }`}
               onClick={handlePrevPage}
             />
-            <img
+            <Image
               src="/images/right-arrow.svg"
               alt="Seta para direita"
               className={`${styles.next} ${
@@ -285,7 +286,7 @@ const ListUsers = () => {
               }`}
               onClick={handleNextPage}
             />
-            <img
+            <Image
               src="/images/last-page.svg"
               alt="Seta que navega para a última página"
               className={`${styles.last} ${

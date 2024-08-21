@@ -14,19 +14,19 @@
 }
 
 .ticketRosa{
-    background-image: url("../../../../public/images/ticket-rosa.svg");
+    background-image: url("../../../../../../public/images/ticket-rosa.svg");
 }
 
 .ticketVerde {
-    background-image: url("../../../../public/images/ticket-verde.svg");
+    background-image: url("../../../../../../public/images/ticket-verde.svg");
 }
 
 .ticketAzul{
-    background-image: url("../../../../public/images/ticket-azul.svg");
+    background-image: url("../../../../../../public/images/ticket-azul.svg");
 }
 
 .ticketLaranja{
-    background-image: url("../../../../public/images/ticket-laranja.svg");
+    background-image: url("../../../../../../public/images/ticket-laranja.svg");
 }
 
 .ticketInfo {

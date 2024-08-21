@@ -4,7 +4,7 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
-import { IAuthContextProps } from "../interfaces/admin.interfaces";
+import { IAuthContextProps } from "@/app/interfaces/admin.interfaces";
 import {
   errorToast,
   successToast,
@@ -25,7 +25,7 @@ export function AuthContext({ children }: { children: React.ReactNode }) {
     const storedUser = JSON.parse(localStorage.getItem("user") || "null");
     const sessionUser = JSON.parse(sessionStorage.getItem("user") || "null");
     storedUser ? setUser(storedUser) : setUser(sessionUser);
-  }, []);
+  }, [setUser]); // Adicionando setUser como dependência
 
   const login = async (userData: { email: string }, remember: boolean) => {
     try {

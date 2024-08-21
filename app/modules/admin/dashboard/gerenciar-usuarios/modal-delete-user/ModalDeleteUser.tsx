@@ -15,15 +15,13 @@ const ModalDeleteUser = ({ deleteUserId, setDeleteUserId, setDeleteModalVisible 
   const handleDeleteUser = async (id: number) => {
     try {
       await deleteUser(id);
-      
       successToast("Usuário deletado com sucesso!");
     } catch (error) {
       console.error("Erro ao excluir usuário:", error);
-
       errorToast("Não foi possível deletar usuário. Verifique e tente novamente.");
     }
   };
-  
+
   const handleConfirmDelete = async () => {
     if (deleteUserId) {
       await handleDeleteUser(deleteUserId);
@@ -47,27 +45,27 @@ const ModalDeleteUser = ({ deleteUserId, setDeleteUserId, setDeleteModalVisible 
       open={!!deleteUserId}
       closable={false}
       footer={[
-        <div className={styles.modalDeleteButtonContainer}>
-          <Button
-            className={`${styles.modalDeleteButton} ${styles.modalDeleteCancelButton}`}
-            onClick={handleCancelDelete}
-          >
-            Cancelar
-          </Button>
-          <Button
-            className={`${styles.modalDeleteButton} ${styles.modalDeleteOkButton} ant-btn-primary`}
-            onClick={handleConfirmDelete}
-          >
-            Deletar
-          </Button>
-        </div>,
+        <Button
+          key="cancel"
+          className={`${styles.modalDeleteButton} ${styles.modalDeleteCancelButton}`}
+          onClick={handleCancelDelete}
+        >
+          Cancelar
+        </Button>,
+        <Button
+          key="confirm"
+          className={`${styles.modalDeleteButton} ${styles.modalDeleteOkButton} ant-btn-primary`}
+          onClick={handleConfirmDelete}
+        >
+          Deletar
+        </Button>
       ]}
     >
       <p className={styles.modalDeleteSubtitle}>
         Tem certeza que deseja deletar este usuário?
       </p>
     </Modal>
-  )
+  );
 }
 
 export default ModalDeleteUser;

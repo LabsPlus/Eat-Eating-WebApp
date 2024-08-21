@@ -6,15 +6,15 @@ import { Button } from "antd";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-import Loading from "../components/Loading/Loading";
-import ExternalPages from "../components/Layout/ExternalPages";
-import TextInput from "../components/Inputs/TextInput/TextInput";
-import PasswordInput from "../components/Inputs/PasswordInput/PasswordInput";
+import Loading from "../../../components/Loading/Loading";
+import ExternalPages from "../../../components/Layout/ExternalPages";
+import TextInput from "../../../components/Inputs/TextInput/TextInput";
+import PasswordInput from "../../../components/Inputs/PasswordInput/PasswordInput";
 
-import { isLoginValid } from "../helpers/isLoginValid";
-import { useAuthContext } from "@/app/contexts/AuthContext";
-import { IUserData } from "../Interfaces/admin.interfaces";
-import { errorToast } from "../services/toast-messages/toast-messages";
+import { isLoginValid } from "../../../helpers/isLoginValid";
+import { useAuthContext } from "@/app/context/AuthContext";
+import { IUserData } from "../../../interfaces/admin.interfaces";
+import { errorToast } from "../../../services/toast-messages/toast-messages";
 
 import styles from "./page.module.css";
 
@@ -25,7 +25,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     user ? router.push("/dashboard/gerenciar-usuarios") : null;
-  }, [user]);
+  }, [user, router]);
 
   const [remember, setRemember] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

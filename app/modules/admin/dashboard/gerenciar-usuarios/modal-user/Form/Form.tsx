@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Form.module.css";
 import PasswordValidationChecklist from "@/app/components/PasswordValidationChecklist/PasswordValidationChecklist";
+import Image from 'next/image';
 
 interface FormProps {
   currentStep: number;
@@ -33,7 +34,7 @@ const Form = ({
         <div className={styles.modalContainer}>
           <div className={styles.pictureContainer}>
             {formDataUser && formDataUser.picture ? (
-              <img src={formDataUser.picture} alt="Foto do usuário" />
+              <Image src={formDataUser.picture} alt="Foto do usuário" />
             ) : (
               <div className={styles.placeholder}></div>
             )}
@@ -165,7 +166,7 @@ const Form = ({
             style={{ alignItems: "flex-start" }}
           >
             {formDataUser && formDataUser.picture ? (
-              <img src={formDataUser.picture} alt="Foto do usuário" />
+              <Image src={formDataUser.picture} alt="Foto do usuário" />
             ) : (
               <div className={styles.placeholder}></div>
             )}

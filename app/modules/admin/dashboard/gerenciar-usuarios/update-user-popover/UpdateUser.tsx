@@ -65,7 +65,7 @@ const UpdateUser: React.FC = () => {
       validatePasswordChecklist(formUpdate.password);
       console.log("Senha: " + formUpdate.password);
     }
-  }, [formUpdate.password]);
+  }, [formUpdate, formUpdate?.password]);
 
   const [fileUploadUpdate, setFileUploadUpdate] = useState(false);
   const [fileUploadMessageUpdate, setFileUploadMessageUpdate] = useState(

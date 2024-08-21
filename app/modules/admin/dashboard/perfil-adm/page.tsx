@@ -113,9 +113,9 @@ const Page = (p0?: string) => {
                 onClick={togglePasswordVisibility}
               >
                 {isPasswordVisible ? (
-                  <img src="/images/remove_red_eye.svg" />
+                  <Image src="/images/remove_red_eye.svg" alt={"remove_red_eye.svg"} />
                 ) : (
-                  <img src="/images/remove_red_eye.svg" />
+                  <Image src="/images/remove_red_eye.svg" alt={"remove_red_eye.svg"} />
                 )}
               </button>
               <Button
@@ -133,7 +133,7 @@ const Page = (p0?: string) => {
         <div>
           <p className={styles.titleDelete}>Excluir perfil</p>
           <span className={styles.textDelete}>
-            Depois de clicar no botão "Excluir perfil", sua conta será agendada
+            Depois de clicar no botão &quot;Excluir perfil&quot;, sua conta será agendada
             para a exclusão em 30 dias. Após esse período, todos os dados
             associados a este perfil serão eliminados definitivamente.
           </span>

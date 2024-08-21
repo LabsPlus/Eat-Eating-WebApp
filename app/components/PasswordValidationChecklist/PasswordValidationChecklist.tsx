@@ -3,13 +3,14 @@ import React from "react";
 import { PasswordValidationChecklistProps } from "@/app/interfaces/components.interfaces";
 
 import styles from "./passwordValidationChecklist.module.css";
+import Image from 'next/image';
 
 const PasswordValidationChecklist = ({ validations }: PasswordValidationChecklistProps) => {
   return (
     <div className={styles.checkboxContainer}>
       <p>Sua senha deve conter</p>
       <div className={styles.checkbox}>
-        <img
+        <Image
           src={
             validations.length
               ? "/images/checked-circle.svg"
@@ -21,7 +22,7 @@ const PasswordValidationChecklist = ({ validations }: PasswordValidationChecklis
       </div>
 
       <div className={styles.checkbox}>
-        <img
+        <Image
           src={
             validations.lowercase
               ? "/images/checked-circle.svg"
@@ -33,7 +34,7 @@ const PasswordValidationChecklist = ({ validations }: PasswordValidationChecklis
       </div>
 
       <div className={styles.checkbox}>
-        <img
+        <Image
           src={
             validations.uppercase
               ? "/images/checked-circle.svg"
@@ -45,7 +46,7 @@ const PasswordValidationChecklist = ({ validations }: PasswordValidationChecklis
       </div>
 
       <div className={styles.checkbox}>
-        <img
+        <Image
           src={
             validations.number
               ? "/images/checked-circle.svg"
@@ -57,7 +58,7 @@ const PasswordValidationChecklist = ({ validations }: PasswordValidationChecklis
       </div>
 
       <div className={styles.checkbox}>
-        <img
+        <Image
           src={
             validations.specialCharacter
               ? "/images/checked-circle.svg"

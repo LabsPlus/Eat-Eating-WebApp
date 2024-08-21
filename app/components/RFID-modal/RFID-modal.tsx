@@ -155,7 +155,7 @@ const RFIDModal = ({ open, onClose, handleRFID } : ModalRfidProps) => {
 
       <div className={styles.rfidReader}>
         <p className={styles.rfidReaderText}>
-          <img src="/images/check_circle_outline.svg" alt="Leitor RFID" />
+          <Image src="/images/check_circle_outline.svg" alt="Leitor RFID" />
           Leitor RFID conectado
         </p>
       </div>
